@@ -21,7 +21,7 @@ export function MapEmbed({
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         className={cx(
-          "aspect-[4/3] w-full rounded-lg border-2 border-gris/30 bg-blanco",
+          "aspect-4/3 w-full rounded-lg border-2 border-gris/30 bg-blanco",
         )}
       />
       <a

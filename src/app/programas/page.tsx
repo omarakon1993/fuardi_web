@@ -82,7 +82,7 @@ export default function ProgramasPage() {
                     alt={programa.foto.alt}
                     width={programa.foto.ancho}
                     height={programa.foto.alto}
-                    className="aspect-[4/3] w-full object-cover"
+                    className="aspect-4/3 w-full object-cover"
                   />
                 ) : (
                   <PhotoPlaceholder

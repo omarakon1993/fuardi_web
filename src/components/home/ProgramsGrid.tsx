@@ -41,7 +41,7 @@ function Pieza({ programa }: { programa: Programa }) {
             alt={programa.foto.alt}
             width={programa.foto.ancho}
             height={programa.foto.alto}
-            className="aspect-[3/2] w-full object-cover"
+            className="aspect-3/2 w-full object-cover"
           />
         ) : (
           <PhotoPlaceholder

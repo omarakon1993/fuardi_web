@@ -45,7 +45,7 @@ export function PerformancesPreview() {
                     alt={foto.alt}
                     width={foto.ancho}
                     height={foto.alto}
-                    className="aspect-[4/3] w-full rounded-lg object-cover"
+                    className="aspect-4/3 w-full rounded-lg object-cover"
                   />
                 </li>
               ))
