@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Paleta "Tarima y tambor".
+ * Se declara con @theme (no inline) para que las utilidades lean las variables
+ * en tiempo de ejecución y el modo de alto contraste pueda redefinirlas.
+ */
+@theme {
+  --color-tinta: #14213d;
+  --color-azul: #00518b; /* azul del árbol del logo */
+  --color-azul-hondo: #003a66;
+  --color-rojo: #c1272d; /* pañoleta */
+  --color-rojo-hondo: #9c1f24;
+  --color-verde: #2e7d32;
+  --color-magenta: #a61e6e;
+  --color-amarillo: #f2b705; /* solo fondo, con texto tinta */
+  --color-naranja: #e9730c; /* solo fondo, con texto tinta */
+  --color-blanco: #ffffff;
+  --color-niebla: #f1f4f9;
+  --color-cana: #f6efdc; /* caña flecha del sombrero vueltiao */
+  --color-gris: #4a5568; /* texto secundario: 7.5:1 sobre blanco */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --animate-entrada: entrada 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes entrada {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-atkinson), sans-serif;
+}
+
+/* Alto contraste: se activa desde AccessibilityControls con data-contraste="alto". */
+html[data-contraste="alto"] {
+  --color-tinta: #000000;
+  --color-azul: #002b4d;
+  --color-azul-hondo: #001a30;
+  --color-rojo: #8a0e13;
+  --color-rojo-hondo: #5e090d;
+  --color-verde: #144d18;
+  --color-magenta: #6e0f48;
+  --color-niebla: #ffffff;
+  --color-cana: #ffffff;
+  --color-gris: #000000;
+}
+
+@layer base {
+  html {
+    color: var(--color-tinta);
+    background-color: var(--color-blanco);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Tamaño de texto (A− / A+). Todo el sitio usa rem, así que escala completo. */
+  html[data-texto="-1"] {
+    font-size: 93.75%;
+  }
+  html[data-texto="1"] {
+    font-size: 112.5%;
+  }
+  html[data-texto="2"] {
+    font-size: 125%;
+  }
+  html[data-texto="3"] {
+    font-size: 150%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.125rem; /* 18 px */
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  /*
+   * Foco visible en dos tonos: anillo tinta pegado al elemento y contorno
+   * amarillo por fuera. Se ve igual sobre fondos claros y oscuros.
+   */
+  :focus-visible {
+    outline: 3px solid var(--color-amarillo);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-tinta);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  html[data-contraste="alto"] a {
+    text-decoration-line: underline;
+  }
+
+  html[data-contraste="alto"] :focus-visible {
+    outline-width: 4px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility medida {
+  /* Líneas de menos de 75 caracteres. */
+  max-width: 65ch;
 }

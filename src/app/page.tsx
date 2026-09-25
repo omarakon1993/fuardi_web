@@ -1,8 +1,10 @@
-export default function Home() {
+import { site } from "@/data/site";
+import { Container } from "@/components/ui/Container";
+
+export default function InicioPage() {
   return (
-    <main className="mx-auto max-w-3xl p-8">
-      <h1 className="text-4xl font-bold">Fundación</h1>
-      <p className="mt-4 text-lg">Sitio en construcción.</p>
-    </main>
+    <Container className="py-16">
+      <h1 className="text-5xl">{site.lema}</h1>
+    </Container>
   );
 }
