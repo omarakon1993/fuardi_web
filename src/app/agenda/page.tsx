@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { eventos } from "@/data/eventos";
 import { paginas } from "@/data/paginas";
 import { site } from "@/data/site";
@@ -9,11 +10,11 @@ import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 const t = paginas.agenda;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Próximas presentaciones, festivales y actividades de la Fundación Armonía Diversa.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Próximas presentaciones, festivales y actividades de la Fundación Armonía Diversa.",
+  "/agenda/",
+);
 
 export default function AgendaPage() {
   return (

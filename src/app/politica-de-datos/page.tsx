@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { politica } from "@/data/politica";
 import { formatFecha } from "@/lib/fechas";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { PageHeader } from "@/components/ui/PageHeader";
 
-export const metadata: Metadata = {
-  title: "Política de tratamiento de datos",
-  description:
-    "Cómo la Fundación Armonía Diversa trata los datos personales, según la Ley 1581 de 2012.",
-};
+export const metadata: Metadata = metadatos(
+  "Política de tratamiento de datos",
+  "Cómo la Fundación Armonía Diversa trata los datos personales, según la Ley 1581 de 2012.",
+  "/politica-de-datos/",
+);
 
 export default function PoliticaDeDatosPage() {
   return (

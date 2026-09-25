@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import Image from "next/image";
 import Link from "next/link";
 import { preguntasFrecuentes } from "@/data/faq";
@@ -14,11 +15,11 @@ import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 const t = paginas.programas;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Formación académica, música tradicional de gaitas y tambores, danza folclórica, canto y emprendimientos para personas con discapacidad en Suba, Bogotá.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Formación académica, música tradicional de gaitas y tambores, danza folclórica, canto y emprendimientos para personas con discapacidad en Suba, Bogotá.",
+  "/programas/",
+);
 
 export default function ProgramasPage() {
   return (

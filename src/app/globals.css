@@ -142,3 +142,15 @@ html[data-contraste="alto"] {
   /* Líneas de menos de 75 caracteres. */
   max-width: 65ch;
 }
+
+/* Fuera de @layer para ganarle a las utilidades hidden / xl:block. */
+/*
+ * Los puntos de quiebre no crecen con el texto. Si la persona agranda la
+ * letra, el menú de escritorio ya no cabe: se usa el menú desplegable.
+ */
+html:is([data-texto="1"], [data-texto="2"], [data-texto="3"]) .nav-escritorio {
+  display: none;
+}
+html:is([data-texto="1"], [data-texto="2"], [data-texto="3"]) .menu-compacto {
+  display: block;
+}

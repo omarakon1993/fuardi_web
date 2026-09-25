@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { logros, notaTrayectoria } from "@/data/logros";
 import { paginas } from "@/data/paginas";
 import { videos } from "@/data/videos";
@@ -9,11 +10,11 @@ import { YouTubeLite } from "@/components/ui/YouTubeLite";
 
 const t = paginas.logros;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Reconocimientos, galardones y participaciones del grupo de gaitas y tambores de la Fundación Armonía Diversa desde 2016.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Reconocimientos, galardones y participaciones del grupo de gaitas y tambores de la Fundación Armonía Diversa desde 2016.",
+  "/logros/",
+);
 
 export default function LogrosPage() {
   const notasMedios = videos.filter((v) => v.esMedios);

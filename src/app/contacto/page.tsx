@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { Suspense } from "react";
 import { paginas } from "@/data/paginas";
 import { mensajesWhatsApp, site } from "@/data/site";
@@ -14,11 +15,11 @@ import { PageHeader } from "@/components/ui/PageHeader";
 
 const t = paginas.contacto;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Escríbele a la Fundación Armonía Diversa: inscripciones, aportes, voluntariado, presentaciones y alianzas. WhatsApp 320 829 8137.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Escríbele a la Fundación Armonía Diversa: inscripciones, aportes, voluntariado, presentaciones y alianzas. WhatsApp 320 829 8137.",
+  "/contacto/",
+);
 
 function Dato({
   icono,

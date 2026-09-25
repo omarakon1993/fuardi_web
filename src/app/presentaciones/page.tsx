@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { paginas } from "@/data/paginas";
 import { fotosPendientesGaleria, presentaciones } from "@/data/presentaciones";
 import { videos } from "@/data/videos";
@@ -12,11 +13,11 @@ import { YouTubeLite } from "@/components/ui/YouTubeLite";
 
 const t = paginas.presentaciones;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Presentaciones y salidas del grupo de gaitas y tambores de la Fundación Armonía Diversa: festivales en Bogotá, Bolívar, Cundinamarca y Sucre.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Presentaciones y salidas del grupo de gaitas y tambores de la Fundación Armonía Diversa: festivales en Bogotá, Bolívar, Cundinamarca y Sucre.",
+  "/presentaciones/",
+);
 
 export default function PresentacionesPage() {
   const fotos = presentaciones.flatMap((p) => p.fotos);

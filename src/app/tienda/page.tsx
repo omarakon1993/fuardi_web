@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import { paginas } from "@/data/paginas";
 import { productos, textoTienda } from "@/data/productos";
 import { Catalogo } from "@/components/tienda/Catalogo";
@@ -8,11 +9,11 @@ import { Section } from "@/components/ui/Section";
 
 const t = paginas.tienda;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Productos hechos por los jóvenes de la Fundación Armonía Diversa. Pídelos por WhatsApp: cada compra apoya a la fundación.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Productos hechos por los jóvenes de la Fundación Armonía Diversa. Pídelos por WhatsApp: cada compra apoya a la fundación.",
+  "/tienda/",
+);
 
 export default function TiendaPage() {
   return (

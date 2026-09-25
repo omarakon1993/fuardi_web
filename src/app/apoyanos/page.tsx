@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import Image from "next/image";
 import { formasDeAyudar } from "@/data/apoyo";
 import { paginas } from "@/data/paginas";
@@ -12,11 +13,11 @@ import { PatternBand } from "@/components/ui/PatternBand";
 
 const t = paginas.apoyanos;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Apoya a la Fundación Armonía Diversa: dona, sé voluntario, contrata una presentación del grupo de gaitas y tambores o haz una alianza.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Apoya a la Fundación Armonía Diversa: dona, sé voluntario, contrata una presentación del grupo de gaitas y tambores o haz una alianza.",
+  "/apoyanos/",
+);
 
 function DatosDonacion() {
   const { cuentas, qr } = site.donaciones;

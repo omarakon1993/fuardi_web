@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metadatos } from "@/lib/metadatos";
 import Image from "next/image";
 import { equipo } from "@/data/equipo";
 import { paginas } from "@/data/paginas";
@@ -13,11 +14,11 @@ import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 const t = paginas.nosotros;
 
-export const metadata: Metadata = {
-  title: t.titulo,
-  description:
-    "Historia, misión, visión, objetivos y equipo de la Fundación Armonía Diversa, en Suba, Bogotá.",
-};
+export const metadata: Metadata = metadatos(
+  t.titulo,
+  "Historia, misión, visión, objetivos y equipo de la Fundación Armonía Diversa, en Suba, Bogotá.",
+  "/nosotros/",
+);
 
 export default function NosotrosPage() {
   return (

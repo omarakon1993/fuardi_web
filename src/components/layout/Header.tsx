@@ -3,6 +3,7 @@ import Link from "next/link";
 import { botonesDestacados } from "@/data/navegacion";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { AccessibilityControls } from "./AccessibilityControls";
 import { MobileMenu } from "./MobileMenu";
 import { NavPrincipal } from "./NavPrincipal";
 
@@ -28,6 +29,11 @@ export function Header() {
 
   return (
     <header className="border-b-2 border-niebla bg-blanco">
+      <div className="bg-niebla">
+        <Container className="flex justify-end py-0.5">
+          <AccessibilityControls />
+        </Container>
+      </div>
       <Container className="flex items-center gap-3 py-3">
         <Link
           href="/"
@@ -49,13 +55,13 @@ export function Header() {
           </span>
         </Link>
 
-        <NavPrincipal className="ml-auto hidden xl:block" />
+        <NavPrincipal className="nav-escritorio ml-auto hidden xl:block" />
 
         <div className="ml-auto hidden items-center gap-2 sm:flex xl:ml-2">
           {botones}
         </div>
 
-        <MobileMenu className="ml-auto sm:ml-0 xl:hidden" />
+        <MobileMenu className="menu-compacto ml-auto sm:ml-0 xl:hidden" />
       </Container>
 
       {/* En móvil los dos botones siguen visibles, en una segunda fila. */}
