@@ -1,16 +1,59 @@
 import type { Metadata } from "next";
+import { logros, notaTrayectoria } from "@/data/logros";
+import { paginas } from "@/data/paginas";
+import { videos } from "@/data/videos";
+import { LineaTiempo } from "@/components/logros/LineaTiempo";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { EncabezadoSeccion, Section } from "@/components/ui/Section";
+import { YouTubeLite } from "@/components/ui/YouTubeLite";
+
+const t = paginas.logros;
 
 export const metadata: Metadata = {
-  title: "Logros",
-  description: "Reconocimientos y participaciones de nuestro grupo desde 2016.",
+  title: t.titulo,
+  description:
+    "Reconocimientos, galardones y participaciones del grupo de gaitas y tambores de la Fundación Armonía Diversa desde 2016.",
 };
 
 export default function LogrosPage() {
+  const notasMedios = videos.filter((v) => v.esMedios);
+
   return (
-    <PageHeader
-      titulo="Logros"
-      intro="Reconocimientos y participaciones de nuestro grupo desde 2016."
-    />
+    <>
+      <PageHeader titulo={t.titulo} intro={t.intro} />
+
+      <Section tituloId="linea-titulo" id="linea-de-tiempo" fondo="niebla">
+        <EncabezadoSeccion id="linea-titulo" titulo={t.lineaTiempo} />
+        <LineaTiempo logros={logros} />
+        <p className="mt-10 medida text-lg">{notaTrayectoria}</p>
+      </Section>
+
+      {notasMedios.length > 0 ? (
+        <Section tituloId="medios-titulo" id="medios">
+          <EncabezadoSeccion
+            id="medios-titulo"
+            titulo={t.medios}
+            intro={t.mediosIntro}
+          />
+          <ul className="mt-8 grid gap-8 lg:grid-cols-2">
+            {notasMedios.map((video) => (
+              <li key={video.id}>
+                <figure>
+                  <YouTubeLite id={video.id} titulo={video.titulo} />
+                  <figcaption className="mt-3">
+                    <span className="block text-xl font-bold">
+                      {video.titulo}
+                    </span>
+                    <span className="text-gris">
+                      {video.descripcion ?? video.canal}
+                    </span>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+    </>
   );
 }
