@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { inicio } from "@/data/inicio";
-import { fotosPendientesGaleria, presentaciones } from "@/data/presentaciones";
+import { fotosGaleria, fotosPendientesGaleria } from "@/data/presentaciones";
 import { videos } from "@/data/videos";
 import { BotonEnlace } from "@/components/ui/Button";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
@@ -8,7 +8,7 @@ import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 import { YouTubeLite } from "@/components/ui/YouTubeLite";
 
 export function PerformancesPreview() {
-  const fotos = presentaciones.flatMap((p) => p.fotos).slice(0, 4);
+  const fotos = fotosGaleria.slice(0, 4);
   const video = videos.find((v) => !v.esMedios) ?? videos[0];
 
   return (

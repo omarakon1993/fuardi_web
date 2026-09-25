@@ -36,8 +36,7 @@ export const site: SiteConfig = {
   ],
   // TODO(contenido): enlace al canal de WhatsApp.
   canalWhatsApp: undefined,
-  // TODO(contenido): NIT de la fundación.
-  nit: undefined,
+  nit: "901.138.083-3",
   // TODO(contenido): horario de atención.
   horarioAtencion: undefined,
   // TODO(contenido): URL de inserción del Google Calendar público, si lo crean.
@@ -50,8 +49,19 @@ export const site: SiteConfig = {
   },
   // TODO(contenido): certificado de existencia y demás documentos (PDF en public/documentos/).
   documentos: [],
-  // TODO(contenido): foto del grupo tocando en tarima (public/images/hero/).
-  heroFoto: undefined,
+  // TODO(contenido): cambiar por una foto del grupo tocando en tarima cuando la haya.
+  heroFoto: {
+    src: "/images/hero/grupo-tambores-conectate.webp",
+    alt: "Nuestros artistas con vestuario blanco, pañoleta roja y sombrero vueltiao, junto a sus tambores en una plaza de Bogotá",
+    ancho: 1600,
+    alto: 1204,
+  },
+  historiaFoto: {
+    src: "/images/galeria/salida-playland.webp",
+    alt: "Estudiantes con la sudadera azul de la fundación posando felices en una salida a Playland",
+    ancho: 1152,
+    alto: 864,
+  },
   // TODO(contenido): confirmar las cifras con la fundación antes de publicar.
   cifras: [
     { valor: "25", texto: "jóvenes en formación" },
@@ -62,12 +72,12 @@ export const site: SiteConfig = {
       texto: "departamentos: Bogotá, Bolívar, Cundinamarca y Sucre",
     },
   ],
-  // TODO(contenido): misión y visión definitivas.
+  // Textos oficiales de la sede (se corrigieron tildes y mayúsculas).
   mision:
-    "Somos una fundación sin ánimo de lucro de Suba, Bogotá, que ofrece formación académica y artística (música tradicional colombiana, danza y canto) a niños, jóvenes y adultos con discapacidad. Fortalecemos sus habilidades y su identidad cultural para que la sociedad los reconozca por sus capacidades.",
+    "Fortalecer y mostrar los diferentes talentos de los niños y jóvenes con discapacidad a través de actividades artísticas, desarrollando habilidades intelectuales y adaptativas para eliminar barreras sociales, ayudando a sus familias al reconocimiento dentro de la sociedad.",
   vision:
-    "Ser un referente en Colombia de inclusión a través del arte, con un grupo de música y danza reconocido a nivel nacional y emprendimientos que aporten a la autonomía de nuestros jóvenes.",
-  misionVisionTemporales: true,
+    "A futuro, la Fundación Armonía Diversa será reconocida por desarrollar habilidades intelectuales y adaptativas en niños y jóvenes con discapacidad, por medio de actividades artísticas, específicamente de música y danza, para la eliminación de barreras, siendo partícipes de la sociedad mostrando sus capacidades.",
+  misionVisionTemporales: false,
   resenaCorta:
     "Trabajamos con niños, niñas, jóvenes y adultos con discapacidad en la localidad de Suba. Creemos que la música y la danza fortalecen habilidades cognitivas, comunicativas, sociales y emocionales, y que la discapacidad tiene muchas capacidades.",
   historia: [

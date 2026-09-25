@@ -35,11 +35,21 @@ export default function NosotrosPage() {
               ))}
             </div>
           </div>
-          <PhotoPlaceholder
-            descripcion="el grupo posando con el pendón de la fundación"
-            proporcion="16/9"
-            className="rounded-xl lg:mt-16 lg:aspect-3/4"
-          />
+          {site.historiaFoto ? (
+            <Image
+              src={site.historiaFoto.src}
+              alt={site.historiaFoto.alt}
+              width={site.historiaFoto.ancho}
+              height={site.historiaFoto.alto}
+              className="aspect-16/9 w-full rounded-xl object-cover lg:mt-16 lg:aspect-4/5"
+            />
+          ) : (
+            <PhotoPlaceholder
+              descripcion="el grupo posando con el pendón de la fundación"
+              proporcion="16/9"
+              className="rounded-xl lg:mt-16 lg:aspect-3/4"
+            />
+          )}
         </div>
       </Section>
 

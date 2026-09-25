@@ -12,6 +12,14 @@ export const videos: Video[] = [
     esMedios: true,
   },
   {
+    id: "mxvE7Z5mBNw",
+    titulo:
+      "«Armonía Diversa» fortalece las habilidades artísticas en niños con discapacidad",
+    canal: "8Treinta",
+    descripcion: "Nota sobre la fundación.",
+    esMedios: true,
+  },
+  {
     id: "ppG9-_eEhfk",
     titulo: "Fundación Armonía Diversa en festival de gaitas",
     canal: "Fundación Armonía Diversa",

@@ -208,6 +208,8 @@ export interface SiteConfig {
   };
   documentos: Enlace[];
   heroFoto?: Foto;
+  /** Foto de la sección de historia en Nosotros. */
+  historiaFoto?: Foto;
   cifras: CifraImpacto[];
   mision: string;
   vision: string;

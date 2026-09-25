@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { metadatos } from "@/lib/metadatos";
 import { paginas } from "@/data/paginas";
-import { fotosPendientesGaleria, presentaciones } from "@/data/presentaciones";
+import {
+  fotosGaleria,
+  fotosPendientesGaleria,
+  presentaciones,
+} from "@/data/presentaciones";
 import { videos } from "@/data/videos";
 import { ListaPresentaciones } from "@/components/presentaciones/ListaPresentaciones";
 import { Lightbox } from "@/components/ui/Lightbox";
@@ -20,7 +24,7 @@ export const metadata: Metadata = metadatos(
 );
 
 export default function PresentacionesPage() {
-  const fotos = presentaciones.flatMap((p) => p.fotos);
+  const fotos = fotosGaleria;
 
   return (
     <>

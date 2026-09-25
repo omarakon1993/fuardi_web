@@ -16,6 +16,12 @@ export const programas: Programa[] = [
     ],
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.
+    foto: {
+      src: "/images/galeria/salida-bolos.webp",
+      alt: "Estudiantes con la sudadera de la fundación sosteniendo bolas de bolos en una salida",
+      ancho: 1599,
+      alto: 1200,
+    },
   },
   {
     slug: "musica",
@@ -29,6 +35,12 @@ export const programas: Programa[] = [
     ],
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.
+    foto: {
+      src: "/images/galeria/grupo-gaitas-tambores-navidad.webp",
+      alt: "Grupo de gaitas y tambores con vestuario tradicional, penachos y polleras, junto a sus tambores",
+      ancho: 1600,
+      alto: 1200,
+    },
   },
   {
     slug: "danza",
@@ -41,6 +53,12 @@ export const programas: Programa[] = [
     ],
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.
+    foto: {
+      src: "/images/galeria/danza-polleras-sombrero-vueltiao.webp",
+      alt: "Parejas de baile con pollera roja y blanca, y camisa blanca con sombrero vueltiao, al terminar su presentación",
+      ancho: 1280,
+      alto: 960,
+    },
   },
   {
     slug: "canto",
@@ -51,6 +69,12 @@ export const programas: Programa[] = [
     descripcion: ["Formación en canto para nuestros estudiantes."],
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.
+    foto: {
+      src: "/images/programas/canto-gaita-tarima.webp",
+      alt: "Profesor cantando con maraca junto a un joven que toca la gaita en tarima",
+      ancho: 725,
+      alto: 544,
+    },
   },
   {
     slug: "emprendimientos",
