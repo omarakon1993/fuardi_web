@@ -403,7 +403,7 @@ function Formulario({
       </Campo>
 
       {motivo === "inscripcion" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
           <legend className="px-2 text-xl font-bold">
             Datos de la inscripción
           </legend>
@@ -498,7 +498,7 @@ function Formulario({
       ) : null}
 
       {motivo === "aporte" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
           <legend className="px-2 text-xl font-bold">Datos del aporte</legend>
           <GrupoRadios
             nombre="tipoAporte"
@@ -538,7 +538,7 @@ function Formulario({
       ) : null}
 
       {motivo === "presentacion" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
           <legend className="px-2 text-xl font-bold">Datos del evento</legend>
           <div className="grid gap-6 md:grid-cols-2">
             <Campo
@@ -592,7 +592,7 @@ function Formulario({
       ) : null}
 
       {motivo === "alianza" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
           <legend className="px-2 text-xl font-bold">
             Datos de la empresa
           </legend>
@@ -676,13 +676,13 @@ function Formulario({
               errores.autorizacion ? "autorizacion-error" : undefined
             }
             aria-required
-            className="mt-1 size-6 shrink-0 cursor-pointer accent-azul"
+            className="mt-1 size-6 shrink-0 cursor-pointer accent-tinta"
           />
           <label htmlFor="autorizacion" className="text-lg">
             {t.autorizacion}{" "}
             <Link
               href="/politica-de-datos/"
-              className="font-bold text-azul underline"
+              className="font-bold text-tinta underline"
               target="_blank"
             >
               {t.autorizacionEnlace}
@@ -767,7 +767,7 @@ function GrupoRadios({
               value={o.valor}
               checked={valor === o.valor}
               onChange={() => onCambio(o.valor)}
-              className="size-5 cursor-pointer accent-azul"
+              className="size-5 cursor-pointer accent-tinta"
             />
             {o.texto}
           </label>

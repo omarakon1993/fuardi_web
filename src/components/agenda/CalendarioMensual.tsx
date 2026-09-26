@@ -74,7 +74,7 @@ export function CalendarioMensual({ eventos, hoy }: CalendarioMensualProps) {
 
   const eventosElegidos = elegido ? (porDia.get(elegido) ?? []) : [];
   const boton =
-    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
+    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border-2 border-tinta bg-blanco px-3 font-bold text-tinta hover:bg-cana";
 
   return (
     <div>
@@ -131,7 +131,7 @@ export function CalendarioMensual({ eventos, hoy }: CalendarioMensualProps) {
                           elegido === fecha
                             ? "bg-tinta text-blanco"
                             : "bg-rojo text-blanco hover:bg-rojo-hondo",
-                          esHoy && "ring-4 ring-azul ring-offset-2",
+                          esHoy && "ring-4 ring-tinta ring-offset-2",
                         )}
                       >
                         {dia}
@@ -144,7 +144,7 @@ export function CalendarioMensual({ eventos, hoy }: CalendarioMensualProps) {
                       <span
                         className={cx(
                           "flex h-12 w-full items-center justify-center rounded-lg sm:h-14",
-                          esHoy && "font-bold ring-4 ring-azul",
+                          esHoy && "font-bold ring-4 ring-tinta",
                         )}
                       >
                         {dia}

@@ -1,7 +1,7 @@
 import type { PreguntaFrecuente } from "@/lib/types";
 
 const respuestaPendiente =
-  "Estamos actualizando esta información. Escríbenos por WhatsApp al 320 829 8137 y te respondemos.";
+  "Estamos actualizando esta información. Escríbenos por WhatsApp y te respondemos.";
 
 export const preguntasFrecuentes: PreguntaFrecuente[] = [
   {

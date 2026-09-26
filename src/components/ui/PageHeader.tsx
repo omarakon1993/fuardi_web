@@ -1,95 +1,115 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { inicio } from "@/data/inicio";
+import { botonesDestacados } from "@/data/navegacion";
 import { cx } from "@/lib/colores";
 import type { Enlace, Foto } from "@/lib/types";
+import { BotonEnlace } from "./Button";
 import { Container } from "./Container";
-import { PatternBand } from "./PatternBand";
-
-const fondos = {
-  azul: "bg-azul text-blanco",
-  tinta: "bg-tinta text-blanco",
-} as const;
 
 interface PageHeaderProps {
   titulo: string;
+  /** Píldora corta sobre el titular. */
+  etiqueta?: string;
   intro?: ReactNode;
-  /** Foto grande a la derecha, como en un cartel. */
+  /** Foto grande a la derecha. */
   foto?: Foto;
   /** Botones principales de la página. */
   acciones?: ReactNode;
   /** Accesos directos a las secciones de la página. */
   atajos?: Enlace[];
-  fondo?: keyof typeof fondos;
   children?: ReactNode;
 }
 
 /**
- * Portada de las páginas internas, con el único h1 de la página. Cada página
- * abre como un cartel: titular grande, intro, acciones y una foto del grupo.
+ * Portada de las páginas internas, con el único h1 de la página. Misma
+ * silueta que el inicio: fondo tinta, titular grande y foto con esquina
+ * amplia. La primera sección de la página se monta encima como capa.
  */
 export function PageHeader({
   titulo,
+  etiqueta,
   intro,
   foto,
   acciones,
   atajos,
-  fondo = "azul",
   children,
 }: PageHeaderProps) {
   return (
-    <>
-      <div className={fondos[fondo]}>
-        <Container
-          className={cx(
-            "grid gap-10 py-14 md:py-20",
-            foto && "lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14",
-          )}
-        >
-          <div className="motion-safe:animate-entrada">
-            <h1 className="text-titular">{titulo}</h1>
-            {intro ? (
-              <p className="mt-6 medida text-entrada text-blanco/90">{intro}</p>
-            ) : null}
-            {acciones ? (
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                {acciones}
-              </div>
-            ) : null}
-            {children}
-          </div>
-          {foto ? (
-            <Image
-              src={foto.src}
-              alt={foto.alt}
-              width={foto.ancho}
-              height={foto.alto}
-              priority
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className="aspect-4/3 w-full rounded-foto object-cover lg:aspect-5/4"
-            />
+    <div className="overflow-hidden bg-tinta pt-12 pb-28 text-blanco md:pt-16 lg:pb-32">
+      <Container
+        className={cx(
+          "grid items-center gap-12",
+          foto && "lg:grid-cols-[1.1fr_1fr] lg:gap-14",
+        )}
+      >
+        <div className="motion-safe:animate-entrada">
+          {etiqueta ? (
+            <p className="mb-6 inline-flex items-center gap-2.5 rounded-full bg-blanco/10 px-4 py-1.5 text-base font-bold">
+              <span
+                aria-hidden="true"
+                className="size-2 rounded-full bg-rojo"
+              />
+              {etiqueta}
+            </p>
           ) : null}
-        </Container>
-      </div>
-      <PatternBand tono="rojo" />
+          <h1 className="text-titular">{titulo}</h1>
+          {intro ? (
+            <p className="mt-6 medida text-entrada text-blanco/90">{intro}</p>
+          ) : null}
+          {acciones ? (
+            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+              {acciones}
+            </div>
+          ) : null}
+          {children}
+        </div>
+        {foto ? (
+          <Image
+            src={foto.src}
+            alt={foto.alt}
+            width={foto.ancho}
+            height={foto.alto}
+            priority
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="aspect-5/4 w-full rounded-[2rem_8rem_2rem_2rem] object-cover sm:rounded-[2rem_12rem_2rem_2rem]"
+          />
+        ) : null}
+      </Container>
+
       {atajos && atajos.length > 0 ? (
-        <nav aria-label="En esta página" className="border-b-2 border-niebla">
-          <Container>
-            <ul className="flex flex-wrap gap-2 py-4">
+        <Container>
+          <nav aria-label="En esta página" className="mt-10">
+            <ul className="flex flex-wrap gap-2">
               {atajos.map((atajo) => (
                 <li key={atajo.href}>
                   <Link
                     href={atajo.href}
-                    className="inline-flex min-h-11 items-center rounded-full bg-niebla px-5 font-bold text-tinta no-underline hover:bg-azul hover:text-blanco"
+                    className="inline-flex min-h-11 items-center rounded-full bg-blanco/10 px-4 font-bold text-blanco no-underline transition-colors duration-300 hover:bg-blanco hover:text-tinta"
                   >
                     {atajo.texto}
                   </Link>
                 </li>
               ))}
             </ul>
-          </Container>
-        </nav>
+          </nav>
+        </Container>
       ) : null}
+    </div>
+  );
+}
+
+/** Inscribir (botón blanco) y apoyar (enlace), como en el inicio. */
+export function AccionesPrincipales() {
+  return (
+    <>
+      <BotonEnlace href={botonesDestacados.inscribirse.href} variante="blanco">
+        {inicio.hero.inscribir}
+      </BotonEnlace>
+      <BotonEnlace href={botonesDestacados.apoyar.href} variante="textoClaro">
+        {inicio.hero.apoyar}
+      </BotonEnlace>
     </>
   );
 }

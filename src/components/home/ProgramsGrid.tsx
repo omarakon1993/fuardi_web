@@ -5,99 +5,131 @@ import { programas } from "@/data/programas";
 import { clasesColor, cx } from "@/lib/colores";
 import type { Programa } from "@/lib/types";
 import { BotonEnlace } from "@/components/ui/Button";
+import { Revelar } from "@/components/ui/Revelar";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 /*
- * Mosaico tipo rompecabezas: cada pieza es una foto del programa con una
- * franja de su color. Música es la pieza grande; la que no tiene foto se
- * rellena con su color.
+ * Cuatro columnas escalonadas como piezas de rompecabezas: tres fotos con
+ * formas distintas y una columna con dos tarjetas blancas.
  */
-const piezas: Record<string, string> = {
-  musica: "sm:col-span-2 lg:col-span-7 lg:row-span-2 lg:min-h-[40rem]",
-  danza: "lg:col-span-5",
-  canto: "lg:col-span-5",
-  formacion: "lg:col-span-7",
-  emprendimientos: "lg:col-span-5",
+const conFoto = ["musica", "danza", "canto"];
+const formas: Record<string, string> = {
+  musica: "rounded-t-[7.5rem] rounded-b-foto",
+  danza: "rounded-foto sm:mt-14",
+  canto: "rounded-t-foto rounded-b-[5rem] sm:rounded-b-[7.5rem]",
 };
 
-// El orden del mosaico se da en el DOM para que el teclado lo siga igual.
-const orden = Object.keys(piezas);
-const enMosaico = [...programas].sort(
-  (a, b) => orden.indexOf(a.slug) - orden.indexOf(b.slug),
-);
+const buscar = (slug: string) => programas.find((p) => p.slug === slug);
 
-function Pieza({ programa }: { programa: Programa }) {
+function Pildora({ programa }: { programa: Programa }) {
   const color = clasesColor[programa.color];
-  const grande = programa.slug === "musica";
-  const foto = programa.foto;
-
   return (
-    <li
+    <span
       className={cx(
-        "group relative isolate flex min-h-80 flex-col justify-end overflow-hidden rounded-foto",
-        piezas[programa.slug],
-        foto ? "text-blanco" : cx(color.fondo, color.sobreFondo),
+        "inline-block rounded-full px-3 py-1 text-sm font-bold",
+        color.fondo,
+        color.sobreFondo,
+      )}
+    >
+      {programa.etiqueta}
+    </span>
+  );
+}
+
+function PiezaFoto({ programa }: { programa: Programa }) {
+  const foto = programa.foto;
+  return (
+    <Revelar
+      as="li"
+      className={cx(
+        "group relative isolate flex h-96 flex-col justify-end overflow-hidden bg-tinta text-blanco transition-transform duration-300 hover:-translate-y-1.5 lg:h-108",
+        formas[programa.slug],
       )}
     >
       {foto ? (
-        <>
-          <Image
-            src={foto.src}
-            alt={foto.alt}
-            fill
-            sizes={
-              grande
-                ? "(min-width: 1024px) 58vw, 100vw"
-                : "(min-width: 1024px) 42vw, 100vw"
-            }
-            className="-z-20 object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-linear-to-t from-tinta/95 via-tinta/60 via-40% to-tinta/0 to-75%"
-          />
-        </>
+        <Image
+          src={foto.src}
+          alt={foto.alt}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="-z-20 object-cover object-[center_75%]"
+        />
       ) : null}
       <div
-        className={cx("p-6 pb-8 sm:p-8 sm:pb-10", grande && "lg:p-10 lg:pb-12")}
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-linear-to-t from-tinta/95 via-tinta/55 via-40% to-tinta/0 to-70%"
+      />
+      {/* La pieza con la curva abajo necesita más aire para el texto. */}
+      <div
+        className={cx(
+          "p-6 pb-8",
+          programa.slug === "canto" && "pb-16 sm:pb-20",
+        )}
       >
-        <h3 className={cx(grande ? "text-4xl sm:text-5xl" : "text-3xl")}>
+        <Pildora programa={programa} />
+        <h3 className="mt-3 text-3xl">
           <Link
             href={`/programas/#${programa.slug}`}
-            className="no-underline group-hover:underline after:absolute after:inset-0 after:rounded-foto"
+            className="text-blanco no-underline group-hover:underline after:absolute after:inset-0"
           >
             {programa.nombre}
           </Link>
         </h3>
-        <p className={cx("mt-3 max-w-[42ch]", grande ? "text-xl" : "text-lg")}>
-          {programa.resumen}
-        </p>
+        <p className="mt-2 text-base">{programa.resumen}</p>
       </div>
-      <span
-        aria-hidden="true"
-        className={cx("absolute inset-x-0 bottom-0 h-2", color.fondo)}
-      />
-    </li>
+    </Revelar>
+  );
+}
+
+function PiezaBlanca({ programa }: { programa: Programa }) {
+  return (
+    <Revelar
+      as="li"
+      className="group relative rounded-foto bg-blanco p-6 transition-transform duration-300 hover:-translate-y-1.5"
+    >
+      <Pildora programa={programa} />
+      <h3 className="mt-3 text-2xl">
+        <Link
+          href={`/programas/#${programa.slug}`}
+          className="text-tinta no-underline group-hover:underline after:absolute after:inset-0 after:rounded-foto"
+        >
+          {programa.nombre}
+        </Link>
+      </h3>
+      <p className="mt-2 text-base text-gris">{programa.resumen}</p>
+    </Revelar>
   );
 }
 
 export function ProgramsGrid() {
+  const t = inicio.programas;
+  const fotos = conFoto.map(buscar).filter((p) => p !== undefined);
+  const blancas = programas.filter((p) => !conFoto.includes(p.slug));
+
   return (
-    <Section tituloId="programas-titulo">
+    <Section tituloId="programas-titulo" fondo="cana" capa>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <EncabezadoSeccion
           id="programas-titulo"
-          titulo={inicio.programas.titulo}
-          intro={inicio.programas.intro}
+          antetitulo={t.antetitulo}
+          titulo={t.titulo}
+          className="max-w-md"
         />
         <BotonEnlace href="/programas/" variante="secundario">
-          {inicio.programas.enlace}
+          {t.enlace}
         </BotonEnlace>
       </div>
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:gap-5">
-        {enMosaico.map((programa) => (
-          <Pieza key={programa.slug} programa={programa} />
+      <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {fotos.map((programa) => (
+          <PiezaFoto key={programa.slug} programa={programa} />
         ))}
+        <li className="sm:mt-14">
+          <ul className="grid gap-5">
+            {blancas.map((programa) => (
+              <PiezaBlanca key={programa.slug} programa={programa} />
+            ))}
+          </ul>
+        </li>
       </ul>
     </Section>
   );

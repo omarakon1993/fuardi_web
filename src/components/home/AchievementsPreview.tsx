@@ -1,53 +1,65 @@
 import { inicio } from "@/data/inicio";
-import { logros, nombresTipoLogro } from "@/data/logros";
-import { IconoLogro } from "@/components/logros/IconoLogro";
+import { logros } from "@/data/logros";
+import { cx } from "@/lib/colores";
 import { BotonEnlace } from "@/components/ui/Button";
+import { Revelar } from "@/components/ui/Revelar";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
+// Color del borde de cada punto de la línea de tiempo.
+const puntos = [
+  "border-rojo",
+  "border-tinta",
+  "border-verde",
+  "border-magenta",
+];
+
+/** Línea de tiempo horizontal con los cuatro logros destacados más recientes. */
 export function AchievementsPreview() {
+  const t = inicio.logros;
   const destacados = logros
     .filter((l) => l.destacado)
     .sort((a, b) => b.anio - a.anio)
-    .slice(0, 4);
+    .slice(0, 4)
+    .reverse();
 
   return (
-    <Section tituloId="logros-titulo">
-      <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
-        <div>
-          <EncabezadoSeccion
-            id="logros-titulo"
-            titulo={inicio.logros.titulo}
-            intro={inicio.logros.intro}
-          />
-          <BotonEnlace href="/logros/" variante="secundario" className="mt-8">
-            {inicio.logros.enlace}
-          </BotonEnlace>
-        </div>
-        <ul className="divide-y-2 divide-niebla border-y-2 border-niebla">
-          {destacados.map((logro) => (
-            <li
-              key={logro.id}
-              className="grid gap-2 py-7 sm:grid-cols-[7rem_1fr] sm:gap-8"
-            >
-              <p className="condensada text-5xl leading-none font-extrabold text-rojo">
-                {logro.anio}
-              </p>
-              <div>
-                <p className="flex items-center gap-2 text-base font-bold text-gris">
-                  <IconoLogro tipo={logro.tipo} className="size-8" />
-                  {nombresTipoLogro[logro.tipo]}
-                </p>
-                <h3 className="mt-2 text-2xl">{logro.titulo}</h3>
-                {logro.detalle || logro.lugar ? (
-                  <p className="mt-2">
-                    {[logro.detalle, logro.lugar].filter(Boolean).join(" ")}
-                  </p>
-                ) : null}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <Section tituloId="logros-titulo" capa>
+      <EncabezadoSeccion
+        id="logros-titulo"
+        antetitulo={t.antetitulo}
+        titulo={t.titulo}
+      />
+      {/* La línea que une los puntos (::before) solo aparece cuando van en fila. */}
+      <ol className="relative mt-12 grid gap-10 before:absolute before:inset-x-0 before:top-3 before:hidden before:h-0.5 before:bg-tinta/15 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:before:block">
+        {destacados.map((logro, i) => (
+          <Revelar
+            as="li"
+            key={logro.id}
+            className={cx("relative pt-12", i % 2 === 1 && "lg:mt-10")}
+          >
+            <span
+              aria-hidden="true"
+              className={cx(
+                "absolute top-0 left-0 size-6 rounded-full border-4 bg-blanco",
+                i % 2 === 1 && "lg:-top-10",
+                puntos[i % puntos.length],
+              )}
+            />
+            <p className="condensada text-5xl leading-none font-extrabold">
+              {logro.anio}
+            </p>
+            <h3 className="mt-3 font-sans text-lg leading-snug font-bold font-stretch-100%">
+              {logro.titulo}
+            </h3>
+            {logro.lugar ? (
+              <p className="mt-2 text-base text-gris">{logro.lugar}</p>
+            ) : null}
+          </Revelar>
+        ))}
+      </ol>
+      <BotonEnlace href="/logros/" variante="texto" className="mt-10">
+        {t.enlace}
+      </BotonEnlace>
     </Section>
   );
 }

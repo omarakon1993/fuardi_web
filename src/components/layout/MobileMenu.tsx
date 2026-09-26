@@ -7,6 +7,7 @@ import { enlaceWhatsApp } from "@/lib/whatsapp";
 import { cx } from "@/lib/colores";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
+import { AccessibilityControls } from "./AccessibilityControls";
 import { NavPrincipal } from "./NavPrincipal";
 import { RedesSociales } from "./RedesSociales";
 
@@ -62,10 +63,10 @@ export function MobileMenu({ className }: { className?: string }) {
         onClick={abrir}
         aria-expanded={abierto}
         aria-controls="menu-movil"
-        className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta px-3 font-bold text-tinta hover:bg-niebla"
+        className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-blanco/50 px-3 font-bold text-blanco hover:bg-blanco hover:text-tinta"
       >
         <Icon nombre="menu" />
-        <span>Menú</span>
+        <span className="sr-only sm:not-sr-only">Menú</span>
       </button>
 
       {/* El <dialog> nativo ya maneja Esc; onKeyDown solo cicla el foco. */}
@@ -83,22 +84,24 @@ export function MobileMenu({ className }: { className?: string }) {
       >
         <div className="flex min-h-full flex-col gap-6 p-5">
           <div className="flex items-center justify-between">
-            <p className="font-display text-xl font-extrabold text-azul">
+            <p className="font-display text-xl font-extrabold text-tinta">
               {site.sigla}
             </p>
             <button
               type="button"
               onClick={cerrar}
-              className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta px-3 font-bold hover:bg-niebla"
+              className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta px-3 font-bold hover:bg-cana"
             >
               <Icon nombre="cerrar" />
               <span>Cerrar menú</span>
             </button>
           </div>
 
+          <AccessibilityControls className="rounded-panel bg-cana p-2" />
+
           <NavPrincipal disposicion="columna" alNavegar={cerrar} />
 
-          <div className="mt-auto grid gap-3 border-t-2 border-niebla pt-6">
+          <div className="mt-auto grid gap-3 border-t-2 border-cana pt-6">
             <BotonEnlace
               href={botonesDestacados.inscribirse.href}
               onClick={cerrar}

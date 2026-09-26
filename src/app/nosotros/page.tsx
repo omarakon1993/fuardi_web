@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { metadatos } from "@/lib/metadatos";
 import Image from "next/image";
 import { equipo } from "@/data/equipo";
 import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { site } from "@/data/site";
+import { cx } from "@/lib/colores";
+import { metadatos } from "@/lib/metadatos";
 import { EtiquetaTemporal } from "@/components/home/AboutPreview";
-import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
+import { Testimonials } from "@/components/home/Testimonials";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { PatternBand } from "@/components/ui/PatternBand";
+import { AccionesPrincipales, PageHeader } from "@/components/ui/PageHeader";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
+import { Revelar } from "@/components/ui/Revelar";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 const t = paginas.nosotros;
@@ -22,11 +23,15 @@ export const metadata: Metadata = metadatos(
   "/nosotros/",
 );
 
+// Un color del rompecabezas por cifra (todos cumplen AA sobre blanco).
+const coloresCifra = ["text-rojo", "text-tinta", "text-verde", "text-magenta"];
+
 export default function NosotrosPage() {
   return (
     <>
       <PageHeader
         titulo={t.titulo}
+        etiqueta={t.etiqueta}
         intro={t.intro}
         foto={fotos.grupoTambores}
         acciones={<AccionesPrincipales />}
@@ -35,160 +40,194 @@ export default function NosotrosPage() {
           { texto: t.misionVision, href: "#mision" },
           { texto: t.objetivos, href: "#objetivos" },
           { texto: t.equipo, href: "#equipo" },
-          { texto: t.transparencia, href: "#transparencia" },
         ]}
       />
 
-      <Section tituloId="historia-titulo" id="historia">
-        <div className="grid gap-12 lg:grid-cols-[3fr_2fr] lg:gap-16">
+      <Section tituloId="historia-titulo" id="historia" capa>
+        <h2 className="sr-only" id="cifras-titulo">
+          {t.cifras}
+        </h2>
+        <dl
+          aria-labelledby="cifras-titulo"
+          className="grid grid-cols-2 gap-x-6 gap-y-8 border-b-2 border-cana pb-12 lg:grid-cols-4"
+        >
+          {site.cifras.map((cifra, i) => (
+            <div key={cifra.texto} className="flex flex-col">
+              <dt className="order-2 mt-2 max-w-[22ch] text-base text-gris">
+                {cifra.texto}
+              </dt>
+              <dd
+                className={cx(
+                  "order-1 condensada text-6xl leading-none font-extrabold",
+                  coloresCifra[i % coloresCifra.length],
+                )}
+              >
+                {cifra.valor}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <div>
-            <EncabezadoSeccion id="historia-titulo" titulo={t.historia} />
-            <div className="mt-8 medida space-y-5 text-xl">
+            <EncabezadoSeccion
+              id="historia-titulo"
+              antetitulo={t.historia}
+              titulo={t.historiaTitulo}
+            />
+            <div className="mt-8 medida space-y-5 text-lg">
               {site.historia.map((parrafo) => (
                 <p key={parrafo.slice(0, 30)}>{parrafo}</p>
               ))}
             </div>
           </div>
           {site.historiaFoto ? (
-            <Image
-              src={site.historiaFoto.src}
-              alt={site.historiaFoto.alt}
-              width={site.historiaFoto.ancho}
-              height={site.historiaFoto.alto}
-              className="aspect-16/9 w-full rounded-foto object-cover lg:sticky lg:top-8 lg:mt-24 lg:aspect-4/5 lg:self-start"
-            />
+            <Revelar className="lg:sticky lg:top-28 lg:self-start">
+              <Image
+                src={site.historiaFoto.src}
+                alt={site.historiaFoto.alt}
+                width={site.historiaFoto.ancho}
+                height={site.historiaFoto.alto}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="aspect-4/5 w-full rounded-[2rem_2rem_2rem_10rem] object-cover"
+              />
+            </Revelar>
           ) : (
             <PhotoPlaceholder
               descripcion="el grupo posando con el pendón de la fundación"
-              proporcion="16/9"
-              className="rounded-foto lg:mt-24 lg:aspect-3/4"
+              proporcion="3/4"
+              className="rounded-foto"
             />
           )}
         </div>
       </Section>
 
-      <Section tituloId="mision-titulo" id="mision" fondo="niebla">
-        <EncabezadoSeccion id="mision-titulo" titulo={t.misionVision} />
+      <Section tituloId="mision-titulo" id="mision" fondo="tinta" capa>
+        <EncabezadoSeccion
+          id="mision-titulo"
+          antetitulo={t.misionVision}
+          titulo={t.misionVisionTitulo}
+          claro
+        />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          <div className="rounded-foto bg-rojo p-8 text-blanco sm:p-12">
-            <h3 className="text-4xl sm:text-5xl">
-              Misión
+          <Revelar className="rounded-foto bg-rojo p-8 sm:p-10">
+            <h3 className="text-4xl">
+              {t.mision}
               <EtiquetaTemporal />
             </h3>
-            <p className="mt-6 text-xl">{site.mision}</p>
-          </div>
-          <div className="rounded-foto bg-tinta p-8 text-blanco sm:p-12">
-            <h3 className="text-4xl sm:text-5xl">
-              Visión
+            <p className="mt-5 text-lg">{site.mision}</p>
+          </Revelar>
+          <Revelar className="rounded-foto bg-blanco/10 p-8 sm:p-10">
+            <h3 className="text-4xl">
+              {t.vision}
               <EtiquetaTemporal />
             </h3>
-            <p className="mt-6 text-xl">{site.vision}</p>
-          </div>
+            <p className="mt-5 text-lg">{site.vision}</p>
+          </Revelar>
         </div>
       </Section>
 
-      <Section tituloId="objetivos-titulo" id="objetivos">
+      <Section tituloId="objetivos-titulo" id="objetivos" fondo="cana" capa>
         <EncabezadoSeccion
           id="objetivos-titulo"
-          titulo={t.objetivos}
-          intro={t.objetivosIntro}
+          antetitulo={t.objetivos}
+          titulo={t.objetivosTitulo}
         />
-        <ul className="mt-12 grid gap-x-14 gap-y-8 md:grid-cols-2">
+        <ul className="mt-12 grid gap-x-12 gap-y-6 md:grid-cols-2">
           {site.objetivos.map((objetivo) => (
-            <li
+            <Revelar
+              as="li"
               key={objetivo.slice(0, 30)}
-              className="flex gap-4 border-t-2 border-niebla pt-6 text-lg"
+              className="flex gap-4 rounded-panel bg-blanco p-5"
             >
               <span
                 aria-hidden="true"
-                className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-verde text-blanco"
+                className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-verde text-blanco"
               >
-                <Icon nombre="verificado" tamano={22} strokeWidth={3} />
+                <Icon nombre="verificado" tamano={20} strokeWidth={3} />
               </span>
               <span>{objetivo}</span>
-            </li>
+            </Revelar>
           ))}
         </ul>
       </Section>
 
-      <PatternBand />
+      <Testimonials />
 
-      <Section tituloId="equipo-titulo" id="equipo" fondo="cana">
-        <EncabezadoSeccion id="equipo-titulo" titulo={t.equipo} />
-        <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {equipo.map((persona) => (
-            <li key={persona.nombre}>
-              {persona.foto ? (
-                <Image
-                  src={persona.foto.src}
-                  alt={persona.foto.alt}
-                  width={persona.foto.ancho}
-                  height={persona.foto.alto}
-                  className="aspect-square w-full rounded-foto object-cover"
-                />
-              ) : (
-                <PhotoPlaceholder
-                  descripcion={persona.nombre}
-                  proporcion="1/1"
-                  className="rounded-foto bg-blanco"
-                />
-              )}
-              <h3 className="mt-4 text-2xl">{persona.nombre}</h3>
-              <p className="text-lg text-gris">{persona.cargo}</p>
-              {persona.descripcion ? (
-                <p className="mt-2">{persona.descripcion}</p>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-        {/* TODO(contenido): quitar este aviso cuando estén los docentes en equipo.ts. */}
-        {equipo.length < 2 ? (
-          <p className="mt-8 medida text-lg">{t.equipoPendiente}</p>
-        ) : null}
-      </Section>
-
-      <Section tituloId="transparencia-titulo" id="transparencia">
+      <Section tituloId="equipo-titulo" id="equipo" capa>
         <EncabezadoSeccion
-          id="transparencia-titulo"
-          titulo={t.transparencia}
-          intro={t.transparenciaIntro}
+          id="equipo-titulo"
+          antetitulo={t.equipo}
+          titulo={t.equipoTitulo}
         />
-        <dl className="mt-10 grid max-w-3xl gap-x-10 gap-y-4 rounded-panel bg-niebla p-8 sm:grid-cols-[auto_1fr]">
-          <dt className="font-bold">Razón social</dt>
-          <dd>{site.nombre}</dd>
-          <dt className="font-bold">NIT</dt>
-          {/* TODO(contenido): NIT en site.ts */}
-          <dd>{site.nit ?? t.nitPendiente}</dd>
-          <dt className="font-bold">Director</dt>
-          <dd>{site.director}</dd>
-          <dt className="font-bold">Dirección</dt>
-          <dd>
-            {site.direccion.calle}, {site.direccion.localidad},{" "}
-            {site.direccion.ciudad}
-          </dd>
-        </dl>
-        {site.documentos.length > 0 ? (
-          <ul className="mt-8 flex flex-wrap gap-3">
-            {site.documentos.map((doc) => (
-              <li key={doc.href}>
-                <BotonEnlace
-                  href={doc.href}
-                  variante="secundario"
-                  icono="documento"
-                  externo
-                >
-                  {doc.texto}
-                </BotonEnlace>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          // TODO(contenido): certificado de existencia y documentos en site.documentos.
-          <p className="mt-8 medida text-lg">{t.documentosPendientes}</p>
-        )}
-      </Section>
+        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <ul className="grid gap-6 sm:grid-cols-2">
+              {equipo.map((persona) => (
+                <li key={persona.nombre}>
+                  {persona.foto ? (
+                    <Image
+                      src={persona.foto.src}
+                      alt={persona.foto.alt}
+                      width={persona.foto.ancho}
+                      height={persona.foto.alto}
+                      className="aspect-square w-full rounded-t-full rounded-b-foto object-cover"
+                    />
+                  ) : (
+                    <PhotoPlaceholder
+                      descripcion={persona.nombre}
+                      proporcion="1/1"
+                      className="rounded-t-full rounded-b-foto"
+                    />
+                  )}
+                  <h3 className="mt-4 text-2xl">{persona.nombre}</h3>
+                  <p className="text-gris">{persona.cargo}</p>
+                  {persona.descripcion ? (
+                    <p className="mt-2">{persona.descripcion}</p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+            {/* TODO(contenido): quitar este aviso cuando estén los docentes en equipo.ts. */}
+            {equipo.length < 2 ? (
+              <p className="mt-6 medida">{t.equipoPendiente}</p>
+            ) : null}
+          </div>
 
-      <Sumate />
+          <div id="transparencia" className="rounded-foto bg-cana p-8 sm:p-10">
+            <h3 className="text-3xl">{t.transparencia}</h3>
+            <p className="mt-3 text-gris">{t.transparenciaIntro}</p>
+            <dl className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-[auto_1fr]">
+              <dt className="font-bold">Razón social</dt>
+              <dd>{site.nombre}</dd>
+              <dt className="font-bold">NIT</dt>
+              {/* TODO(contenido): NIT en site.ts */}
+              <dd>{site.nit ?? t.nitPendiente}</dd>
+              <dt className="font-bold">Director</dt>
+              <dd>{site.director}</dd>
+            </dl>
+            {site.documentos.length > 0 ? (
+              <ul className="mt-6 flex flex-wrap gap-3">
+                {site.documentos.map((doc) => (
+                  <li key={doc.href}>
+                    <BotonEnlace
+                      href={doc.href}
+                      variante="secundario"
+                      icono="documento"
+                      externo
+                    >
+                      {doc.texto}
+                    </BotonEnlace>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              // TODO(contenido): certificado de existencia y documentos en site.documentos.
+              <p className="mt-6 text-base">{t.documentosPendientes}</p>
+            )}
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

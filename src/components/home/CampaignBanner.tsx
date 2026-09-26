@@ -17,7 +17,7 @@ const INTERVALO = 8000;
 
 function Tarjeta({ anuncio }: { anuncio: Anuncio }) {
   return (
-    <article className="grid overflow-hidden rounded-foto bg-azul text-blanco md:grid-cols-[2fr_3fr]">
+    <article className="grid overflow-hidden rounded-[3rem] bg-tinta text-blanco md:grid-cols-[2fr_3fr]">
       {anuncio.foto ? (
         <Image
           src={anuncio.foto.src}
@@ -29,13 +29,13 @@ function Tarjeta({ anuncio }: { anuncio: Anuncio }) {
       ) : (
         <div
           aria-hidden="true"
-          className="hidden items-center justify-center bg-azul-hondo md:flex"
+          className="hidden items-center justify-center bg-tinta md:flex"
         >
           <Icon nombre="musica" tamano={96} className="text-blanco/40" />
         </div>
       )}
       <div className="p-6 sm:p-10">
-        <p className="flex flex-wrap items-center gap-2 font-bold text-amarillo">
+        <p className="flex flex-wrap items-center gap-2 font-bold text-cana">
           {nombresTipoAnuncio[anuncio.tipo]}
           {anuncio.ejemplo ? <EtiquetaEjemplo /> : null}
         </p>
@@ -95,7 +95,7 @@ function Carrusel({ anuncios }: { anuncios: Anuncio[] }) {
   }
 
   const botonControl =
-    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
+    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta bg-blanco px-3 font-bold text-tinta hover:bg-cana";
 
   return (
     // Las flechas son un atajo extra; todos los controles son botones.
@@ -171,14 +171,15 @@ export function CampaignBanner({
   hoyCompilacion,
 }: CampaignBannerProps) {
   const hoy = useHoy(hoyCompilacion);
+  // Los anuncios de ejemplo solo se ven en la barra superior, no en inicio.
   const lista = vigentes(
-    anuncios.filter((a) => a.destacado),
+    anuncios.filter((a) => a.destacado && !a.ejemplo),
     hoy,
   );
   if (lista.length === 0) return null;
 
   return (
-    <Section tituloId="campanas-titulo" fondo="niebla">
+    <Section tituloId="campanas-titulo" capa>
       <EncabezadoSeccion id="campanas-titulo" titulo={inicio.campanas.titulo} />
       {lista.length === 1 ? (
         <div className="mt-10">

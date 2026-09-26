@@ -6,17 +6,27 @@ import { Icon, type NombreIcono } from "./Icon";
 const variantes = {
   primario:
     "bg-rojo text-blanco hover:bg-rojo-hondo border-2 border-transparent",
-  secundario: "bg-blanco text-azul border-2 border-azul hover:bg-niebla",
+  /** Borde tinta sobre fondos claros. */
+  secundario:
+    "bg-transparent text-tinta border-2 border-tinta hover:bg-tinta hover:text-blanco",
   /** Botón blanco macizo para fondos oscuros o de color. */
   blanco:
     "bg-blanco text-tinta border-2 border-blanco hover:bg-cana hover:border-cana",
-  /** Para fondos oscuros (azul, tinta o fotos). */
+  /** Borde blanco para fondos oscuros (tinta o fotos). */
   claro:
-    "bg-transparent text-blanco border-2 border-blanco hover:bg-blanco hover:text-tinta",
-  whatsapp: "bg-verde text-blanco border-2 border-transparent hover:bg-tinta",
+    "bg-transparent text-blanco border-2 border-blanco/50 hover:bg-blanco hover:text-tinta hover:border-blanco",
+  whatsapp:
+    "bg-verde text-blanco border-2 border-transparent hover:bg-blanco hover:text-tinta",
+  /** Enlace de texto con flecha, sobre fondos claros. */
   texto:
-    "text-azul underline decoration-2 underline-offset-4 hover:decoration-rojo px-0!",
+    "group/flecha text-tinta underline decoration-2 underline-offset-4 hover:text-rojo px-0!",
+  /** Enlace de texto con flecha, sobre fondos oscuros. */
+  textoClaro:
+    "group/flecha text-blanco underline decoration-2 underline-offset-4 hover:text-cana px-0!",
 } as const;
+
+const esTexto = (variante: VarianteBoton) =>
+  variante === "texto" || variante === "textoClaro";
 
 export type VarianteBoton = keyof typeof variantes;
 
@@ -31,9 +41,9 @@ function clasesBoton(
   className?: string,
 ) {
   return cx(
-    "inline-flex items-center justify-center gap-2 rounded-full font-bold leading-tight transition-colors",
-    variante === "texto" ? "min-h-11" : tamanos[tamano],
-    variante !== "texto" && "no-underline",
+    "inline-flex items-center justify-center gap-2 rounded-full font-bold leading-tight transition-colors duration-300",
+    esTexto(variante) ? "min-h-11" : tamanos[tamano],
+    !esTexto(variante) && "no-underline",
     variantes[variante],
     className,
   );
@@ -70,6 +80,14 @@ export function BotonEnlace({
     <>
       {icono ? <Icon nombre={icono} tamano={22} /> : null}
       <span>{children}</span>
+      {esTexto(variante) ? (
+        <span
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover/flecha:translate-x-1"
+        >
+          →
+        </span>
+      ) : null}
     </>
   );
 

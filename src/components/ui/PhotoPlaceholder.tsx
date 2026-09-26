@@ -41,8 +41,8 @@ export function PhotoPlaceholder({
         "flex flex-col items-center justify-center gap-2 overflow-hidden p-4 text-center",
         proporciones[proporcion],
         oscuro
-          ? "bg-azul-hondo text-blanco/80"
-          : "border-2 border-dashed border-gris/40 bg-niebla text-gris",
+          ? "bg-tinta text-blanco/80"
+          : "border-2 border-dashed border-gris/40 bg-cana text-gris",
         className,
       )}
     >

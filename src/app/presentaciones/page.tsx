@@ -8,11 +8,9 @@ import {
   presentaciones,
 } from "@/data/presentaciones";
 import { videos } from "@/data/videos";
-import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
 import { ListaPresentaciones } from "@/components/presentaciones/ListaPresentaciones";
 import { Lightbox } from "@/components/ui/Lightbox";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { PatternBand } from "@/components/ui/PatternBand";
+import { AccionesPrincipales, PageHeader } from "@/components/ui/PageHeader";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 import { YouTubeLite } from "@/components/ui/YouTubeLite";
@@ -27,51 +25,36 @@ export const metadata: Metadata = metadatos(
 
 export default function PresentacionesPage() {
   const fotos = fotosGaleria;
+  // Las notas de televisión viven en Logros; aquí solo el grupo en escena.
+  const delGrupo = videos.filter((v) => !v.esMedios);
 
   return (
     <>
       <PageHeader
         titulo={t.titulo}
+        etiqueta={t.etiqueta}
         intro={t.intro}
         foto={fotosSitio.grupoNavidad}
         acciones={<AccionesPrincipales />}
         atajos={[
-          { texto: t.videos, href: "#videos" },
           { texto: t.galeria, href: "#galeria" },
+          { texto: t.videos, href: "#videos" },
           { texto: t.trayectoria, href: "#trayectoria" },
         ]}
       />
 
-      <Section tituloId="videos-titulo" id="videos" fondo="tinta">
-        <EncabezadoSeccion id="videos-titulo" titulo={t.videos} claro />
-        <ul className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2">
-          {videos.map((video, i) => (
-            <li key={video.id} className={i === 0 ? "md:col-span-2" : ""}>
-              <figure>
-                <YouTubeLite id={video.id} titulo={video.titulo} />
-                <figcaption className="mt-3">
-                  <span className="block text-xl font-bold">
-                    {video.titulo}
-                  </span>
-                  <span className="text-blanco/90">{video.canal}</span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section tituloId="galeria-titulo" id="galeria">
+      <Section tituloId="galeria-titulo" id="galeria" capa>
         <EncabezadoSeccion
           id="galeria-titulo"
-          titulo={t.galeria}
+          antetitulo={t.galeria}
+          titulo={t.galeriaTitulo}
           intro={fotos.length === 0 ? t.galeriaPendiente : undefined}
         />
         {fotos.length > 0 ? (
-          <Lightbox fotos={fotos} titulo={t.galeria} className="mt-8" />
+          <Lightbox fotos={fotos} titulo={t.galeria} className="mt-10" />
         ) : (
           // TODO(contenido): fotos de presentaciones en presentaciones.ts.
-          <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {fotosPendientesGaleria.map((descripcion) => (
               <li key={descripcion}>
                 <PhotoPlaceholder
@@ -84,14 +67,35 @@ export default function PresentacionesPage() {
         )}
       </Section>
 
-      <PatternBand />
-
-      <Section tituloId="trayectoria-titulo" id="trayectoria" fondo="niebla">
-        <EncabezadoSeccion id="trayectoria-titulo" titulo={t.trayectoria} />
-        <ListaPresentaciones presentaciones={presentaciones} />
+      <Section tituloId="videos-titulo" id="videos" fondo="tinta" capa>
+        <EncabezadoSeccion
+          id="videos-titulo"
+          antetitulo={t.videos}
+          titulo={t.videosTitulo}
+          claro
+        />
+        <ul className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2">
+          {delGrupo.map((video) => (
+            <li key={video.id}>
+              <figure>
+                <YouTubeLite id={video.id} titulo={video.titulo} />
+                <figcaption className="mt-3 text-lg font-bold">
+                  {video.titulo}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </Section>
 
-      <Sumate />
+      <Section tituloId="trayectoria-titulo" id="trayectoria" fondo="cana" capa>
+        <EncabezadoSeccion
+          id="trayectoria-titulo"
+          antetitulo={t.trayectoria}
+          titulo={t.trayectoriaTitulo}
+        />
+        <ListaPresentaciones presentaciones={presentaciones} />
+      </Section>
     </>
   );
 }

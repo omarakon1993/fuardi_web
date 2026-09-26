@@ -1,13 +1,34 @@
 import type { Enlace } from "@/lib/types";
 
-export const menuPrincipal: Enlace[] = [
-  { texto: "Inicio", href: "/" },
-  { texto: "Nosotros", href: "/nosotros/" },
+/** Grupo del menú que se despliega con varias páginas. */
+export interface GrupoMenu {
+  texto: string;
+  enlaces: Enlace[];
+}
+
+export type ItemMenu = Enlace | GrupoMenu;
+
+export const esGrupo = (item: ItemMenu): item is GrupoMenu => "enlaces" in item;
+
+// El logo lleva al inicio, así que "Inicio" no ocupa lugar en el menú.
+export const menuPrincipal: ItemMenu[] = [
+  {
+    texto: "Nosotros",
+    enlaces: [
+      { texto: "Quiénes somos", href: "/nosotros/" },
+      { texto: "Logros", href: "/logros/" },
+    ],
+  },
   { texto: "Programas", href: "/programas/" },
-  { texto: "Presentaciones", href: "/presentaciones/" },
-  { texto: "Logros", href: "/logros/" },
-  { texto: "Agenda", href: "/agenda/" },
+  {
+    texto: "Presentaciones",
+    enlaces: [
+      { texto: "Fotos y videos", href: "/presentaciones/" },
+      { texto: "Agenda", href: "/agenda/" },
+    ],
+  },
   { texto: "Tienda", href: "/tienda/" },
+  { texto: "Contacto", href: "/contacto/" },
 ];
 
 export const botonesDestacados = {
@@ -15,10 +36,11 @@ export const botonesDestacados = {
   inscribirse: { texto: "Inscríbete", href: "/contacto/?motivo=inscripcion" },
 } satisfies Record<string, Enlace>;
 
-export const enlacesPie: Enlace[] = [
-  ...menuPrincipal.slice(1),
-  { texto: "Apóyanos", href: "/apoyanos/" },
-  { texto: "Contacto", href: "/contacto/" },
+/** Todas las páginas principales, en el orden del menú. */
+export const paginasSitio: Enlace[] = [
+  { texto: "Inicio", href: "/" },
+  ...menuPrincipal.flatMap((item) => (esGrupo(item) ? item.enlaces : [item])),
+  botonesDestacados.apoyar,
 ];
 
 export const enlacesLegales: Enlace[] = [

@@ -1,13 +1,14 @@
+import { pie } from "@/data/pie";
 import { site } from "@/data/site";
 import { cx } from "@/lib/colores";
 import type { NombreRed } from "@/lib/types";
-import { Icon } from "@/components/ui/Icon";
+import { Icon, type NombreIcono } from "@/components/ui/Icon";
 
 /** Color de cada red en la versión grande. Todos llevan texto blanco (AA). */
 const fondosRed: Record<NombreRed, string> = {
   instagram: "bg-magenta",
   tiktok: "bg-tinta",
-  facebook: "bg-azul",
+  facebook: "bg-tinta",
   youtube: "bg-rojo",
 };
 
@@ -15,12 +16,15 @@ interface RedesSocialesProps {
   /** "grande" muestra fichas con el nombre de la red y el usuario. */
   tamano?: "normal" | "pequeno" | "grande";
   claro?: boolean;
+  /** Agrega el canal de WhatsApp como un ícono más. */
+  conCanal?: boolean;
   className?: string;
 }
 
 export function RedesSociales({
   tamano = "normal",
   claro,
+  conCanal,
   className,
 }: RedesSocialesProps) {
   if (site.redes.length === 0) return null;
@@ -55,24 +59,48 @@ export function RedesSociales({
   }
 
   const pequeno = tamano === "pequeno";
+  const enlaces: {
+    clave: string;
+    icono: NombreIcono;
+    etiqueta: string;
+    url: string;
+  }[] = [
+    ...site.redes.map((red) => ({
+      clave: red.red,
+      icono: red.red,
+      etiqueta: red.etiqueta,
+      url: red.url,
+    })),
+    ...(conCanal && site.canalWhatsApp
+      ? [
+          {
+            clave: "canal",
+            icono: "whatsapp" as const,
+            etiqueta: pie.canal,
+            url: site.canalWhatsApp,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <ul className={cx("flex flex-wrap gap-2", className)}>
-      {site.redes.map((red) => (
-        <li key={red.red}>
+      {enlaces.map((red) => (
+        <li key={red.clave}>
           <a
             href={red.url}
             target="_blank"
             rel="noopener noreferrer"
+            title={red.etiqueta}
             className={cx(
               "inline-flex min-h-11 min-w-11 items-center justify-center rounded-full no-underline",
               pequeno ? "" : "size-12 border-2",
               claro
                 ? "border-blanco/50 text-blanco hover:bg-blanco hover:text-tinta"
-                : "border-azul/30 text-azul hover:bg-azul hover:text-blanco",
+                : "border-tinta/30 text-tinta hover:bg-tinta hover:text-blanco",
             )}
           >
-            <Icon nombre={red.red} tamano={pequeno ? 20 : 22} />
+            <Icon nombre={red.icono} tamano={pequeno ? 20 : 22} />
             <span className="sr-only">
               {red.etiqueta} (se abre en una pestaña nueva)
             </span>

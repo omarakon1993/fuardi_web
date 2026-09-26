@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { fotos } from "@/data/fotos";
 import { inicio } from "@/data/inicio";
 import { site } from "@/data/site";
+import { cx } from "@/lib/colores";
 import { BotonEnlace } from "@/components/ui/Button";
-import { EncabezadoSeccion, Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
+import { Revelar } from "@/components/ui/Revelar";
 
 /** Etiqueta visible solo en desarrollo para recordar que el texto no es final. */
 export function EtiquetaTemporal() {
@@ -17,58 +18,63 @@ export function EtiquetaTemporal() {
 }
 
 export function AboutPreview() {
+  const t = inicio.nosotros;
+  const foto = site.historiaFoto;
+
   return (
-    <Section tituloId="nosotros-titulo" fondo="niebla">
-      <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
-        <div className="grid grid-cols-2 gap-4 sm:gap-5">
-          <Image
-            src={fotos.playland.src}
-            alt={fotos.playland.alt}
-            width={fotos.playland.ancho}
-            height={fotos.playland.alto}
-            sizes="(min-width: 1024px) 25vw, 50vw"
-            className="aspect-3/4 w-full rounded-foto object-cover"
-          />
-          <Image
-            src={fotos.bolos.src}
-            alt={fotos.bolos.alt}
-            width={fotos.bolos.ancho}
-            height={fotos.bolos.alto}
-            sizes="(min-width: 1024px) 25vw, 50vw"
-            className="mt-14 aspect-3/4 w-full rounded-foto object-cover sm:mt-20"
-          />
-        </div>
-        <div>
-          <EncabezadoSeccion
-            id="nosotros-titulo"
-            titulo={inicio.nosotros.titulo}
-          />
-          <p className="mt-6 medida text-entrada">{site.resenaCorta}</p>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
-            <div className="border-t-4 border-rojo pt-4">
-              <h3 className="text-2xl">
-                Misión
+    <section
+      aria-labelledby="nosotros-titulo"
+      className="bg-blanco pt-14 pb-28 md:pt-20 md:pb-32"
+    >
+      <Container>
+        {/* Las cifras de la fundación, dichas como una frase. */}
+        <Revelar>
+          <p className="max-w-4xl font-display text-frase font-bold font-stretch-85%">
+            {t.frase.map((trozo) => (
+              <span
+                key={trozo.texto}
+                className={cx(trozo.resaltado && "text-rojo")}
+              >
+                {trozo.texto}
+              </span>
+            ))}
+          </p>
+        </Revelar>
+
+        <div className="mt-16 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {foto ? (
+            <Revelar>
+              <Image
+                src={foto.src}
+                alt={foto.alt}
+                width={foto.ancho}
+                height={foto.alto}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="aspect-4/3 w-full rounded-[2rem_2rem_2rem_10rem] object-cover"
+              />
+            </Revelar>
+          ) : null}
+          <Revelar>
+            <p className="antetitulo text-rojo">{t.antetitulo}</p>
+            <h2 id="nosotros-titulo" className="mt-4 text-seccion">
+              {t.titulo}
+            </h2>
+            <p className="mt-6 medida text-entrada text-gris">
+              {site.resenaCorta}
+            </p>
+            <div className="mt-8 rounded-panel bg-cana p-6 sm:p-7">
+              <h3 className="antetitulo text-rojo font-stretch-100%">
+                {t.mision}
                 <EtiquetaTemporal />
               </h3>
-              <p className="mt-2 text-lg">{site.mision}</p>
+              <p className="mt-3">{site.mision}</p>
             </div>
-            <div className="border-t-4 border-azul pt-4">
-              <h3 className="text-2xl">
-                Visión
-                <EtiquetaTemporal />
-              </h3>
-              <p className="mt-2 text-lg">{site.vision}</p>
-            </div>
-          </div>
-          <BotonEnlace
-            href="/nosotros/"
-            variante="secundario"
-            className="mt-10"
-          >
-            {inicio.nosotros.enlace}
-          </BotonEnlace>
+            <BotonEnlace href="/nosotros/" variante="texto" className="mt-6">
+              {t.enlace}
+            </BotonEnlace>
+          </Revelar>
         </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

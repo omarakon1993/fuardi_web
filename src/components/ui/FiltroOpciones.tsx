@@ -37,8 +37,8 @@ export function FiltroOpciones<T extends string>({
               "relative inline-flex min-h-11 cursor-pointer items-center rounded-full border-2 px-4 font-bold",
               "has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-amarillo",
               activo
-                ? "border-azul bg-azul text-blanco"
-                : "border-azul bg-blanco text-azul hover:bg-niebla",
+                ? "border-tinta bg-tinta text-blanco"
+                : "border-tinta bg-blanco text-tinta hover:bg-cana",
             )}
           >
             <input

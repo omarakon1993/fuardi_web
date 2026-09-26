@@ -1,75 +1,94 @@
 // Textos de la página de inicio.
+import { site } from "./site";
+
+const [jovenes, grupo, festivales, departamentos] = site.cifras;
+
+/** Trozo de una frase; los resaltados van en rojo. */
+export interface TrozoFrase {
+  texto: string;
+  resaltado?: boolean;
+}
 
 export const inicio = {
   hero: {
+    etiqueta: `${site.direccion.localidad}, Bogotá · Desde ${grupo.valor}`,
+    /** Palabra del lema que va en cursiva color caña. */
+    lemaResaltado: "Rompe",
     inscribir: "Inscribe a tu hijo o hija",
     apoyar: "Quiero apoyar",
     fotoPendiente: "el grupo tocando gaitas y tambores en tarima",
+    cifra: festivales,
   },
-  cifras: {
-    titulo: "La fundación en cifras",
-  },
+  /** Ritmos y lugares de la franja roja. */
+  marquesina: [
+    "Cumbia",
+    "Puya",
+    "Gaita",
+    "Porro",
+    "San Jacinto",
+    "Sincelejo",
+    "Anapoima",
+    "Suba",
+  ],
+  marquesinaPausar: "Pausar la franja",
+  marquesinaReanudar: "Mover la franja",
   nosotros: {
-    titulo: "Quiénes somos",
+    frase: [
+      { texto: "Somos " },
+      { texto: `${jovenes.valor} jóvenes`, resaltado: true },
+      { texto: " y, desde " },
+      { texto: grupo.valor, resaltado: true },
+      { texto: ", llevamos la música de los Montes de María a tarimas de " },
+      { texto: `${departamentos.valor} departamentos`, resaltado: true },
+      { texto: "." },
+    ] satisfies TrozoFrase[],
+    antetitulo: "Quiénes somos",
+    titulo: "La discapacidad tiene muchas capacidades",
+    mision: "Nuestra misión",
     enlace: "Conoce nuestra historia",
   },
   programas: {
-    titulo: "Nuestros programas",
-    intro:
-      "Cada programa tiene su color, como las piezas del rompecabezas de nuestro logo.",
+    antetitulo: "Nuestros programas",
+    titulo: "Cinco piezas, un mismo rompecabezas",
     enlace: "Ver todos los programas",
   },
   campanas: {
     titulo: "Convocatorias y campañas",
   },
-  eventos: {
-    titulo: "Próximos eventos",
-    vacio: "Pronto publicaremos nuevas fechas. Síguenos para enterarte.",
-    enlace: "Ver toda la agenda",
-  },
   presentaciones: {
-    titulo: "En tarima",
+    antetitulo: "En tarima",
+    titulo: "Así suenan nuestros jóvenes",
     intro:
-      "Vestuario blanco, sombrero vueltiao y pañoleta roja. Así suenan nuestros jóvenes.",
-    enlace: "Ver todas las presentaciones",
+      "Vestuario blanco, sombrero vueltiao y pañoleta roja. Desliza para verlos en escena.",
+    galeria: "Fotos del grupo en tarima",
+    contratar: "Contrata una presentación",
+    enlace: "Ver presentaciones",
+  },
+  agenda: {
+    antetitulo: "Agenda",
+    titulo: "Próximas fechas",
+    intro:
+      "Ven a vernos en tarima. Estas son nuestras próximas presentaciones y actividades.",
+    enlace: "Ver toda la agenda",
+    vacio:
+      "Pronto publicaremos nuevas fechas. Únete al canal de WhatsApp y te avisamos.",
+    canal: "Unirme al canal de WhatsApp",
   },
   logros: {
-    titulo: "Logros y reconocimientos",
-    intro:
-      "Desde 2016 hemos tocado en festivales de Bogotá, Bolívar, Cundinamarca y Sucre.",
+    antetitulo: "Logros y reconocimientos",
+    titulo: "De Suba a los festivales del país",
     enlace: "Ver toda la trayectoria",
   },
-  tienda: {
-    titulo: "Tienda",
-    intro:
-      "Productos hechos por nuestros jóvenes. Cada compra apoya a la fundación.",
-    enlace: "Ver la tienda",
-  },
   ayudar: {
-    titulo: "Cómo puedes ayudar",
+    antetitulo: "Apóyanos",
+    titulo: "Ayúdanos a que suban a la tarima",
     intro:
-      "Hay muchas formas de sumarte. Elige la tuya y te contamos los siguientes pasos.",
+      "Cada aporte, grande o pequeño, sostiene un proceso que cambia cómo la comunidad ve a nuestros jóvenes. Elige cómo quieres sumarte:",
+    destinoTitulo: "Tu aporte se convierte en",
+    destino: "Instrumentos, transporte a festivales y clases",
+    donar: "Quiero donar",
   },
   testimonios: {
     titulo: "Lo que dicen las familias",
-  },
-  redes: {
-    titulo: "Síguenos",
-    intro: "Mira nuestras presentaciones y entérate de lo que viene.",
-    canalTitulo: "Únete a nuestro canal de WhatsApp",
-    canalTexto:
-      "Recibe en tu celular las fechas de presentaciones, convocatorias y colectas.",
-    canalBoton: "Unirme al canal",
-    // Mientras no exista el canal:
-    canalPendiente:
-      "Muy pronto tendremos canal de WhatsApp. Mientras tanto, escríbenos y te mantenemos al tanto.",
-    chatBoton: "Escríbenos por WhatsApp",
-  },
-  contacto: {
-    titulo: "Ven a conocernos",
-    texto:
-      "Estamos en Suba, Bogotá. Escríbenos para visitar la sede, inscribir a alguien o contratar una presentación.",
-    boton: "Escríbenos",
-    mapa: "Abrir en Google Maps",
   },
 };

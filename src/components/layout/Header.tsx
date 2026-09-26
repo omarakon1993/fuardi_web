@@ -3,73 +3,53 @@ import Link from "next/link";
 import { botonesDestacados } from "@/data/navegacion";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { AccessibilityControls } from "./AccessibilityControls";
 import { MobileMenu } from "./MobileMenu";
 import { NavPrincipal } from "./NavPrincipal";
-import { RedesSociales } from "./RedesSociales";
 
 /*
- * El encabezado no es fijo a propósito: con zoom alto, un header pegajoso
- * ocupa media pantalla y puede tapar el elemento con foco.
+ * Menú fijo arriba. Con la letra muy agrandada (A+ nivel 2 o 3) vuelve a su
+ * lugar normal para no tapar media pantalla: ver .menu-fijo en globals.css.
  */
 export function Header() {
-  const botones = (
-    <>
-      <BotonEnlace
-        href={botonesDestacados.apoyar.href}
-        variante="secundario"
-        tamano="compacto"
-      >
-        {botonesDestacados.apoyar.texto}
-      </BotonEnlace>
-      <BotonEnlace href={botonesDestacados.inscribirse.href} tamano="compacto">
-        {botonesDestacados.inscribirse.texto}
-      </BotonEnlace>
-    </>
-  );
-
   return (
-    <header className="border-b border-tinta/10 bg-blanco">
-      <div className="bg-niebla">
-        <Container className="flex items-center justify-between gap-4 py-0.5">
-          <RedesSociales tamano="pequeno" className="hidden gap-0 sm:flex" />
-          <AccessibilityControls className="ml-auto" />
-        </Container>
-      </div>
-      <Container className="flex items-center gap-3 py-3.5">
+    <header className="menu-fijo fixed inset-x-0 top-0 z-50 bg-tinta text-blanco shadow-[0_1px_0_rgb(255_255_255/0.08)]">
+      <Container className="flex h-menu items-center gap-3 lg:gap-5">
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-3 rounded-md no-underline"
+          className="flex shrink-0 items-center gap-3 rounded-2xl text-blanco no-underline"
         >
-          <Image
-            src="/images/logo/fuardi-logo.png"
-            alt=""
-            width={247}
-            height={233}
-            priority
-            className="h-14 w-auto"
-          />
-          <span className="font-display text-xl leading-[1.05] font-extrabold text-azul [font-stretch:85%]">
-            Fundación
-            <br />
-            Armonía Diversa
+          <span className="flex rounded-[0.875rem] bg-blanco p-1">
+            <Image
+              src="/images/logo/fuardi-logo.png"
+              alt=""
+              width={247}
+              height={233}
+              priority
+              className="h-10 w-auto"
+            />
+          </span>
+          <span className="font-display text-lg leading-[1.05] font-extrabold font-stretch-85%">
+            <span className="sr-only sm:not-sr-only">
+              Fundación
+              <br />
+              Armonía Diversa
+            </span>
             <span className="sr-only">, ir al inicio</span>
           </span>
         </Link>
 
         <NavPrincipal className="nav-escritorio ml-auto hidden xl:block" />
 
-        <div className="ml-auto hidden items-center gap-2 sm:flex xl:ml-2">
-          {botones}
-        </div>
+        <BotonEnlace
+          href={botonesDestacados.apoyar.href}
+          tamano="compacto"
+          className="ml-auto shrink-0 xl:ml-0"
+        >
+          {botonesDestacados.apoyar.texto}
+        </BotonEnlace>
 
-        <MobileMenu className="menu-compacto ml-auto sm:ml-0 xl:hidden" />
+        <MobileMenu className="menu-compacto xl:hidden" />
       </Container>
-
-      {/* En móvil los dos botones siguen visibles, en una segunda fila. */}
-      <div className="grid grid-cols-2 gap-2 px-4 pb-3 sm:hidden">
-        {botones}
-      </div>
     </header>
   );
 }

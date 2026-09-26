@@ -29,7 +29,7 @@ Todo el texto y los datos viven en `src/data/`. Para actualizar el sitio se edit
 | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `site.ts`                                                   | Datos generales: nombre, contacto, dirección, redes, NIT, donaciones, cifras, misión, visión, historia y objetivos |
 | `anuncios.ts`                                               | Barra amarilla superior y carrusel de campañas de inicio. Se muestran solo entre `desde` y `hasta`                 |
-| `eventos.ts`                                                | Agenda. Los eventos pasan solos de «Próximos» a «Pasados» según la fecha                                           |
+| `eventos.ts`                                                | Agenda de respaldo. Con Google Calendar conectado no se usa (ver «Agenda con Google Calendar»)                     |
 | `logros.ts`                                                 | Línea de tiempo de logros. `destacado: true` los muestra en inicio                                                 |
 | `presentaciones.ts`                                         | Presentaciones y salidas, con sus fotos                                                                            |
 | `videos.ts`                                                 | Videos de YouTube (el `id` es lo que va después de `watch?v=`)                                                     |
@@ -90,6 +90,10 @@ Un sitio estático no tiene servidor para enviar correos, así que el formulario
 3. Vuelve a ejecutar `npm run dev` o `npm run build`. La clave queda incluida en el sitio al compilar.
 
 Los correos llegan con asuntos como `[FUARDI] Inscripción — Nombre`, para que puedas filtrarlos por motivo. Sin clave, el formulario muestra un aviso con WhatsApp y correo.
+
+## Agenda con Google Calendar
+
+La agenda puede leerse desde un Google Calendar público: los profesores suben los eventos desde el celular y el sitio los muestra sin volver a publicarse. La configuración inicial y la guía para profesores están en [docs/agenda-google-calendar.md](docs/agenda-google-calendar.md). Se activa con `NEXT_PUBLIC_GOOGLE_CALENDAR_ID` y `NEXT_PUBLIC_GOOGLE_API_KEY` en `.env.local`.
 
 ## Desplegar en Conexcol
 

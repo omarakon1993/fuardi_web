@@ -8,11 +8,11 @@ export const clasesColor: Record<
   ColorMarca,
   { fondo: string; sobreFondo: string; texto: string; borde: string }
 > = {
-  azul: {
-    fondo: "bg-azul",
+  tinta: {
+    fondo: "bg-tinta",
     sobreFondo: "text-blanco",
-    texto: "text-azul",
-    borde: "border-azul",
+    texto: "text-tinta",
+    borde: "border-tinta",
   },
   rojo: {
     fondo: "bg-rojo",

@@ -3,6 +3,7 @@
 import { useRef, useState, type KeyboardEvent } from "react";
 import { paginas } from "@/data/paginas";
 import { pasados, proximos } from "@/lib/fechas";
+import { useEventos } from "@/lib/useEventos";
 import { useHoy } from "@/lib/useHoy";
 import type { Evento, Fecha } from "@/lib/types";
 import { cx } from "@/lib/colores";
@@ -21,8 +22,9 @@ interface AgendaProps {
   hoyCompilacion: Fecha;
 }
 
-export function Agenda({ eventos, hoyCompilacion }: AgendaProps) {
+export function Agenda({ eventos: iniciales, hoyCompilacion }: AgendaProps) {
   const t = paginas.agenda;
+  const eventos = useEventos(iniciales);
   const hoy = useHoy(hoyCompilacion);
   const [vista, setVista] = useState<Vista>("lista");
   const [pestana, setPestana] = useState<Pestana>("proximos");
@@ -74,7 +76,7 @@ export function Agenda({ eventos, hoyCompilacion }: AgendaProps) {
           <div
             role="tablist"
             aria-label="Eventos"
-            className="flex gap-2 border-b-4 border-niebla"
+            className="flex gap-2 border-b-4 border-cana"
           >
             {PESTANAS.map((p) => {
               const activa = p === pestana;

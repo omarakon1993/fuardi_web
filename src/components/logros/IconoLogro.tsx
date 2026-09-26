@@ -10,7 +10,7 @@ const iconos: Record<TipoLogro, NombreIcono> = {
 };
 
 const colores: Record<TipoLogro, string> = {
-  reconocimiento: "bg-azul text-blanco",
+  reconocimiento: "bg-tinta text-blanco",
   galardon: "bg-amarillo text-tinta",
   participacion: "bg-rojo text-blanco",
   medios: "bg-magenta text-blanco",

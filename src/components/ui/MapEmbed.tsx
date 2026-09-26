@@ -28,7 +28,7 @@ export function MapEmbed({
         href={site.mapa.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-azul underline decoration-2 underline-offset-4"
+        className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-tinta underline decoration-2 underline-offset-4"
       >
         <Icon nombre="ubicacion" />
         <span>

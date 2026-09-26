@@ -1,4 +1,5 @@
 import { nombresTipoEvento } from "@/data/eventos";
+import { lugarEvento } from "@/lib/calendario";
 import { formatFechaLarga, partesFecha, rangoHoras } from "@/lib/fechas";
 import type { Evento } from "@/lib/types";
 import { EtiquetaEjemplo } from "@/components/ui/EtiquetaEjemplo";
@@ -22,6 +23,7 @@ export function TarjetaEvento({
 }: TarjetaEventoProps) {
   const { dia, mes, anio } = partesFecha(evento.fecha);
   const horas = rangoHoras(evento.horaInicio, evento.horaFin);
+  const lugar = lugarEvento(evento);
 
   return (
     <article className="flex gap-5">
@@ -65,14 +67,18 @@ export function TarjetaEvento({
               <span>{horas}</span>
             </li>
           ) : null}
-          <li className="flex items-start gap-2">
-            <Icon nombre="ubicacion" tamano={20} className="mt-1 shrink-0" />
-            <span>
-              {evento.lugar}, {evento.ciudad}
-            </span>
-          </li>
+          {lugar ? (
+            <li className="flex items-start gap-2">
+              <Icon nombre="ubicacion" tamano={20} className="mt-1 shrink-0" />
+              <span>{lugar}</span>
+            </li>
+          ) : null}
         </ul>
-        <p className="mt-3 medida">{evento.descripcion}</p>
+        {evento.descripcion ? (
+          <p className="mt-3 medida whitespace-pre-line">
+            {evento.descripcion}
+          </p>
+        ) : null}
         {children}
       </div>
     </article>

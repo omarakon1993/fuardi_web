@@ -8,7 +8,7 @@ export function Testimonials() {
   if (testimonios.length === 0) return null;
 
   return (
-    <Section tituloId="testimonios-titulo">
+    <Section tituloId="testimonios-titulo" capa>
       <EncabezadoSeccion
         id="testimonios-titulo"
         titulo={inicio.testimonios.titulo}

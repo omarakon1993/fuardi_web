@@ -1,43 +1,50 @@
 @import "tailwindcss";
 
 /*
- * Paleta "Tarima y tambor".
+ * Paleta "Tarima y tambor", versión A1 «Fluido»: un solo azul (tinta) para el
+ * menú, las secciones oscuras y el pie; rojo para las acciones; caña como
+ * fondo claro cálido. Los demás colores solo marcan programas.
  * Se declara con @theme (no inline) para que las utilidades lean las variables
  * en tiempo de ejecución y el modo de alto contraste pueda redefinirlas.
  */
 @theme {
   --color-tinta: #14213d;
-  --color-azul: #00518b; /* azul del árbol del logo */
-  --color-azul-hondo: #003a66;
   --color-rojo: #c1272d; /* pañoleta */
   --color-rojo-hondo: #9c1f24;
   --color-verde: #2e7d32;
   --color-magenta: #a61e6e;
-  --color-amarillo: #f2b705; /* solo fondo, con texto tinta */
-  --color-naranja: #e9730c; /* solo fondo, con texto tinta */
+  --color-amarillo: #f2b705; /* solo acentos, con texto tinta */
+  --color-naranja: #e9730c; /* solo acentos, con texto tinta */
   --color-blanco: #ffffff;
   --color-niebla: #f1f4f9;
   --color-cana: #f6efdc; /* caña flecha del sombrero vueltiao */
   --color-gris: #4a5568; /* texto secundario: 7.5:1 sobre blanco */
 
   /*
-   * Escala de cartel. El mínimo va en rem para que A−/A+ la sigan moviendo;
-   * el crecimiento con el ancho de pantalla es lo que da el aire de afiche.
+   * Escala de titulares. El mínimo va en rem para que A−/A+ la sigan moviendo;
+   * el crecimiento con el ancho de pantalla da el aire de cartel.
    */
-  --text-cartel: clamp(3.75rem, 1.4rem + 7.4vw, 8.75rem);
+  --text-cartel: clamp(3.5rem, 1.2rem + 6.4vw, 7.5rem);
   --text-cartel--line-height: 0.86;
-  --text-titular: clamp(2.75rem, 1.5rem + 4.6vw, 6rem);
+  --text-titular: clamp(2.75rem, 1.5rem + 4.2vw, 5.5rem);
   --text-titular--line-height: 0.9;
-  --text-seccion: clamp(2.25rem, 1.45rem + 3vw, 4.25rem);
+  --text-seccion: clamp(2.5rem, 1.6rem + 2.6vw, 4.25rem);
   --text-seccion--line-height: 0.95;
-  --text-entrada: clamp(1.25rem, 1.1rem + 0.45vw, 1.5rem);
-  --text-entrada--line-height: 1.5;
+  --text-frase: clamp(1.875rem, 1.2rem + 2vw, 3.25rem);
+  --text-frase--line-height: 1.12;
+  --text-entrada: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  --text-entrada--line-height: 1.6;
 
-  /* Jerarquía de esquinas: fotos amplias, paneles medios, controles en píldora. */
+  /* Esquinas: fotos amplias, paneles medios, capas de sección y píldoras. */
   --radius-foto: 2rem;
-  --radius-panel: 1.25rem;
+  --radius-panel: 1.5rem;
+  --radius-capa: 3.5rem;
+
+  /* Alto del menú fijo. En rem para que crezca con el texto. */
+  --spacing-menu: 4.5rem;
 
   --animate-entrada: entrada 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-marquesina: marquesina 45s linear infinite;
 
   @keyframes entrada {
     from {
@@ -47,6 +54,12 @@
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+
+  @keyframes marquesina {
+    to {
+      transform: translateX(-50%);
     }
   }
 }
@@ -59,8 +72,6 @@
 /* Alto contraste: se activa desde AccessibilityControls con data-contraste="alto". */
 html[data-contraste="alto"] {
   --color-tinta: #000000;
-  --color-azul: #002b4d;
-  --color-azul-hondo: #001a30;
   --color-rojo: #8a0e13;
   --color-rojo-hondo: #5e090d;
   --color-verde: #144d18;
@@ -75,6 +86,8 @@ html[data-contraste="alto"] {
     color: var(--color-tinta);
     background-color: var(--color-blanco);
     -webkit-text-size-adjust: 100%;
+    /* Los anclajes no quedan escondidos bajo el menú fijo. */
+    scroll-padding-top: calc(var(--spacing-menu) + 1rem);
   }
 
   /* Tamaño de texto (A− / A+). Todo el sitio usa rem, así que escala completo. */
@@ -93,8 +106,9 @@ html[data-contraste="alto"] {
 
   body {
     font-family: var(--font-sans);
-    font-size: 1.125rem; /* 18 px */
+    font-size: 1.0625rem; /* 17 px */
     line-height: 1.6;
+    padding-top: var(--spacing-menu);
   }
 
   h1,
@@ -109,7 +123,7 @@ html[data-contraste="alto"] {
     font-optical-sizing: auto;
   }
 
-  /* Titulares grandes, condensados como las letras de un cartel de festival. */
+  /* Titulares grandes y condensados. */
   h1,
   h2 {
     font-stretch: 78%;
@@ -174,12 +188,50 @@ html[data-contraste="alto"] {
   font-optical-sizing: auto;
 }
 
+/* Antetítulo corto sobre un titular de sección. */
+@utility antetitulo {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 @utility medida {
   /* Líneas de menos de 75 caracteres. */
   max-width: 65ch;
 }
 
-/* Fuera de @layer para ganarle a las utilidades hidden / xl:block. */
+/*
+ * Aparición al hacer scroll (componente Revelar). Solo se ocultan los
+ * elementos que aún no se ven; sin JavaScript o con movimiento reducido,
+ * todo queda visible.
+ */
+[data-revelar] {
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-revelar="oculto"] {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
+/* Fuera de @layer para ganarle a las utilidades. */
+/*
+ * Menú fijo. Con la letra muy grande tapaba media pantalla, así que en los
+ * niveles 2 y 3 de A+ vuelve a su lugar normal.
+ */
+html:is([data-texto="2"], [data-texto="3"]) body {
+  padding-top: 0;
+}
+html:is([data-texto="2"], [data-texto="3"]) .menu-fijo {
+  position: static;
+}
+html:is([data-texto="2"], [data-texto="3"]) {
+  scroll-padding-top: 1rem;
+}
+
 /*
  * Los puntos de quiebre no crecen con el texto. Si la persona agranda la
  * letra, el menú de escritorio ya no cabe: se usa el menú desplegable.

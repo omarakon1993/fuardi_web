@@ -8,9 +8,9 @@ export const programas: Programa[] = [
   {
     slug: "formacion",
     nombre: "Formación académica",
-    color: "azul",
-    resumen:
-      "La fundación funciona como institución educativa para nuestros estudiantes.",
+    etiqueta: "Académica",
+    color: "tinta",
+    resumen: "Institución educativa para nuestros estudiantes.",
     // TODO(contenido): detalle del programa de formación académica.
     descripcion: [
       "La fundación funciona como institución educativa para nuestros estudiantes.",
@@ -27,9 +27,9 @@ export const programas: Programa[] = [
   {
     slug: "musica",
     nombre: "Música tradicional: gaitas y tambores",
+    etiqueta: "Música",
     color: "rojo",
-    resumen:
-      "Desde 2016 tocamos cumbia, puya, gaita y porro, la música de los Montes de María.",
+    resumen: "Cumbia, puya, gaita y porro desde 2016.",
     descripcion: [
       "Nuestro grupo de gaitas y tambores nace en 2016. Interpreta aires de cumbia, puya, gaita y porro, y rescata desde el interior del país la música tradicional de los Montes de María.",
       "El lenguaje musical fortalece habilidades cognitivas, comunicativas, sociales, afectivas y emocionales. El grupo se presenta en festivales locales, distritales y nacionales.",
@@ -46,8 +46,9 @@ export const programas: Programa[] = [
   {
     slug: "danza",
     nombre: "Danza folclórica",
+    etiqueta: "Danza",
     color: "magenta",
-    resumen: "Bailamos en encuentros nacionales de danza folclórica.",
+    resumen: "Bailamos en encuentros nacionales de danza.",
     // TODO(contenido): detalle del programa de danza.
     descripcion: [
       "Nuestro grupo de danza participa en encuentros nacionales, como el XIX Encuentro Nacional de Danza Folclórica «Danzando con el Sol» (2024).",
@@ -64,6 +65,7 @@ export const programas: Programa[] = [
   {
     slug: "canto",
     nombre: "Canto",
+    etiqueta: "Canto",
     color: "verde",
     resumen: "Formación en canto para nuestros estudiantes.",
     // TODO(contenido): detalle del programa de canto.
@@ -71,17 +73,18 @@ export const programas: Programa[] = [
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.
     foto: {
-      src: "/images/programas/canto-gaita-tarima.webp",
-      alt: "Profesor cantando con maraca junto a un joven que toca la gaita en tarima",
+      src: "/images/galeria/canto-gaita-tarima.webp",
+      alt: "Profesor cantando con maraca junto a jóvenes que tocan la gaita y la maraca en tarima",
       ancho: 725,
-      alto: 544,
+      alto: 1600,
     },
   },
   {
     slug: "emprendimientos",
     nombre: "Emprendimientos",
+    etiqueta: "Tienda",
     color: "naranja",
-    resumen: "Nuestros jóvenes hacen productos como pocillos y camisetas.",
+    resumen: "Pocillos y camisetas hechos por nuestros jóvenes.",
     // TODO(contenido): detalle del programa de emprendimientos.
     descripcion: [
       "Nuestros jóvenes hacen productos como pocillos y camisetas. Puedes pedirlos en nuestra tienda.",

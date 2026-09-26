@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { enlacesLegales, menuPrincipal } from "@/data/navegacion";
+import { enlacesLegales, paginasSitio } from "@/data/navegacion";
 import { site } from "@/data/site";
 
 // Exportación estática: se genera una sola vez al compilar.
@@ -7,9 +7,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const rutas = [
-    ...menuPrincipal.map((e) => e.href),
-    "/apoyanos/",
-    "/contacto/",
+    ...paginasSitio.map((e) => e.href),
     ...enlacesLegales.map((e) => e.href),
   ];
   const hoy = new Date();

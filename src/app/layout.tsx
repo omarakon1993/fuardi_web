@@ -62,7 +62,6 @@ const jsonLd = {
   url: site.url,
   logo: `${site.url}/images/logo/fuardi-logo.png`,
   image: `${site.url}/og.png`,
-  telephone: `+57 ${site.telefono}`,
   email: site.correo,
   address: {
     "@type": "PostalAddress",
@@ -95,8 +94,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-dvh flex-col antialiased">
         <SkipLink />
-        <AnnouncementBar anuncios={anuncios} hoyCompilacion={hoyBogota()} />
         <Header />
+        <AnnouncementBar anuncios={anuncios} hoyCompilacion={hoyBogota()} />
         <main
           id="contenido"
           tabIndex={-1}

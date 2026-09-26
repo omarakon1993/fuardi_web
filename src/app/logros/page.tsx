@@ -4,9 +4,8 @@ import { logros, notaTrayectoria } from "@/data/logros";
 import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { videos } from "@/data/videos";
-import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
 import { LineaTiempo } from "@/components/logros/LineaTiempo";
-import { PageHeader } from "@/components/ui/PageHeader";
+import { AccionesPrincipales, PageHeader } from "@/components/ui/PageHeader";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 import { YouTubeLite } from "@/components/ui/YouTubeLite";
 
@@ -25,6 +24,7 @@ export default function LogrosPage() {
     <>
       <PageHeader
         titulo={t.titulo}
+        etiqueta={t.etiqueta}
         intro={t.intro}
         foto={fotos.cantoTarima}
         acciones={<AccionesPrincipales />}
@@ -36,18 +36,24 @@ export default function LogrosPage() {
         ]}
       />
 
-      <Section tituloId="linea-titulo" id="linea-de-tiempo" fondo="niebla">
-        <EncabezadoSeccion id="linea-titulo" titulo={t.lineaTiempo} />
+      <Section tituloId="linea-titulo" id="linea-de-tiempo" capa>
+        <EncabezadoSeccion
+          id="linea-titulo"
+          antetitulo={t.lineaTiempo}
+          titulo={t.lineaTiempoTitulo}
+        />
         <LineaTiempo logros={logros} />
         <p className="mt-10 medida text-lg">{notaTrayectoria}</p>
       </Section>
 
       {notasMedios.length > 0 ? (
-        <Section tituloId="medios-titulo" id="medios">
+        <Section tituloId="medios-titulo" id="medios" fondo="tinta" capa>
           <EncabezadoSeccion
             id="medios-titulo"
-            titulo={t.medios}
+            antetitulo={t.medios}
+            titulo={t.mediosTitulo}
             intro={t.mediosIntro}
+            claro
           />
           <ul className="mt-12 grid gap-x-6 gap-y-10 lg:grid-cols-2">
             {notasMedios.map((video) => (
@@ -58,7 +64,7 @@ export default function LogrosPage() {
                     <span className="block text-xl font-bold">
                       {video.titulo}
                     </span>
-                    <span className="text-gris">
+                    <span className="text-blanco/80">
                       {video.descripcion ?? video.canal}
                     </span>
                   </figcaption>
@@ -68,8 +74,6 @@ export default function LogrosPage() {
           </ul>
         </Section>
       ) : null}
-
-      <Sumate />
     </>
   );
 }

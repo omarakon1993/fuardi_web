@@ -2,7 +2,7 @@
 
 # Fundación Armonía Diversa (FUARDI) — sitio web
 
-Sitio informativo de una fundación sin ánimo de lucro en Suba, Bogotá, que funciona como colegio y escuela artística para niños, jóvenes y adultos con discapacidad (síndrome de Down, discapacidad cognitiva, hipoacusia). Tiene grupo de música tradicional (gaitas y tambores), danza, canto y emprendimientos.
+Sitio informativo de una fundación sin ánimo de lucro en Suba, Bogotá, que funciona como institución educativa y escuela artística para niños, jóvenes y adultos con discapacidad (síndrome de Down, discapacidad cognitiva, hipoacusia). Tiene grupo de música tradicional (gaitas y tambores), danza, canto y emprendimientos.
 
 Lema: "La Música Rompe Barreras".
 
@@ -23,6 +23,7 @@ Todo el contenido real está en `docs/contenido.md`. El plan de trabajo está en
   - `sitemap.ts` y `robots.ts` deben ser estáticos. Verifica en la documentación de `node_modules/next/dist/docs/`.
 - Sin base de datos. El contenido vive en `src/data/*.ts`, tipado desde `src/lib/types.ts`. Actualizar el sitio = editar un archivo de datos, no un componente.
 - **Fechas.** El HTML se genera al compilar, así que todo lo que dependa de "hoy" se filtra también en el cliente al montar, para que no quede desactualizado entre despliegues. Aplica a próximos eventos, anuncios vigentes y colectas activas. Evita errores de hidratación. Zona horaria: America/Bogota. Las fechas se guardan como `"YYYY-MM-DD"` y se formatean con `Intl` en `es-CO`.
+- Agenda: si hay `NEXT_PUBLIC_GOOGLE_CALENDAR_ID` y `NEXT_PUBLIC_GOOGLE_API_KEY`, los eventos salen de Google Calendar (`src/lib/googleCalendar.ts`): se leen al compilar y otra vez en el navegador (`useEventos`). Sin ellas se usa `src/data/eventos.ts`. Guía en `docs/agenda-google-calendar.md`.
 - Formulario: envío desde el cliente a Web3Forms (`NEXT_PUBLIC_WEB3FORMS_KEY` en `.env.local`). Si no hay clave, se muestra como alternativa WhatsApp y correo.
 - No agregar dependencias sin justificarlo. Preferir componentes propios pequeños a librerías pesadas (carrusel, lightbox, calendario).
 
@@ -35,69 +36,73 @@ src/
     nosotros/  programas/  presentaciones/  logros/  agenda/
     tienda/  apoyanos/  contacto/  politica-de-datos/      (cada una con page.tsx)
   components/
-    layout/   Header, MobileMenu, Footer, AnnouncementBar, WhatsAppFloat,
-              SkipLink, AccessibilityControls
-    home/     Hero, ImpactStats, AboutPreview, ProgramsGrid, CampaignBanner,
-              UpcomingEvents, PerformancesPreview, AchievementsPreview,
-              ShopPreview, HowToHelp, Testimonials, SocialBlock, ContactCta
-    ui/       Container, Section, Button, PatternBand, PhotoPlaceholder,
-              YouTubeLite, Lightbox, MapEmbed
+    layout/   Header, NavPrincipal, MobileMenu, Footer, AnnouncementBar,
+              WhatsAppFloat, SkipLink, AccessibilityControls, RedesSociales
+    home/     Hero, Marquesina, AboutPreview, ProgramsGrid, PerformancesPreview,
+              AchievementsPreview, CampaignBanner, HowToHelp, Testimonials
+    ui/       Container, Section, Button, PageHeader, Revelar, Desplegable,
+              PhotoPlaceholder, YouTubeLite, Lightbox, MapEmbed
     forms/    ContactForm
-  data/       site.ts navegacion.ts anuncios.ts eventos.ts logros.ts
-              presentaciones.ts videos.ts programas.ts productos.ts
-              testimonios.ts faq.ts equipo.ts aliados.ts
-  lib/        types.ts fechas.ts whatsapp.ts
+  data/       site.ts navegacion.ts inicio.ts paginas.ts pie.ts fotos.ts
+              anuncios.ts eventos.ts logros.ts presentaciones.ts videos.ts
+              programas.ts productos.ts testimonios.ts faq.ts equipo.ts apoyo.ts
+  lib/        types.ts fechas.ts whatsapp.ts colores.ts
 public/
-  images/{logo,hero,galeria,logros,productos,programas,equipo,aliados}/
+  images/{logo,hero,galeria,logros,productos,equipo,aliados}/
   .htaccess
 ```
 
 ## Navegación
 
-Menú: Inicio · Nosotros · Programas · Presentaciones · Logros · Agenda · Tienda.
+Menú agrupado (el logo lleva al inicio):
+Nosotros ▾ (Quiénes somos, Logros) · Programas · Presentaciones ▾ (Fotos y videos, Agenda) · Tienda · Contacto.
 
-Botones destacados:
+- Un solo botón rojo **Apóyanos** → `/apoyanos/`. Inscribirse va en las portadas («Inscribe a tu hijo o hija» → `/contacto/?motivo=inscripcion`) y en el menú móvil.
+- Opciones de lectura (A−/A+ y alto contraste) solo dentro del menú móvil (decisión de la fundación: no van en el menú de escritorio ni en el pie).
+- El menú es **fijo**. Con A+ en nivel 2 o 3 vuelve a su lugar normal (`.menu-fijo` en `globals.css`) para no tapar media pantalla.
+- En móvil hay menú desplegable accesible (`<dialog>`) con los grupos abiertos. El botón flotante de WhatsApp aparece en todas las páginas.
+- Inicio es un resumen que lleva a las demás páginas: de la agenda solo va el resumen de próximas fechas, y no se repiten tienda, redes ni contacto (el pie de todas las páginas ya tiene «Ven a conocernos» con los datos y las redes).
 
-- **Apóyanos** (secundario) → `/apoyanos/`
-- **Inscríbete** (primario) → `/contacto/?motivo=inscripcion`
+## Dirección de diseño: A1 «Fluido»
 
-En móvil hay menú desplegable accesible y los dos botones siguen visibles. El botón flotante de WhatsApp aparece en todas las páginas.
+El sitio se siente como el grupo en tarima: vestuario blanco, pañoleta roja, un azul oscuro de noche y los colores del rompecabezas identificando cada programa.
 
-## Dirección de diseño: "Tarima y tambor"
+**Paleta:** un solo azul.
 
-El sitio debe sentirse como el grupo en tarima: vestuario blanco, pañoleta roja, el azul del árbol del logo y los colores del rompecabezas identificando cada programa.
+| Token        | Hex       | Uso                                                              |
+| ------------ | --------- | ---------------------------------------------------------------- |
+| `tinta`      | `#14213D` | Texto, menú, secciones oscuras («En tarima», portadas) y pie     |
+| `rojo`       | `#C1272D` | Botones de acción (Apóyanos, Quiero donar), antetítulos, acentos |
+| `rojo-hondo` | `#9C1F24` | Hover del rojo                                                   |
+| `cana`       | `#F6EFDC` | Fondo claro cálido                                               |
+| `blanco`     | `#FFFFFF` | Base                                                             |
+| `gris`       | `#4A5568` | Texto secundario                                                 |
+| `verde`      | `#2E7D32` | WhatsApp y color de programa                                     |
+| `magenta`    | `#A61E6E` | Color de programa                                                |
+| `naranja`    | `#E9730C` | Color de programa, con texto `tinta` encima                      |
+| `amarillo`   | `#F2B705` | Solo anuncios y foco, con texto `tinta` encima                   |
 
-**Paleta** (ajustar tonos al logo real cuando esté en `public/images/logo/`):
-
-| Token      | Hex       | Uso                                                                      |
-| ---------- | --------- | ------------------------------------------------------------------------ |
-| `tinta`    | `#14213D` | Texto principal                                                          |
-| `azul`     | `#1D4E9E` | Color de marca, enlaces, header. Blanco encima cumple AA                 |
-| `rojo`     | `#C1272D` | Botón primario y acentos, como la pañoleta. Blanco encima cumple AA      |
-| `verde`    | `#2E7D32` | Color de programa                                                        |
-| `magenta`  | `#A61E6E` | Color de programa                                                        |
-| `amarillo` | `#F2B705` | Solo fondo, con texto `tinta` encima (nunca texto amarillo sobre blanco) |
-| `naranja`  | `#E9730C` | Solo fondo, con texto `tinta` encima                                     |
-| `blanco`   | `#FFFFFF` | Base                                                                     |
-| `niebla`   | `#F1F4F9` | Secciones alternas                                                       |
+No se usa ningún otro azul.
 
 **Tipografía:**
 
-- Cuerpo: Atkinson Hyperlegible Next, diseñada para baja visión (si no existe en `next/font/google`, usa Atkinson Hyperlegible).
-- Títulos: Bricolage Grotesque en peso alto.
-- Base de 18 px y líneas de menos de 75 caracteres.
+- Cuerpo: Atkinson Hyperlegible Next, 17 px, líneas de menos de 75 caracteres.
+- Titulares: Bricolage Grotesque 800 condensada (`font-stretch: 78%`), escalas `text-cartel`, `text-titular` y `text-seccion` en `globals.css`.
+- Antetítulos: utilidad `antetitulo` (mayúsculas cortas en `rojo`, o `cana` sobre fondo oscuro) sobre los titulares de sección.
 
-**Elemento distintivo único:** una franja con patrón geométrico inspirado en las "pintas" del sombrero vueltiao, hecha como SVG repetible (`PatternBand`). Se usa bajo el hero, como separador entre bloques grandes y arriba del footer. No agregar otra decoración.
+**Formas y ritmo:**
 
-**Hero:** foto a sangre del grupo tocando en tarima, con el lema grande alineado a la izquierda. El degradado oscuro va solo donde está el texto, para dar contraste. Un único momento de animación al cargar, y ninguno si el usuario prefiere movimiento reducido.
+- Secciones apiladas como capas: `<Section capa>` sube `-mt-14` con esquinas superiores `rounded-t-capa` sobre la anterior. Las portadas (`PageHeader`) y el pie usan la misma silueta.
+- Fotos con radios asimétricos (`rounded-[2rem_8rem_2rem_2rem]`, `rounded-t-full`, círculos). Botones en píldora, de 52 px de alto (44 px en el menú).
+- Elemento distintivo: la franja roja inclinada con ritmos y lugares (`Marquesina`), solo en inicio. Tiene botón para detenerla y no se mueve con movimiento reducido.
+
+**Animación:** `Revelar` hace aparecer encabezados y tarjetas al entrar en pantalla. No anima lo que ya se ve al cargar y respeta `prefers-reduced-motion`. Hay un único momento de entrada en la portada.
 
 **Evitar:**
 
-- Etiquetas en MAYÚSCULAS sobre cada título.
-- Numeración 01/02/03 (solo se permite en la línea de tiempo de logros, que sí es una secuencia).
-- Tarjetas idénticas con la misma sombra en todo el sitio.
-- Animaciones fade-in en cada sección.
-- Flechas "→" en todos los enlaces.
+- Numeración 01/02/03 (solo en la línea de tiempo de logros, que sí es una secuencia).
+- Flechas "→" en botones: solo en los enlaces de texto (variantes `texto` y `textoClaro`).
+- Repetir en una página lo que ya dicen el menú o el pie.
 - Modo oscuro automático en la Fase 1.
 
 ## Accesibilidad (obligatorio, WCAG 2.1 AA)

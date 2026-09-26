@@ -2,6 +2,11 @@ import { site } from "@/data/site";
 import { aFecha, parseFecha } from "@/lib/fechas";
 import type { Evento, Fecha, Hora } from "@/lib/types";
 
+/** Lugar y ciudad en una sola línea, sin comas sobrantes. */
+export function lugarEvento(evento: Evento) {
+  return [evento.lugar, evento.ciudad].filter(Boolean).join(", ");
+}
+
 // Bogotá está en UTC−5 todo el año (sin horario de verano).
 const DESFASE_BOGOTA_HORAS = 5;
 
@@ -69,7 +74,7 @@ export function generarIcs(evento: Evento): string {
     todoElDia ? `DTEND;VALUE=DATE:${fin}` : `DTEND:${fin}`,
     `SUMMARY:${escaparIcs(evento.titulo)}`,
     `DESCRIPTION:${escaparIcs(evento.descripcion)}`,
-    `LOCATION:${escaparIcs(`${evento.lugar}, ${evento.ciudad}`)}`,
+    `LOCATION:${escaparIcs(lugarEvento(evento))}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ];
@@ -98,7 +103,7 @@ export function enlaceGoogleCalendar(evento: Evento): string {
     text: evento.titulo,
     dates: `${inicio}/${fin}`,
     details: evento.descripcion,
-    location: `${evento.lugar}, ${evento.ciudad}`,
+    location: lugarEvento(evento),
     ctz: "America/Bogota",
   });
   return `https://calendar.google.com/calendar/render?${params}`;

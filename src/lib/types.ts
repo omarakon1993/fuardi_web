@@ -5,7 +5,7 @@ export type Fecha = string;
 export type Hora = string;
 
 export type ColorMarca =
-  "azul" | "rojo" | "verde" | "magenta" | "amarillo" | "naranja";
+  "tinta" | "rojo" | "verde" | "magenta" | "amarillo" | "naranja";
 
 export interface Foto {
   /** Ruta dentro de public/, por ejemplo "/images/galeria/tarima-2019.webp". */
@@ -51,8 +51,9 @@ export interface Evento {
   fechaFin?: Fecha;
   horaInicio?: Hora;
   horaFin?: Hora;
+  /** Sitio o dirección. En Google Calendar es el campo "Ubicación". */
   lugar: string;
-  ciudad: string;
+  ciudad?: string;
   descripcion: string;
   enlace?: Enlace;
   ejemplo?: boolean;
@@ -102,6 +103,8 @@ export interface Video {
 export interface Programa {
   slug: string;
   nombre: string;
+  /** Rótulo corto de la píldora de color (por ejemplo "Música"). */
+  etiqueta: string;
   color: ColorMarca;
   resumen: string;
   descripcion: string[];
@@ -203,7 +206,6 @@ export interface SiteConfig {
   canalWhatsApp?: string;
   nit?: string;
   horarioAtencion?: string;
-  googleCalendarEmbedUrl?: string;
   donaciones: {
     cuentas: CuentaDonacion[];
     qr?: Foto;

@@ -30,7 +30,7 @@ export function TarjetaProducto({
   nivel: Titulo = "h3",
 }: TarjetaProductoProps) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-panel border-2 border-niebla bg-blanco">
+    <article className="flex h-full flex-col overflow-hidden rounded-panel border-2 border-cana bg-blanco">
       {producto.foto ? (
         <Image
           src={producto.foto.src}

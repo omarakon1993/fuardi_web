@@ -65,14 +65,14 @@ export function ListaPresentaciones({
                   .map((p) => (
                     <li
                       key={p.id}
-                      className="rounded-panel border-2 border-niebla bg-blanco p-5"
+                      className="rounded-panel border-2 border-cana bg-blanco p-5"
                     >
                       <p
                         className={cx(
                           "inline-block rounded px-2 py-0.5 text-sm font-bold",
                           p.tipo === "salida"
                             ? "bg-magenta text-blanco"
-                            : "bg-azul text-blanco",
+                            : "bg-tinta text-blanco",
                         )}
                       >
                         {nombreTipo[p.tipo]}

@@ -6,10 +6,6 @@ export function enlaceWhatsApp(mensaje?: string, numero = site.whatsapp) {
   return mensaje ? `${base}?text=${encodeURIComponent(mensaje)}` : base;
 }
 
-export function enlaceTelefono(telefono = site.telefono) {
-  return `tel:+57${telefono.replace(/\D/g, "")}`;
-}
-
 export function enlaceCorreo(correo = site.correo, asunto?: string) {
   return asunto
     ? `mailto:${correo}?subject=${encodeURIComponent(asunto)}`

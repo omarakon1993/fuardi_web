@@ -11,6 +11,8 @@ export const site: SiteConfig = {
   // TODO(contenido): dominio definitivo de la fundación.
   url: "https://fuardi.org",
   director: "Daniel Hurtado Yepes",
+  // Solo se publica en la política de datos (lo exige la ley). En el resto
+  // del sitio se usa el enlace a WhatsApp.
   telefono: "320 829 8137",
   whatsapp: "573208298137",
   correo: "fuardi18@gmail.com",
@@ -56,8 +58,6 @@ export const site: SiteConfig = {
   nit: "901.138.083-3",
   // TODO(contenido): horario de atención.
   horarioAtencion: undefined,
-  // TODO(contenido): URL de inserción del Google Calendar público, si lo crean.
-  googleCalendarEmbedUrl: undefined,
   donaciones: {
     // TODO(contenido): cuenta bancaria, Nequi y Daviplata.
     cuentas: [],

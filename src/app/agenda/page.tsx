@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { metadatos } from "@/lib/metadatos";
 import { eventos } from "@/data/eventos";
-import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
-import { site } from "@/data/site";
 import { hoyBogota } from "@/lib/fechas";
+import {
+  enlaceSeguirCalendario,
+  eventosAlCompilar,
+} from "@/lib/googleCalendar";
 import { Agenda } from "@/components/agenda/Agenda";
-import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { EncabezadoSeccion, Section } from "@/components/ui/Section";
+import { AccionesPrincipales, PageHeader } from "@/components/ui/PageHeader";
+import { BotonEnlace } from "@/components/ui/Button";
+import { Section } from "@/components/ui/Section";
 
 const t = paginas.agenda;
 
@@ -18,36 +20,34 @@ export const metadata: Metadata = metadatos(
   "/agenda/",
 );
 
-export default function AgendaPage() {
+export default async function AgendaPage() {
+  const lista = await eventosAlCompilar(eventos);
+
   return (
     <>
       <PageHeader
         titulo={t.titulo}
+        etiqueta={t.etiqueta}
         intro={t.intro}
-        foto={fotos.grupoTambores}
         acciones={<AccionesPrincipales />}
       />
 
-      <Section tituloId="eventos-titulo" fondo="niebla">
+      <Section tituloId="eventos-titulo" capa>
         <h2 id="eventos-titulo" className="sr-only">
-          Eventos
+          {t.eventos}
         </h2>
-        <Agenda eventos={eventos} hoyCompilacion={hoyBogota()} />
+        <Agenda eventos={lista} hoyCompilacion={hoyBogota()} />
+        {enlaceSeguirCalendario ? (
+          <BotonEnlace
+            href={enlaceSeguirCalendario}
+            variante="texto"
+            icono="calendario"
+            className="mt-10"
+          >
+            {t.seguir}
+          </BotonEnlace>
+        ) : null}
       </Section>
-
-      {site.googleCalendarEmbedUrl ? (
-        <Section tituloId="gcal-titulo">
-          <EncabezadoSeccion id="gcal-titulo" titulo={t.calendarioEmbebido} />
-          <iframe
-            src={site.googleCalendarEmbedUrl}
-            title={`${t.calendarioEmbebido} en Google Calendar`}
-            loading="lazy"
-            className="mt-8 aspect-4/3 w-full rounded-panel border-2 border-niebla"
-          />
-        </Section>
-      ) : null}
-
-      <Sumate />
     </>
   );
 }
