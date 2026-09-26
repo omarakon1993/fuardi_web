@@ -278,7 +278,7 @@ function Formulario({
         ref={estadoRef}
         tabIndex={-1}
         role="status"
-        className="rounded-xl border-4 border-verde bg-blanco p-6 focus-visible:outline-none"
+        className="rounded-panel border-4 border-verde bg-blanco p-6 focus-visible:outline-none"
       >
         <p className="flex items-start gap-3 text-xl font-bold">
           <Icon
@@ -403,7 +403,7 @@ function Formulario({
       </Campo>
 
       {motivo === "inscripcion" ? (
-        <fieldset className="space-y-6 rounded-xl border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
           <legend className="px-2 text-xl font-bold">
             Datos de la inscripción
           </legend>
@@ -498,7 +498,7 @@ function Formulario({
       ) : null}
 
       {motivo === "aporte" ? (
-        <fieldset className="space-y-6 rounded-xl border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
           <legend className="px-2 text-xl font-bold">Datos del aporte</legend>
           <GrupoRadios
             nombre="tipoAporte"
@@ -538,7 +538,7 @@ function Formulario({
       ) : null}
 
       {motivo === "presentacion" ? (
-        <fieldset className="space-y-6 rounded-xl border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
           <legend className="px-2 text-xl font-bold">Datos del evento</legend>
           <div className="grid gap-6 md:grid-cols-2">
             <Campo
@@ -592,7 +592,7 @@ function Formulario({
       ) : null}
 
       {motivo === "alianza" ? (
-        <fieldset className="space-y-6 rounded-xl border-2 border-azul/30 p-5">
+        <fieldset className="space-y-6 rounded-panel border-2 border-azul/30 p-5">
           <legend className="px-2 text-xl font-bold">
             Datos de la empresa
           </legend>
@@ -798,7 +798,7 @@ export function ContactForm() {
     return (
       <div
         role="note"
-        className="rounded-xl border-2 border-amarillo bg-blanco p-6"
+        className="rounded-panel border-2 border-amarillo bg-blanco p-6"
       >
         <p className="flex items-start gap-3 text-lg font-bold">
           <Icon nombre="alerta" className="mt-0.5 shrink-0" />
@@ -822,5 +822,7 @@ export function ContactForm() {
 }
 
 export function ContactFormCargando() {
-  return <p className={cx("rounded-xl bg-blanco p-6 text-lg")}>{t.cargando}</p>;
+  return (
+    <p className={cx("rounded-panel bg-blanco p-6 text-lg")}>{t.cargando}</p>
+  );
 }

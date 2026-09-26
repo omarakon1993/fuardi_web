@@ -17,7 +17,7 @@ const INTERVALO = 8000;
 
 function Tarjeta({ anuncio }: { anuncio: Anuncio }) {
   return (
-    <article className="grid overflow-hidden rounded-xl bg-azul text-blanco md:grid-cols-[2fr_3fr]">
+    <article className="grid overflow-hidden rounded-foto bg-azul text-blanco md:grid-cols-[2fr_3fr]">
       {anuncio.foto ? (
         <Image
           src={anuncio.foto.src}
@@ -95,7 +95,7 @@ function Carrusel({ anuncios }: { anuncios: Anuncio[] }) {
   }
 
   const botonControl =
-    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
+    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
 
   return (
     // Las flechas son un atajo extra; todos los controles son botones.

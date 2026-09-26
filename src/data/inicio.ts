@@ -17,6 +17,7 @@ export const inicio = {
     titulo: "Nuestros programas",
     intro:
       "Cada programa tiene su color, como las piezas del rompecabezas de nuestro logo.",
+    enlace: "Ver todos los programas",
   },
   campanas: {
     titulo: "Convocatorias y campañas",

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { metadatos } from "@/lib/metadatos";
 import Image from "next/image";
-import Link from "next/link";
 import { preguntasFrecuentes } from "@/data/faq";
+import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { programas } from "@/data/programas";
 import { clasesColor, cx } from "@/lib/colores";
 import { BotonEnlace } from "@/components/ui/Button";
+import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -24,37 +25,16 @@ export const metadata: Metadata = metadatos(
 export default function ProgramasPage() {
   return (
     <>
-      <PageHeader titulo={t.titulo} intro={t.intro} />
-
-      <Container className="py-10">
-        <nav aria-labelledby="indice-programas">
-          <h2 id="indice-programas" className="text-xl">
-            {t.indice}
-          </h2>
-          <ul className="mt-4 flex flex-wrap gap-3">
-            {programas.map((p) => (
-              <li key={p.slug}>
-                <Link
-                  href={`#${p.slug}`}
-                  className={cx(
-                    "inline-flex min-h-11 items-center gap-2 rounded-lg border-2 bg-blanco px-4 font-bold text-tinta no-underline hover:bg-niebla",
-                    clasesColor[p.color].borde,
-                  )}
-                >
-                  <span
-                    aria-hidden="true"
-                    className={cx(
-                      "size-3 rounded-full",
-                      clasesColor[p.color].fondo,
-                    )}
-                  />
-                  {p.nombre}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </Container>
+      <PageHeader
+        titulo={t.titulo}
+        intro={t.intro}
+        foto={fotos.danza}
+        acciones={<AccionesPrincipales />}
+        atajos={[
+          ...programas.map((p) => ({ texto: p.nombre, href: `#${p.slug}` })),
+          { texto: t.faqCorto, href: "#preguntas" },
+        ]}
+      />
 
       {programas.map((programa, i) => {
         const color = clasesColor[programa.color];
@@ -65,24 +45,25 @@ export default function ProgramasPage() {
             id={programa.slug}
             aria-labelledby={tituloId}
             className={cx(
-              "scroll-mt-4 py-14 md:py-20",
+              "scroll-mt-4 py-20 md:py-28",
               i % 2 === 0 ? "bg-niebla" : "bg-blanco",
             )}
           >
-            <Container className="grid gap-10 lg:grid-cols-[2fr_3fr] lg:items-start">
+            <Container className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
               <div
                 className={cx(
-                  "overflow-hidden rounded-xl",
+                  "overflow-hidden rounded-foto border-b-8",
+                  color.borde,
                   i % 2 === 1 && "lg:order-2",
                 )}
               >
-                <div className={cx("h-3", color.fondo)} aria-hidden="true" />
                 {programa.foto ? (
                   <Image
                     src={programa.foto.src}
                     alt={programa.foto.alt}
                     width={programa.foto.ancho}
                     height={programa.foto.alto}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="aspect-4/3 w-full object-cover"
                   />
                 ) : (
@@ -94,14 +75,11 @@ export default function ProgramasPage() {
                 )}
               </div>
               <div>
-                <h2 id={tituloId} className="text-3xl sm:text-4xl">
-                  <span
-                    aria-hidden="true"
-                    className={cx(
-                      "mr-3 inline-block size-5 rounded-full align-middle",
-                      color.fondo,
-                    )}
-                  />
+                <span
+                  aria-hidden="true"
+                  className={cx("block h-2 w-16 rounded-full", color.fondo)}
+                />
+                <h2 id={tituloId} className="mt-6 text-seccion">
                   {programa.nombre}
                 </h2>
                 <div className="mt-5 medida space-y-4 text-xl">
@@ -109,7 +87,7 @@ export default function ProgramasPage() {
                     <p key={parrafo.slice(0, 30)}>{parrafo}</p>
                   ))}
                 </div>
-                <dl className="mt-8 grid gap-5 sm:grid-cols-2">
+                <dl className="mt-8 grid gap-5 rounded-panel bg-blanco p-6 ring-1 ring-tinta/10 sm:grid-cols-2">
                   <div className="sm:col-span-2">
                     <dt className="font-bold">{t.dirigidoA}</dt>
                     <dd className="mt-1">
@@ -152,11 +130,11 @@ export default function ProgramasPage() {
 
       <Section tituloId="faq-titulo" id="preguntas" fondo="cana">
         <EncabezadoSeccion id="faq-titulo" titulo={t.faq} />
-        <div className="mt-8 max-w-3xl space-y-3">
+        <div className="mt-10 max-w-3xl space-y-3">
           {preguntasFrecuentes.map((item) => (
             <details
               key={item.pregunta}
-              className="group rounded-lg border-2 border-tinta/15 bg-blanco open:border-azul"
+              className="group rounded-panel border-2 border-tinta/10 bg-blanco open:border-azul"
             >
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-xl font-bold [&::-webkit-details-marker]:hidden">
                 {item.pregunta}
@@ -170,6 +148,8 @@ export default function ProgramasPage() {
           ))}
         </div>
       </Section>
+
+      <Sumate />
     </>
   );
 }

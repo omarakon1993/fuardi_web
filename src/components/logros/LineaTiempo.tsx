@@ -43,21 +43,21 @@ export function LineaTiempo({ logros }: { logros: Logro[] }) {
         {lista.length === 1 ? "1 logro" : `${lista.length} logros`}
       </p>
 
-      <ol className="relative mt-8 border-l-4 border-azul pl-8 sm:ml-12 sm:pl-12">
+      <ol className="relative mt-10 border-l-4 border-azul pl-8 sm:ml-12 sm:pl-12">
         {anios.map((anio) => (
           <li key={anio} className="relative pb-12 last:pb-0">
             <span
               aria-hidden="true"
               className="absolute top-1 -left-[2.9rem] size-6 rounded-full border-4 border-blanco bg-rojo ring-4 ring-azul sm:-left-[3.9rem]"
             />
-            <h3 className="text-4xl text-azul">{anio}</h3>
+            <h3 className="text-6xl text-azul [font-stretch:78%]">{anio}</h3>
             <ul className="mt-4 space-y-4">
               {lista
                 .filter((l) => l.anio === anio)
                 .map((logro) => (
                   <li
                     key={logro.id}
-                    className="flex flex-col gap-4 rounded-lg bg-blanco p-5 shadow-sm ring-1 ring-tinta/10 sm:flex-row"
+                    className="flex flex-col gap-4 rounded-panel bg-blanco p-6 ring-1 ring-tinta/10 sm:flex-row"
                   >
                     <IconoLogro tipo={logro.tipo} />
                     <div className="flex-1">

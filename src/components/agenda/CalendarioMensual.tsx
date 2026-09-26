@@ -74,7 +74,7 @@ export function CalendarioMensual({ eventos, hoy }: CalendarioMensualProps) {
 
   const eventosElegidos = elegido ? (porDia.get(elegido) ?? []) : [];
   const boton =
-    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-lg border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
+    "inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border-2 border-azul bg-blanco px-3 font-bold text-azul hover:bg-niebla";
 
   return (
     <div>
@@ -161,7 +161,7 @@ export function CalendarioMensual({ eventos, hoy }: CalendarioMensualProps) {
 
       <div aria-live="polite" className="mt-6">
         {elegido ? (
-          <ul className="space-y-8 rounded-xl bg-blanco p-5 ring-1 ring-tinta/10">
+          <ul className="space-y-8 rounded-panel bg-blanco p-5 ring-1 ring-tinta/10">
             {eventosElegidos.map((evento) => (
               <li key={evento.id}>
                 <TarjetaEvento

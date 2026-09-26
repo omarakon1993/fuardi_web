@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { fotos } from "@/data/fotos";
 import { inicio } from "@/data/inicio";
 import { site } from "@/data/site";
 import { BotonEnlace } from "@/components/ui/Button";
@@ -17,32 +19,54 @@ export function EtiquetaTemporal() {
 export function AboutPreview() {
   return (
     <Section tituloId="nosotros-titulo" fondo="niebla">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-16">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5">
+          <Image
+            src={fotos.playland.src}
+            alt={fotos.playland.alt}
+            width={fotos.playland.ancho}
+            height={fotos.playland.alto}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            className="aspect-3/4 w-full rounded-foto object-cover"
+          />
+          <Image
+            src={fotos.bolos.src}
+            alt={fotos.bolos.alt}
+            width={fotos.bolos.ancho}
+            height={fotos.bolos.alto}
+            sizes="(min-width: 1024px) 25vw, 50vw"
+            className="mt-14 aspect-3/4 w-full rounded-foto object-cover sm:mt-20"
+          />
+        </div>
         <div>
           <EncabezadoSeccion
             id="nosotros-titulo"
             titulo={inicio.nosotros.titulo}
           />
-          <p className="mt-5 medida text-xl">{site.resenaCorta}</p>
-          <BotonEnlace href="/nosotros/" variante="texto" className="mt-6">
+          <p className="mt-6 medida text-entrada">{site.resenaCorta}</p>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            <div className="border-t-4 border-rojo pt-4">
+              <h3 className="text-2xl">
+                Misión
+                <EtiquetaTemporal />
+              </h3>
+              <p className="mt-2 text-lg">{site.mision}</p>
+            </div>
+            <div className="border-t-4 border-azul pt-4">
+              <h3 className="text-2xl">
+                Visión
+                <EtiquetaTemporal />
+              </h3>
+              <p className="mt-2 text-lg">{site.vision}</p>
+            </div>
+          </div>
+          <BotonEnlace
+            href="/nosotros/"
+            variante="secundario"
+            className="mt-10"
+          >
             {inicio.nosotros.enlace}
           </BotonEnlace>
-        </div>
-        <div className="space-y-8">
-          <div className="border-l-8 border-rojo pl-6">
-            <h3 className="text-2xl">
-              Misión
-              <EtiquetaTemporal />
-            </h3>
-            <p className="mt-3 medida">{site.mision}</p>
-          </div>
-          <div className="border-l-8 border-azul pl-6">
-            <h3 className="text-2xl">
-              Visión
-              <EtiquetaTemporal />
-            </h3>
-            <p className="mt-3 medida">{site.vision}</p>
-          </div>
         </div>
       </div>
     </Section>

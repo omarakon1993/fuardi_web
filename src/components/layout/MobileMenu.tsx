@@ -8,6 +8,7 @@ import { cx } from "@/lib/colores";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { NavPrincipal } from "./NavPrincipal";
+import { RedesSociales } from "./RedesSociales";
 
 const ENFOCABLES =
   'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -61,7 +62,7 @@ export function MobileMenu({ className }: { className?: string }) {
         onClick={abrir}
         aria-expanded={abierto}
         aria-controls="menu-movil"
-        className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-tinta px-3 font-bold text-tinta hover:bg-niebla"
+        className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta px-3 font-bold text-tinta hover:bg-niebla"
       >
         <Icon nombre="menu" />
         <span>Menú</span>
@@ -88,7 +89,7 @@ export function MobileMenu({ className }: { className?: string }) {
             <button
               type="button"
               onClick={cerrar}
-              className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-tinta px-3 font-bold hover:bg-niebla"
+              className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-tinta px-3 font-bold hover:bg-niebla"
             >
               <Icon nombre="cerrar" />
               <span>Cerrar menú</span>
@@ -118,6 +119,7 @@ export function MobileMenu({ className }: { className?: string }) {
             >
               Escríbenos por WhatsApp
             </BotonEnlace>
+            <RedesSociales className="mt-2" />
           </div>
         </div>
       </dialog>

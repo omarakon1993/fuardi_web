@@ -8,7 +8,7 @@ import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 import { YouTubeLite } from "@/components/ui/YouTubeLite";
 
 export function PerformancesPreview() {
-  const fotos = fotosGaleria.slice(0, 4);
+  const fotos = fotosGaleria.slice(1, 3);
   const video = videos.find((v) => !v.esMedios) ?? videos[0];
 
   return (
@@ -20,23 +20,21 @@ export function PerformancesPreview() {
           intro={inicio.presentaciones.intro}
           claro
         />
-        <BotonEnlace
-          href="/presentaciones/"
-          variante="texto"
-          className="text-blanco! hover:decoration-amarillo"
-        >
+        <BotonEnlace href="/presentaciones/" variante="claro">
           {inicio.presentaciones.enlace}
         </BotonEnlace>
       </div>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-2">
+      <div className="mt-12 grid gap-5 lg:grid-cols-12">
         {video ? (
-          <figure>
+          <figure className="lg:col-span-8">
             <YouTubeLite id={video.id} titulo={video.titulo} />
-            <figcaption className="mt-3 text-lg">{video.titulo}</figcaption>
+            <figcaption className="mt-4 text-lg text-blanco/90">
+              {video.titulo}
+            </figcaption>
           </figure>
         ) : null}
-        <ul className="grid grid-cols-2 gap-4">
+        <ul className="grid grid-cols-2 gap-5 lg:col-span-4 lg:grid-cols-1 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]">
           {fotos.length > 0
             ? fotos.map((foto) => (
                 <li key={foto.src}>
@@ -45,16 +43,17 @@ export function PerformancesPreview() {
                     alt={foto.alt}
                     width={foto.ancho}
                     height={foto.alto}
-                    className="aspect-4/3 w-full rounded-lg object-cover"
+                    sizes="(min-width: 1024px) 30vw, 50vw"
+                    className="aspect-4/3 h-full w-full rounded-panel object-cover lg:aspect-auto"
                   />
                 </li>
               ))
-            : fotosPendientesGaleria.slice(0, 4).map((descripcion) => (
+            : fotosPendientesGaleria.slice(0, 2).map((descripcion) => (
                 <li key={descripcion}>
                   <PhotoPlaceholder
                     descripcion={descripcion}
                     tono="oscuro"
-                    className="rounded-lg"
+                    className="rounded-panel"
                   />
                 </li>
               ))}

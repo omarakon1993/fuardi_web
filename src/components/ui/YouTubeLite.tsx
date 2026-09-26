@@ -22,7 +22,7 @@ export function YouTubeLite({ id, titulo, className }: YouTubeLiteProps) {
   return (
     <div
       className={cx(
-        "relative aspect-video overflow-hidden rounded-lg bg-tinta",
+        "relative aspect-video overflow-hidden rounded-panel bg-tinta",
         className,
       )}
     >

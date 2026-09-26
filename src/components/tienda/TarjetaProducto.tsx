@@ -30,7 +30,7 @@ export function TarjetaProducto({
   nivel: Titulo = "h3",
 }: TarjetaProductoProps) {
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-xl border-2 border-niebla bg-blanco">
+    <article className="flex h-full flex-col overflow-hidden rounded-panel border-2 border-niebla bg-blanco">
       {producto.foto ? (
         <Image
           src={producto.foto.src}
@@ -50,7 +50,7 @@ export function TarjetaProducto({
       )}
       <div className="flex flex-1 flex-col p-5">
         <p className="flex flex-wrap items-center gap-2 text-base font-bold">
-          <span className="rounded bg-naranja px-2 py-0.5 text-tinta">
+          <span className="rounded-full bg-naranja px-2 py-0.5 text-tinta">
             {textoTienda.hechoPor}
           </span>
           {producto.ejemplo ? <EtiquetaEjemplo /> : null}

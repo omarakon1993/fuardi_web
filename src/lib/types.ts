@@ -157,6 +157,8 @@ export type NombreRed = "facebook" | "instagram" | "tiktok" | "youtube";
 export interface RedSocial {
   red: NombreRed;
   etiqueta: string;
+  /** Nombre de usuario tal como aparece en la red. */
+  usuario: string;
   url: string;
 }
 

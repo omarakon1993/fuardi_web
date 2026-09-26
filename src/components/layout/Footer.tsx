@@ -17,10 +17,15 @@ export function Footer() {
   return (
     <footer className="bg-tinta text-blanco">
       <PatternBand tono="tinta" />
+      <Container className="pt-16 md:pt-20">
+        <p className="condensada text-titular font-extrabold text-cana">
+          «{site.lema}»
+        </p>
+      </Container>
       <Container className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-4">
-            <span className="rounded-xl bg-blanco p-2">
+            <span className="rounded-panel bg-blanco p-2">
               <Image
                 src="/images/logo/fuardi-logo.png"
                 alt=""
@@ -33,7 +38,6 @@ export function Footer() {
               {site.nombre}
             </p>
           </div>
-          <p className="mt-5 font-display text-xl font-bold">«{site.lema}»</p>
           <p className="mt-3 medida text-blanco/90">
             Fundación sin ánimo de lucro de Suba, Bogotá.
             {site.nit ? ` NIT ${site.nit}.` : null}
@@ -42,7 +46,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-xl">Contacto</h2>
+          <h2 className="text-xl [font-stretch:100%]">Contacto</h2>
           <ul className="mt-4 space-y-1">
             <li>
               <a
@@ -61,6 +65,25 @@ export function Footer() {
                 </span>
               </a>
             </li>
+            {site.canalWhatsApp ? (
+              <li>
+                <a
+                  href={site.canalWhatsApp}
+                  className={enlaceClaro}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon nombre="whatsapp" />
+                  <span>
+                    Canal de WhatsApp
+                    <span className="sr-only">
+                      {" "}
+                      (se abre en una pestaña nueva)
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ) : null}
             <li>
               <a href={enlaceTelefono()} className={enlaceClaro}>
                 <Icon nombre="telefono" />
@@ -95,7 +118,7 @@ export function Footer() {
         </div>
 
         <nav aria-label="Pie de página">
-          <h2 className="text-xl">El sitio</h2>
+          <h2 className="text-xl [font-stretch:100%]">El sitio</h2>
           <ul className="mt-4 grid grid-cols-2 gap-x-6 md:grid-cols-1 lg:grid-cols-2">
             {enlacesPie.map((enlace) => (
               <li key={enlace.href}>

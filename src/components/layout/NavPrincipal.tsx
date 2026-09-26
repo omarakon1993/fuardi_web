@@ -43,11 +43,13 @@ export function NavPrincipal({
                 onClick={alNavegar}
                 aria-current={actual ? "page" : undefined}
                 className={cx(
-                  "flex min-h-11 items-center rounded-md font-bold text-tinta hover:text-azul",
-                  columna ? "px-3 py-3 text-2xl" : "px-2.5 py-2 text-base",
+                  "flex min-h-11 items-center font-bold no-underline",
+                  columna
+                    ? "rounded-panel px-4 py-3 font-display text-3xl [font-stretch:85%]"
+                    : "rounded-full px-3 py-2 text-base",
                   actual
-                    ? "underline decoration-rojo decoration-4 underline-offset-8"
-                    : "no-underline hover:underline",
+                    ? "bg-azul text-blanco"
+                    : "text-tinta hover:bg-niebla hover:text-azul",
                 )}
               >
                 {item.texto}

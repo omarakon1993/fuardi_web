@@ -65,7 +65,7 @@ export function ListaPresentaciones({
                   .map((p) => (
                     <li
                       key={p.id}
-                      className="rounded-lg border-2 border-niebla bg-blanco p-5"
+                      className="rounded-panel border-2 border-niebla bg-blanco p-5"
                     >
                       <p
                         className={cx(

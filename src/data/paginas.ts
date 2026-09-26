@@ -23,13 +23,13 @@ export const paginas = {
     titulo: "Programas",
     intro:
       "Formación académica y artística para niños, niñas, jóvenes y adultos con discapacidad. Elige un programa y te contamos cómo inscribirte.",
-    indice: "Ir a un programa",
     dirigidoA: "A quién va dirigido",
     horarios: "Horarios",
     edades: "Edades",
     porConfirmar: "Por confirmar. Escríbenos y te contamos.",
     inscribirme: "Inscribirme a este programa",
     faq: "Preguntas frecuentes de las familias",
+    faqCorto: "Preguntas frecuentes",
   },
   presentaciones: {
     titulo: "Presentaciones",
@@ -80,6 +80,7 @@ export const paginas = {
     intro:
       "Cada aporte se convierte en clases, instrumentos, vestuario y viajes a festivales. Elige cómo quieres sumarte.",
     formas: "Formas de ayudar",
+    whatsapp: "Escribir por WhatsApp",
     datosDonacion: "Datos para donar",
     datosPendientes:
       "Estamos actualizando los datos de nuestras cuentas. Escríbenos y te los enviamos.",
@@ -93,6 +94,7 @@ export const paginas = {
     intro:
       "Escríbenos para inscripciones, aportes, voluntariado, presentaciones o alianzas. Te respondemos pronto.",
     formulario: "Envíanos un mensaje",
+    whatsapp: "Escribir por WhatsApp",
     datos: "Otras formas de contactarnos",
     horario: "Horario de atención",
     horarioPendiente: "Escríbenos por WhatsApp y te confirmamos el horario.",

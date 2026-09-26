@@ -33,7 +33,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={tituloId}
-      className={cx("scroll-mt-4 py-16 md:py-24", fondos[fondo], className)}
+      className={cx("scroll-mt-4 py-20 md:py-28", fondos[fondo], className)}
     >
       {sinContenedor ? children : <Container>{children}</Container>}
     </section>
@@ -58,12 +58,17 @@ export function EncabezadoSeccion({
   claro,
 }: EncabezadoProps) {
   return (
-    <div className={cx("medida", className)}>
-      <h2 id={id} className="text-3xl sm:text-4xl">
+    <div className={cx("max-w-3xl", className)}>
+      <h2 id={id} className="text-seccion">
         {titulo}
       </h2>
       {intro ? (
-        <p className={cx("mt-4 text-lg", claro ? "text-blanco" : "text-gris")}>
+        <p
+          className={cx(
+            "mt-5 medida text-entrada",
+            claro ? "text-blanco/90" : "text-gris",
+          )}
+        >
           {intro}
         </p>
       ) : null}

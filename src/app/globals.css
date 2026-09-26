@@ -20,6 +20,23 @@
   --color-cana: #f6efdc; /* caña flecha del sombrero vueltiao */
   --color-gris: #4a5568; /* texto secundario: 7.5:1 sobre blanco */
 
+  /*
+   * Escala de cartel. El mínimo va en rem para que A−/A+ la sigan moviendo;
+   * el crecimiento con el ancho de pantalla es lo que da el aire de afiche.
+   */
+  --text-cartel: clamp(3.75rem, 1.4rem + 7.4vw, 8.75rem);
+  --text-cartel--line-height: 0.86;
+  --text-titular: clamp(2.75rem, 1.5rem + 4.6vw, 6rem);
+  --text-titular--line-height: 0.9;
+  --text-seccion: clamp(2.25rem, 1.45rem + 3vw, 4.25rem);
+  --text-seccion--line-height: 0.95;
+  --text-entrada: clamp(1.25rem, 1.1rem + 0.45vw, 1.5rem);
+  --text-entrada--line-height: 1.5;
+
+  /* Jerarquía de esquinas: fotos amplias, paneles medios, controles en píldora. */
+  --radius-foto: 2rem;
+  --radius-panel: 1.25rem;
+
   --animate-entrada: entrada 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 
   @keyframes entrada {
@@ -89,6 +106,18 @@ html[data-contraste="alto"] {
     line-height: 1.1;
     letter-spacing: -0.01em;
     text-wrap: balance;
+    font-optical-sizing: auto;
+  }
+
+  /* Titulares grandes, condensados como las letras de un cartel de festival. */
+  h1,
+  h2 {
+    font-stretch: 78%;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-stretch: 90%;
   }
 
   p {
@@ -136,6 +165,13 @@ html[data-contraste="alto"] {
       transition-duration: 0.01ms !important;
     }
   }
+}
+
+/* Anchura condensada para cifras y rótulos que no son encabezados. */
+@utility condensada {
+  font-family: var(--font-display);
+  font-stretch: 78%;
+  font-optical-sizing: auto;
 }
 
 @utility medida {

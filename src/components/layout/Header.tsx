@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { AccessibilityControls } from "./AccessibilityControls";
 import { MobileMenu } from "./MobileMenu";
 import { NavPrincipal } from "./NavPrincipal";
+import { RedesSociales } from "./RedesSociales";
 
 /*
  * El encabezado no es fijo a propósito: con zoom alto, un header pegajoso
@@ -28,13 +29,14 @@ export function Header() {
   );
 
   return (
-    <header className="border-b-2 border-niebla bg-blanco">
+    <header className="border-b border-tinta/10 bg-blanco">
       <div className="bg-niebla">
-        <Container className="flex justify-end py-0.5">
-          <AccessibilityControls />
+        <Container className="flex items-center justify-between gap-4 py-0.5">
+          <RedesSociales tamano="pequeno" className="hidden gap-0 sm:flex" />
+          <AccessibilityControls className="ml-auto" />
         </Container>
       </div>
-      <Container className="flex items-center gap-3 py-3">
+      <Container className="flex items-center gap-3 py-3.5">
         <Link
           href="/"
           className="flex shrink-0 items-center gap-3 rounded-md no-underline"
@@ -47,7 +49,7 @@ export function Header() {
             priority
             className="h-14 w-auto"
           />
-          <span className="font-display text-lg leading-tight font-extrabold text-azul">
+          <span className="font-display text-xl leading-[1.05] font-extrabold text-azul [font-stretch:85%]">
             Fundación
             <br />
             Armonía Diversa

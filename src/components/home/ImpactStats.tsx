@@ -1,27 +1,33 @@
 import { inicio } from "@/data/inicio";
 import { site } from "@/data/site";
+import { cx } from "@/lib/colores";
 import { Container } from "@/components/ui/Container";
+
+// Cada cifra toma un color del rompecabezas del logo (todos cumplen AA sobre blanco).
+const colores = ["text-azul", "text-rojo", "text-verde", "text-magenta"];
 
 export function ImpactStats() {
   return (
     <section
       aria-labelledby="cifras-titulo"
-      className="bg-blanco py-10 md:py-12"
+      className="bg-blanco py-14 md:py-20"
     >
       <Container>
         <h2 id="cifras-titulo" className="sr-only">
           {inicio.cifras.titulo}
         </h2>
-        <dl className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x-2 lg:divide-niebla">
-          {site.cifras.map((cifra) => (
-            <div
-              key={cifra.texto}
-              className="flex items-baseline gap-3 lg:flex-col lg:gap-1 lg:px-8 lg:first:pl-0"
-            >
-              <dt className="order-2 text-lg text-gris lg:order-2">
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+          {site.cifras.map((cifra, i) => (
+            <div key={cifra.texto} className="flex flex-col">
+              <dt className="order-2 mt-2 max-w-[22ch] text-lg text-gris">
                 {cifra.texto}
               </dt>
-              <dd className="order-1 font-display text-4xl font-extrabold text-azul">
+              <dd
+                className={cx(
+                  "order-1 condensada text-seccion font-extrabold",
+                  colores[i % colores.length],
+                )}
+              >
                 {cifra.valor}
               </dd>
             </div>

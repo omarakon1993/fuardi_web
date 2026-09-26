@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { metadatos } from "@/lib/metadatos";
 import { logros, notaTrayectoria } from "@/data/logros";
+import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { videos } from "@/data/videos";
+import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
 import { LineaTiempo } from "@/components/logros/LineaTiempo";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
@@ -21,7 +23,18 @@ export default function LogrosPage() {
 
   return (
     <>
-      <PageHeader titulo={t.titulo} intro={t.intro} />
+      <PageHeader
+        titulo={t.titulo}
+        intro={t.intro}
+        foto={fotos.cantoTarima}
+        acciones={<AccionesPrincipales />}
+        atajos={[
+          { texto: t.lineaTiempo, href: "#linea-de-tiempo" },
+          ...(notasMedios.length > 0
+            ? [{ texto: t.medios, href: "#medios" }]
+            : []),
+        ]}
+      />
 
       <Section tituloId="linea-titulo" id="linea-de-tiempo" fondo="niebla">
         <EncabezadoSeccion id="linea-titulo" titulo={t.lineaTiempo} />
@@ -36,7 +49,7 @@ export default function LogrosPage() {
             titulo={t.medios}
             intro={t.mediosIntro}
           />
-          <ul className="mt-8 grid gap-8 lg:grid-cols-2">
+          <ul className="mt-12 grid gap-x-6 gap-y-10 lg:grid-cols-2">
             {notasMedios.map((video) => (
               <li key={video.id}>
                 <figure>
@@ -55,6 +68,8 @@ export default function LogrosPage() {
           </ul>
         </Section>
       ) : null}
+
+      <Sumate />
     </>
   );
 }

@@ -50,7 +50,7 @@ Solo el de música tiene detalle en el brochure. En los demás, la descripción 
 
 | slug            | Nombre                                | Color   | Nota                                                                        |
 | --------------- | ------------------------------------- | ------- | --------------------------------------------------------------------------- |
-| formacion       | Formación académica                   | azul    | Funciona como colegio. PENDIENTE: detalle                                   |
+| formacion       | Formación académica                   | azul    | Funciona como institución educativa. PENDIENTE: detalle                     |
 | musica          | Música tradicional: gaitas y tambores | rojo    | Desde 2016; cumbia, puya, gaita y porro de los Montes de María              |
 | danza           | Danza folclórica                      | magenta | Participan en encuentros nacionales de danza                                |
 | canto           | Canto                                 | verde   | PENDIENTE: detalle                                                          |

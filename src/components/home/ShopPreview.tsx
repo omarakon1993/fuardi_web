@@ -16,7 +16,7 @@ export function ShopPreview() {
           titulo={inicio.tienda.titulo}
           intro={inicio.tienda.intro}
         />
-        <BotonEnlace href="/tienda/" variante="texto">
+        <BotonEnlace href="/tienda/" variante="secundario">
           {inicio.tienda.enlace}
         </BotonEnlace>
       </div>

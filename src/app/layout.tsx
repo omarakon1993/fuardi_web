@@ -24,9 +24,12 @@ const atkinson = Atkinson_Hyperlegible_Next({
   fallback: ["Atkinson Hyperlegible", "system-ui", "sans-serif"],
 });
 
+// Con los ejes de anchura y tamaño óptico, los titulares se condensan como
+// en un cartel de festival sin cargar otra familia.
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin", "latin-ext"],
+  axes: ["opsz", "wdth"],
   display: "swap",
 });
 

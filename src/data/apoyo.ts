@@ -77,9 +77,10 @@ export const formasDeAyudar: FormaDeAyudar[] = [
   },
 ];
 
-/** Las cuatro que se muestran en la página de inicio. */
+/** Las que se muestran en la página de inicio, en este orden. */
 export const ayudasInicio = [
   "donar",
+  "especie",
   "voluntariado",
   "presentacion",
   "alianza",

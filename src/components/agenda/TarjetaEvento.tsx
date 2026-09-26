@@ -28,7 +28,7 @@ export function TarjetaEvento({
       <div
         aria-hidden="true"
         className={cx(
-          "flex w-20 shrink-0 flex-col items-center self-start overflow-hidden rounded-lg border-2 text-center",
+          "flex w-20 shrink-0 flex-col items-center self-start overflow-hidden rounded-panel border-2 text-center",
           pasado ? "border-gris/40" : "border-rojo",
         )}
       >

@@ -8,6 +8,7 @@ import {
   ContactForm,
   ContactFormCargando,
 } from "@/components/forms/ContactForm";
+import { BotonEnlace } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon, type NombreIcono } from "@/components/ui/Icon";
 import { MapEmbed } from "@/components/ui/MapEmbed";
@@ -52,10 +53,25 @@ const enlace =
 export default function ContactoPage() {
   return (
     <>
-      <PageHeader titulo={t.titulo} intro={t.intro} />
-      <Container className="grid gap-12 py-12 md:py-16 lg:grid-cols-[3fr_2fr] lg:gap-16">
-        <section aria-labelledby="formulario-titulo">
-          <h2 id="formulario-titulo" className="text-3xl">
+      <PageHeader
+        titulo={t.titulo}
+        intro={t.intro}
+        acciones={
+          <BotonEnlace
+            href={enlaceWhatsApp(mensajesWhatsApp.general)}
+            variante="blanco"
+            icono="whatsapp"
+          >
+            {t.whatsapp}
+          </BotonEnlace>
+        }
+      />
+      <Container className="grid gap-12 py-16 md:py-24 lg:grid-cols-[3fr_2fr] lg:gap-16">
+        <section
+          aria-labelledby="formulario-titulo"
+          className="rounded-foto bg-niebla p-6 sm:p-10 lg:self-start"
+        >
+          <h2 id="formulario-titulo" className="text-5xl">
             {t.formulario}
           </h2>
           <div className="mt-6">
@@ -66,10 +82,10 @@ export default function ContactoPage() {
         </section>
 
         <section aria-labelledby="datos-titulo">
-          <h2 id="datos-titulo" className="text-3xl">
+          <h2 id="datos-titulo" className="text-5xl">
             {t.datos}
           </h2>
-          <ul className="mt-6 space-y-6">
+          <ul className="mt-8 space-y-6">
             <Dato icono="whatsapp" titulo="WhatsApp">
               <a
                 href={enlaceWhatsApp(mensajesWhatsApp.general)}

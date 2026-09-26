@@ -14,7 +14,7 @@ interface LightboxProps {
 }
 
 const botonVisor =
-  "inline-flex min-h-12 min-w-12 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-blanco bg-tinta/80 px-3 font-bold text-blanco hover:bg-blanco hover:text-tinta";
+  "inline-flex min-h-12 min-w-12 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-blanco bg-tinta/80 px-3 font-bold text-blanco hover:bg-blanco hover:text-tinta";
 
 /**
  * Galería con visor propio. El visor es un <dialog> modal: Esc lo cierra,
@@ -80,7 +80,7 @@ export function Lightbox({ fotos, titulo, className }: LightboxProps) {
               }}
               type="button"
               onClick={() => abrir(i)}
-              className="group relative block w-full cursor-zoom-in overflow-hidden rounded-lg"
+              className="group relative block w-full cursor-zoom-in overflow-hidden rounded-panel"
             >
               <Image
                 src={f.src}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { metadatos } from "@/lib/metadatos";
+import { fotos as fotosSitio } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import {
   fotosGaleria,
@@ -7,6 +8,7 @@ import {
   presentaciones,
 } from "@/data/presentaciones";
 import { videos } from "@/data/videos";
+import { AccionesPrincipales, Sumate } from "@/components/layout/Sumate";
 import { ListaPresentaciones } from "@/components/presentaciones/ListaPresentaciones";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -28,11 +30,21 @@ export default function PresentacionesPage() {
 
   return (
     <>
-      <PageHeader titulo={t.titulo} intro={t.intro} />
+      <PageHeader
+        titulo={t.titulo}
+        intro={t.intro}
+        foto={fotosSitio.grupoNavidad}
+        acciones={<AccionesPrincipales />}
+        atajos={[
+          { texto: t.videos, href: "#videos" },
+          { texto: t.galeria, href: "#galeria" },
+          { texto: t.trayectoria, href: "#trayectoria" },
+        ]}
+      />
 
       <Section tituloId="videos-titulo" id="videos" fondo="tinta">
-        <EncabezadoSeccion id="videos-titulo" titulo={t.videos} />
-        <ul className="mt-8 grid gap-8 md:grid-cols-2">
+        <EncabezadoSeccion id="videos-titulo" titulo={t.videos} claro />
+        <ul className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2">
           {videos.map((video, i) => (
             <li key={video.id} className={i === 0 ? "md:col-span-2" : ""}>
               <figure>
@@ -64,7 +76,7 @@ export default function PresentacionesPage() {
               <li key={descripcion}>
                 <PhotoPlaceholder
                   descripcion={descripcion}
-                  className="rounded-lg"
+                  className="rounded-panel"
                 />
               </li>
             ))}
@@ -78,6 +90,8 @@ export default function PresentacionesPage() {
         <EncabezadoSeccion id="trayectoria-titulo" titulo={t.trayectoria} />
         <ListaPresentaciones presentaciones={presentaciones} />
       </Section>
+
+      <Sumate />
     </>
   );
 }

@@ -9,10 +9,11 @@ export const programas: Programa[] = [
     slug: "formacion",
     nombre: "Formación académica",
     color: "azul",
-    resumen: "La fundación funciona como colegio para nuestros estudiantes.",
+    resumen:
+      "La fundación funciona como institución educativa para nuestros estudiantes.",
     // TODO(contenido): detalle del programa de formación académica.
     descripcion: [
-      "La fundación funciona como colegio para nuestros estudiantes.",
+      "La fundación funciona como institución educativa para nuestros estudiantes.",
     ],
     dirigidoA: poblacion,
     // TODO(contenido): horarios y edades.

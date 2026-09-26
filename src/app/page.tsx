@@ -26,14 +26,14 @@ export default function InicioPage() {
       <ImpactStats />
       <AboutPreview />
       <ProgramsGrid />
-      <CampaignBanner anuncios={anuncios} hoyCompilacion={hoy} />
-      <UpcomingEvents eventos={eventos} hoyCompilacion={hoy} />
       <PerformancesPreview />
       <AchievementsPreview />
-      <ShopPreview />
+      <CampaignBanner anuncios={anuncios} hoyCompilacion={hoy} />
+      <UpcomingEvents eventos={eventos} hoyCompilacion={hoy} />
       <PatternBand />
       <HowToHelp />
       <Testimonials />
+      <ShopPreview />
       <SocialBlock />
       <ContactCta />
     </>

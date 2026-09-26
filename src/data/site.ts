@@ -28,14 +28,31 @@ export const site: SiteConfig = {
   },
   redes: [
     {
+      red: "instagram",
+      etiqueta: "Instagram",
+      usuario: "@fuardi18",
+      url: "https://www.instagram.com/fuardi18/",
+    },
+    {
+      red: "tiktok",
+      etiqueta: "TikTok",
+      usuario: "@fundacionarmoniadiversa",
+      url: "https://www.tiktok.com/@fundacionarmoniadiversa",
+    },
+    {
+      red: "facebook",
+      etiqueta: "Facebook",
+      usuario: "Fundación Armonía Diversa",
+      url: "https://www.facebook.com/share/1EXRCRd7UB/",
+    },
+    {
       red: "youtube",
       etiqueta: "YouTube",
+      usuario: "@fundacionarmoniadiversa5451",
       url: "https://www.youtube.com/@fundacionarmoniadiversa5451",
     },
-    // TODO(contenido): enlaces de Facebook, Instagram y TikTok.
   ],
-  // TODO(contenido): enlace al canal de WhatsApp.
-  canalWhatsApp: undefined,
+  canalWhatsApp: "https://whatsapp.com/channel/0029Vb8jtSW47XeH2HQew525",
   nit: "901.138.083-3",
   // TODO(contenido): horario de atención.
   horarioAtencion: undefined,

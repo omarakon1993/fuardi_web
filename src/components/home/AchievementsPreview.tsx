@@ -19,19 +19,25 @@ export function AchievementsPreview() {
             titulo={inicio.logros.titulo}
             intro={inicio.logros.intro}
           />
-          <BotonEnlace href="/logros/" variante="texto" className="mt-6">
+          <BotonEnlace href="/logros/" variante="secundario" className="mt-8">
             {inicio.logros.enlace}
           </BotonEnlace>
         </div>
         <ul className="divide-y-2 divide-niebla border-y-2 border-niebla">
           {destacados.map((logro) => (
-            <li key={logro.id} className="flex gap-5 py-6">
-              <IconoLogro tipo={logro.tipo} />
+            <li
+              key={logro.id}
+              className="grid gap-2 py-7 sm:grid-cols-[7rem_1fr] sm:gap-8"
+            >
+              <p className="condensada text-5xl leading-none font-extrabold text-rojo">
+                {logro.anio}
+              </p>
               <div>
-                <p className="text-base font-bold text-gris">
-                  {logro.anio} · {nombresTipoLogro[logro.tipo]}
+                <p className="flex items-center gap-2 text-base font-bold text-gris">
+                  <IconoLogro tipo={logro.tipo} className="size-8" />
+                  {nombresTipoLogro[logro.tipo]}
                 </p>
-                <h3 className="mt-1 text-2xl">{logro.titulo}</h3>
+                <h3 className="mt-2 text-2xl">{logro.titulo}</h3>
                 {logro.detalle || logro.lugar ? (
                   <p className="mt-2">
                     {[logro.detalle, logro.lugar].filter(Boolean).join(" ")}

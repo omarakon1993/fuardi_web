@@ -11,19 +11,19 @@ export function SocialBlock() {
 
   return (
     <Section tituloId="redes-titulo">
-      <div className="grid items-center gap-10 lg:grid-cols-2">
+      <div className="grid items-stretch gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
         <div>
           <EncabezadoSeccion
             id="redes-titulo"
             titulo={redes.titulo}
             intro={redes.intro}
           />
-          <RedesSociales tamano="grande" className="mt-6" />
+          <RedesSociales tamano="grande" className="mt-10" />
         </div>
 
-        <div className="rounded-xl bg-verde p-8 text-blanco sm:p-10">
+        <div className="flex flex-col justify-end rounded-foto bg-verde p-8 text-blanco sm:p-12">
           <Icon nombre="whatsapp" tamano={48} />
-          <h3 className="mt-4 text-3xl">{redes.canalTitulo}</h3>
+          <h3 className="mt-6 text-4xl sm:text-5xl">{redes.canalTitulo}</h3>
           <p className="mt-3 text-xl">
             {site.canalWhatsApp ? redes.canalTexto : redes.canalPendiente}
           </p>
@@ -31,8 +31,8 @@ export function SocialBlock() {
             href={
               site.canalWhatsApp ?? enlaceWhatsApp(mensajesWhatsApp.general)
             }
-            variante="claro"
-            className="mt-6"
+            variante="blanco"
+            className="mt-8 self-start"
           >
             {site.canalWhatsApp ? redes.canalBoton : redes.chatBoton}
           </BotonEnlace>

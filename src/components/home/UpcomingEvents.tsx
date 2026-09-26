@@ -24,7 +24,7 @@ export function UpcomingEvents({
     <Section tituloId="eventos-titulo">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <EncabezadoSeccion id="eventos-titulo" titulo={inicio.eventos.titulo} />
-        <BotonEnlace href="/agenda/" variante="texto">
+        <BotonEnlace href="/agenda/" variante="secundario">
           {inicio.eventos.enlace}
         </BotonEnlace>
       </div>
