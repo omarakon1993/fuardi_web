@@ -1,10 +1,11 @@
 import { anuncios } from "@/data/anuncios";
 import { eventos } from "@/data/eventos";
 import { hoyBogota } from "@/lib/fechas";
+import { avanceCampanaDestacada } from "@/lib/vaki";
+import { CampanaDestacada } from "@/components/campana/CampanaDestacada";
 import { eventosAlCompilar } from "@/lib/googleCalendar";
 import { AboutPreview } from "@/components/home/AboutPreview";
 import { AchievementsPreview } from "@/components/home/AchievementsPreview";
-import { CampaignBanner } from "@/components/home/CampaignBanner";
 import { Hero } from "@/components/home/Hero";
 import { HowToHelp } from "@/components/home/HowToHelp";
 import { Marquesina } from "@/components/home/Marquesina";
@@ -19,18 +20,26 @@ import { ProximasFechas } from "@/components/home/ProximasFechas";
  */
 export default async function InicioPage() {
   const hoy = hoyBogota();
-  const proximosEventos = await eventosAlCompilar(eventos);
+  const [proximosEventos, avance] = await Promise.all([
+    eventosAlCompilar(eventos),
+    avanceCampanaDestacada(anuncios),
+  ]);
 
   return (
     <>
       <Hero />
       <Marquesina />
+      {/* Lo que la fundación quiere resaltar ahora: una sola campaña. */}
+      <CampanaDestacada
+        anuncios={anuncios}
+        hoyCompilacion={hoy}
+        avance={avance}
+      />
       <AboutPreview />
       <ProgramsGrid />
       <PerformancesPreview />
       <ProximasFechas eventos={proximosEventos} hoyCompilacion={hoy} />
       <AchievementsPreview />
-      <CampaignBanner anuncios={anuncios} hoyCompilacion={hoy} />
       <HowToHelp />
     </>
   );

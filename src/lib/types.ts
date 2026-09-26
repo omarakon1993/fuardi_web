@@ -33,9 +33,24 @@ export interface Anuncio {
   hasta: Fecha;
   /** Se muestra en la barra superior de todas las páginas. */
   mostrarEnBarra: boolean;
-  /** Se muestra en el carrusel de campañas de la página de inicio. */
+  /**
+   * Es la campaña que se resalta en inicio y en Apóyanos. Solo se muestra una
+   * a la vez: la primera vigente de la lista.
+   */
   destacado: boolean;
+  /** Texto más largo para el bloque destacado (la barra usa `texto`). */
+  detalle?: string;
   foto?: Foto;
+  /** Campaña en vaki.co: se muestra su avance, leído al compilar. */
+  vaki?: {
+    /** Lo que va después de vaki.co/vaki/ en el enlace. */
+    slug: string;
+    /**
+     * Porcentaje desde el que se muestran el monto y la barra. Antes solo se
+     * muestran los donantes y la meta, para no desanimar con una barra vacía.
+     */
+    avanceVisibleDesde: number;
+  };
   /** Contenido de muestra. Bórralo cuando haya uno real. */
   ejemplo?: boolean;
 }

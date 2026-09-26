@@ -47,7 +47,7 @@ const esMotivo = (v: string | null): v is MotivoContacto =>
 /* ---------- Campos ---------- */
 
 const claseControl =
-  "mt-2 block w-full rounded-lg border-2 border-tinta/40 bg-blanco px-4 py-3 text-lg text-tinta aria-invalid:border-rojo";
+  "mt-1.5 block w-full rounded-lg border-2 border-tinta/40 bg-blanco px-4 py-2.5 text-base text-tinta aria-invalid:border-rojo";
 
 interface CampoProps {
   nombre: string;
@@ -312,7 +312,7 @@ function Formulario({
   const campos: Array<keyof typeof errores> = Object.keys(errores);
 
   return (
-    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-6">
+    <form ref={formulario} onSubmit={enviar} noValidate className="space-y-4">
       <div ref={resumen} tabIndex={-1} className="focus-visible:outline-none">
         {numErrores > 0 ? (
           <div
@@ -331,24 +331,25 @@ function Formulario({
         ) : null}
       </div>
 
-      <Campo
-        nombre="motivo"
-        etiqueta={t.motivo}
-        requerido
-        error={errores.motivo}
-      >
-        {(props) => (
-          <select {...props} {...texto("motivo")} className={claseControl}>
-            {motivos.map((m) => (
-              <option key={m.valor} value={m.valor}>
-                {m.texto}
-              </option>
-            ))}
-          </select>
-        )}
-      </Campo>
+      {/* Datos básicos en dos columnas para que el formulario sea corto. */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <Campo
+          nombre="motivo"
+          etiqueta={t.motivo}
+          requerido
+          error={errores.motivo}
+        >
+          {(props) => (
+            <select {...props} {...texto("motivo")} className={claseControl}>
+              {motivos.map((m) => (
+                <option key={m.valor} value={m.valor}>
+                  {m.texto}
+                </option>
+              ))}
+            </select>
+          )}
+        </Campo>
 
-      <div className="grid gap-6 md:grid-cols-2">
         <Campo
           nombre="nombre"
           etiqueta={t.nombre}
@@ -383,31 +384,31 @@ function Formulario({
             />
           )}
         </Campo>
+
+        <Campo
+          nombre="correo"
+          etiqueta={t.correo}
+          requerido
+          error={errores.correo}
+        >
+          {(props) => (
+            <input
+              {...props}
+              {...texto("correo")}
+              type="email"
+              autoComplete="email"
+              className={claseControl}
+            />
+          )}
+        </Campo>
       </div>
 
-      <Campo
-        nombre="correo"
-        etiqueta={t.correo}
-        requerido
-        error={errores.correo}
-      >
-        {(props) => (
-          <input
-            {...props}
-            {...texto("correo")}
-            type="email"
-            autoComplete="email"
-            className={claseControl}
-          />
-        )}
-      </Campo>
-
       {motivo === "inscripcion" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
-          <legend className="px-2 text-xl font-bold">
+        <fieldset className="space-y-4 rounded-panel border-2 border-tinta/30 p-4">
+          <legend className="px-2 text-lg font-bold">
             Datos de la inscripción
           </legend>
-          <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
+          <div className="grid gap-4 md:grid-cols-[2fr_1fr]">
             <Campo
               nombre="estudianteNombre"
               etiqueta={t.estudianteNombre}
@@ -498,8 +499,8 @@ function Formulario({
       ) : null}
 
       {motivo === "aporte" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
-          <legend className="px-2 text-xl font-bold">Datos del aporte</legend>
+        <fieldset className="space-y-4 rounded-panel border-2 border-tinta/30 p-4">
+          <legend className="px-2 text-lg font-bold">Datos del aporte</legend>
           <GrupoRadios
             nombre="tipoAporte"
             leyenda={t.tipoAporte}
@@ -538,9 +539,9 @@ function Formulario({
       ) : null}
 
       {motivo === "presentacion" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
-          <legend className="px-2 text-xl font-bold">Datos del evento</legend>
-          <div className="grid gap-6 md:grid-cols-2">
+        <fieldset className="space-y-4 rounded-panel border-2 border-tinta/30 p-4">
+          <legend className="px-2 text-lg font-bold">Datos del evento</legend>
+          <div className="grid gap-4 md:grid-cols-2">
             <Campo
               nombre="fechaTentativa"
               etiqueta={t.fechaTentativa}
@@ -592,11 +593,11 @@ function Formulario({
       ) : null}
 
       {motivo === "alianza" ? (
-        <fieldset className="space-y-6 rounded-panel border-2 border-tinta/30 p-5">
-          <legend className="px-2 text-xl font-bold">
+        <fieldset className="space-y-4 rounded-panel border-2 border-tinta/30 p-4">
+          <legend className="px-2 text-lg font-bold">
             Datos de la empresa
           </legend>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             <Campo
               nombre="empresa"
               etiqueta={t.empresa}
@@ -644,7 +645,7 @@ function Formulario({
           <textarea
             {...props}
             {...texto("mensaje")}
-            rows={5}
+            rows={3}
             className={claseControl}
           />
         )}

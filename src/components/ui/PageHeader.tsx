@@ -19,6 +19,8 @@ interface PageHeaderProps {
   acciones?: ReactNode;
   /** Accesos directos a las secciones de la página. */
   atajos?: Enlace[];
+  /** Portada más baja y titular más pequeño, para páginas cortas. */
+  compacto?: boolean;
   children?: ReactNode;
 }
 
@@ -34,32 +36,61 @@ export function PageHeader({
   foto,
   acciones,
   atajos,
+  compacto,
   children,
 }: PageHeaderProps) {
   return (
-    <div className="overflow-hidden bg-tinta pt-12 pb-28 text-blanco md:pt-16 lg:pb-32">
+    <div
+      className={cx(
+        "overflow-hidden bg-tinta text-blanco",
+        compacto ? "pt-8 pb-20 md:pt-10" : "pt-12 pb-28 md:pt-16 lg:pb-32",
+      )}
+    >
       <Container
         className={cx(
           "grid items-center gap-12",
           foto && "lg:grid-cols-[1.1fr_1fr] lg:gap-14",
         )}
       >
-        <div className="motion-safe:animate-entrada">
-          {etiqueta ? (
-            <p className="mb-6 inline-flex items-center gap-2.5 rounded-full bg-blanco/10 px-4 py-1.5 text-base font-bold">
-              <span
-                aria-hidden="true"
-                className="size-2 rounded-full bg-rojo"
-              />
-              {etiqueta}
-            </p>
-          ) : null}
-          <h1 className="text-titular">{titulo}</h1>
-          {intro ? (
-            <p className="mt-6 medida text-entrada text-blanco/90">{intro}</p>
-          ) : null}
+        <div
+          className={cx(
+            "motion-safe:animate-entrada",
+            // Compacta: textos a la izquierda y acciones a la derecha.
+            compacto &&
+              "flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between",
+          )}
+        >
+          <div>
+            {etiqueta ? (
+              <p className="mb-6 inline-flex items-center gap-2.5 rounded-full bg-blanco/10 px-4 py-1.5 text-base font-bold">
+                <span
+                  aria-hidden="true"
+                  className="size-2 rounded-full bg-rojo"
+                />
+                {etiqueta}
+              </p>
+            ) : null}
+            <h1 className={compacto ? "text-seccion" : "text-titular"}>
+              {titulo}
+            </h1>
+            {intro ? (
+              <p
+                className={cx(
+                  "medida text-entrada text-blanco/90",
+                  compacto ? "mt-3" : "mt-6",
+                )}
+              >
+                {intro}
+              </p>
+            ) : null}
+          </div>
           {acciones ? (
-            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
+            <div
+              className={cx(
+                "flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6",
+                !compacto && "mt-8",
+              )}
+            >
               {acciones}
             </div>
           ) : null}

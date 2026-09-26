@@ -24,6 +24,7 @@ Todo el contenido real está en `docs/contenido.md`. El plan de trabajo está en
 - Sin base de datos. El contenido vive en `src/data/*.ts`, tipado desde `src/lib/types.ts`. Actualizar el sitio = editar un archivo de datos, no un componente.
 - **Fechas.** El HTML se genera al compilar, así que todo lo que dependa de "hoy" se filtra también en el cliente al montar, para que no quede desactualizado entre despliegues. Aplica a próximos eventos, anuncios vigentes y colectas activas. Evita errores de hidratación. Zona horaria: America/Bogota. Las fechas se guardan como `"YYYY-MM-DD"` y se formatean con `Intl` en `es-CO`.
 - Agenda: si hay `NEXT_PUBLIC_GOOGLE_CALENDAR_ID` y `NEXT_PUBLIC_GOOGLE_API_KEY`, los eventos salen de Google Calendar (`src/lib/googleCalendar.ts`): se leen al compilar y otra vez en el navegador (`useEventos`). Sin ellas se usa `src/data/eventos.ts`. Guía en `docs/agenda-google-calendar.md`.
+- Campaña destacada: una sola a la vez, desde `src/data/anuncios.ts` (barra superior, `CampanaDestacada` en inicio y Apóyanos). El avance de una Vaki se lee al compilar (`src/lib/vaki.ts`, sin API oficial) y se actualiza con cada publicación.
 - Formulario: envío desde el cliente a Web3Forms (`NEXT_PUBLIC_WEB3FORMS_KEY` en `.env.local`). Si no hay clave, se muestra como alternativa WhatsApp y correo.
 - No agregar dependencias sin justificarlo. Preferir componentes propios pequeños a librerías pesadas (carrusel, lightbox, calendario).
 

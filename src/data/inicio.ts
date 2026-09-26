@@ -16,6 +16,7 @@ export const inicio = {
     lemaResaltado: "Rompe",
     inscribir: "Inscribe a tu hijo o hija",
     apoyar: "Quiero apoyar",
+    redes: "Síguenos",
     fotoPendiente: "el grupo tocando gaitas y tambores en tarima",
     cifra: festivales,
   },
@@ -52,8 +53,15 @@ export const inicio = {
     titulo: "Cinco piezas, un mismo rompecabezas",
     enlace: "Ver todos los programas",
   },
-  campanas: {
-    titulo: "Convocatorias y campañas",
+  campana: {
+    antetitulo: "Campaña activa",
+    donantes: "Personas que ya donaron",
+    avance: "Avance de la meta",
+    compartir: "Compartir por WhatsApp",
+    /** Mensaje que se comparte por WhatsApp. */
+    mensajeCompartir: (titulo: string, enlace: string) =>
+      `${titulo}. Ayúdanos a lograrlo con tu aporte o compartiendo: ${enlace}`,
+    fuente: (fecha: string) => `Cifras de Vaki al ${fecha}.`,
   },
   presentaciones: {
     antetitulo: "En tarima",

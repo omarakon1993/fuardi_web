@@ -25,23 +25,23 @@ Otros comandos:
 
 Todo el texto y los datos viven en `src/data/`. Para actualizar el sitio se edita un archivo de datos, no un componente. Los tipos de cada dato están en `src/lib/types.ts`: si te equivocas en un campo, `npm run build` te lo avisa.
 
-| Archivo                                                     | Qué contiene                                                                                                       |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `site.ts`                                                   | Datos generales: nombre, contacto, dirección, redes, NIT, donaciones, cifras, misión, visión, historia y objetivos |
-| `anuncios.ts`                                               | Barra amarilla superior y carrusel de campañas de inicio. Se muestran solo entre `desde` y `hasta`                 |
-| `eventos.ts`                                                | Agenda de respaldo. Con Google Calendar conectado no se usa (ver «Agenda con Google Calendar»)                     |
-| `logros.ts`                                                 | Línea de tiempo de logros. `destacado: true` los muestra en inicio                                                 |
-| `presentaciones.ts`                                         | Presentaciones y salidas, con sus fotos                                                                            |
-| `videos.ts`                                                 | Videos de YouTube (el `id` es lo que va después de `watch?v=`)                                                     |
-| `programas.ts`                                              | Los cinco programas, con horarios y edades                                                                         |
-| `productos.ts`                                              | Tienda. Sin `precio` se muestra «Consultar precio»                                                                 |
-| `testimonios.ts`                                            | Testimonios de familias. Si está vacío, la sección no aparece                                                      |
-| `faq.ts`                                                    | Preguntas frecuentes de la página Programas                                                                        |
-| `equipo.ts`                                                 | Director y docentes                                                                                                |
-| `aliados.ts`                                                | Aliados y empresas                                                                                                 |
-| `apoyo.ts`                                                  | Formas de ayudar (página Apóyanos e inicio)                                                                        |
-| `politica.ts`                                               | Política de tratamiento de datos                                                                                   |
-| `inicio.ts`, `paginas.ts`, `formulario.ts`, `navegacion.ts` | Títulos, textos cortos, etiquetas del formulario y menú                                                            |
+| Archivo                                                     | Qué contiene                                                                                                                                                                              |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `site.ts`                                                   | Datos generales: nombre, contacto, dirección, redes, NIT, donaciones, cifras, misión, visión, historia y objetivos                                                                        |
+| `anuncios.ts`                                               | Campaña destacada (barra amarilla, bloque rojo en inicio y en Apóyanos). Se resalta una sola: la primera vigente con `destacado`. Con `vaki` muestra el avance, leído de Vaki al compilar |
+| `eventos.ts`                                                | Agenda de respaldo. Con Google Calendar conectado no se usa (ver «Agenda con Google Calendar»)                                                                                            |
+| `logros.ts`                                                 | Línea de tiempo de logros. `destacado: true` los muestra en inicio                                                                                                                        |
+| `presentaciones.ts`                                         | Presentaciones y salidas, con sus fotos                                                                                                                                                   |
+| `videos.ts`                                                 | Videos de YouTube (el `id` es lo que va después de `watch?v=`)                                                                                                                            |
+| `programas.ts`                                              | Los cinco programas, con horarios y edades                                                                                                                                                |
+| `productos.ts`                                              | Tienda. Sin `precio` se muestra «Consultar precio»                                                                                                                                        |
+| `testimonios.ts`                                            | Testimonios de familias. Si está vacío, la sección no aparece                                                                                                                             |
+| `faq.ts`                                                    | Preguntas frecuentes de la página Programas                                                                                                                                               |
+| `equipo.ts`                                                 | Director y docentes                                                                                                                                                                       |
+| `aliados.ts`                                                | Aliados y empresas                                                                                                                                                                        |
+| `apoyo.ts`                                                  | Formas de ayudar (página Apóyanos e inicio)                                                                                                                                               |
+| `politica.ts`                                               | Política de tratamiento de datos                                                                                                                                                          |
+| `inicio.ts`, `paginas.ts`, `formulario.ts`, `navegacion.ts` | Títulos, textos cortos, etiquetas del formulario y menú                                                                                                                                   |
 
 **Fechas.** Siempre como `"AAAA-MM-DD"`, por ejemplo `"2026-11-14"`. Las horas van como `"15:00"`. Todo se interpreta en hora de Bogotá.
 

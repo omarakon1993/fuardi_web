@@ -2,6 +2,7 @@ import Image from "next/image";
 import { fotos } from "@/data/fotos";
 import { inicio } from "@/data/inicio";
 import { site } from "@/data/site";
+import { RedesSociales } from "@/components/layout/RedesSociales";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
@@ -52,6 +53,12 @@ export function Hero() {
             <BotonEnlace href="/apoyanos/" variante="textoClaro">
               {inicio.hero.apoyar}
             </BotonEnlace>
+          </div>
+          <div className="mt-10 flex items-center gap-2">
+            <p className="text-sm font-bold text-blanco/70">
+              {inicio.hero.redes}
+            </p>
+            <RedesSociales tamano="pequeno" claro conCanal className="gap-0" />
           </div>
         </div>
 

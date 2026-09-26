@@ -11,6 +11,9 @@ import { Icon } from "@/components/ui/Icon";
 
 const CLAVE = "fuardi:anuncio-cerrado";
 
+const claseEnlace =
+  "inline-flex min-h-11 shrink-0 items-center rounded-full bg-tinta px-4 font-bold whitespace-nowrap text-blanco no-underline hover:bg-rojo";
+
 interface AnnouncementBarProps {
   anuncios: Anuncio[];
   hoyCompilacion: Fecha;
@@ -29,26 +32,38 @@ export function AnnouncementBar({
   )[0];
 
   if (!anuncio || cerrado === anuncio.id) return null;
+  const externo = anuncio.enlace?.href.startsWith("http") ?? false;
 
   return (
     <aside aria-label="Anuncio" className="bg-amarillo text-tinta">
       <Container className="flex items-center gap-3 py-2">
-        <p className="flex-1 py-1 text-base">
-          {anuncio.ejemplo ? (
-            <>
-              <EtiquetaEjemplo />{" "}
-            </>
-          ) : null}
-          <strong>{anuncio.titulo}.</strong> {anuncio.texto}{" "}
+        <div className="flex flex-1 flex-wrap items-center gap-x-4 gap-y-2 py-1">
+          <p className="text-base">
+            {anuncio.ejemplo ? (
+              <>
+                <EtiquetaEjemplo />{" "}
+              </>
+            ) : null}
+            <strong>{anuncio.titulo}.</strong> {anuncio.texto}
+          </p>
           {anuncio.enlace ? (
-            <Link
-              href={anuncio.enlace.href}
-              className="font-bold whitespace-nowrap underline decoration-2"
-            >
-              {anuncio.enlace.texto}
-            </Link>
+            externo ? (
+              <a
+                href={anuncio.enlace.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={claseEnlace}
+              >
+                {anuncio.enlace.texto}
+                <span className="sr-only"> (se abre en una pestaña nueva)</span>
+              </a>
+            ) : (
+              <Link href={anuncio.enlace.href} className={claseEnlace}>
+                {anuncio.enlace.texto}
+              </Link>
+            )
           ) : null}
-        </p>
+        </div>
         <button
           type="button"
           onClick={() => setCerrado(anuncio.id)}

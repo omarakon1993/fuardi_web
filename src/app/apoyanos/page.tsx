@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { anuncios } from "@/data/anuncios";
 import { formasDeAyudar } from "@/data/apoyo";
 import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { mensajesWhatsApp, site } from "@/data/site";
 import { clasesColor, cx } from "@/lib/colores";
+import { hoyBogota } from "@/lib/fechas";
 import { metadatos } from "@/lib/metadatos";
+import { avanceCampanaDestacada } from "@/lib/vaki";
+import { CampanaDestacada } from "@/components/campana/CampanaDestacada";
 import type { ColorMarca } from "@/lib/types";
 import { enlaceWhatsApp } from "@/lib/whatsapp";
 import { BotonEnlace } from "@/components/ui/Button";
@@ -62,8 +66,9 @@ function DatosDonacion() {
   );
 }
 
-export default function ApoyanosPage() {
+export default async function ApoyanosPage() {
   const [donar, ...otras] = formasDeAyudar;
+  const avance = await avanceCampanaDestacada(anuncios);
 
   return (
     <>
@@ -88,6 +93,13 @@ export default function ApoyanosPage() {
           texto: f.titulo,
           href: `#${f.id}`,
         }))}
+      />
+
+      <CampanaDestacada
+        anuncios={anuncios}
+        hoyCompilacion={hoyBogota()}
+        avance={avance}
+        enApoyanos
       />
 
       <Section tituloId="formas-titulo" capa>
