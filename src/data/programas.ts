@@ -193,17 +193,17 @@ export const programas: Programa[] = [
     ],
     dirigidoA: poblacion,
     foto: foto(
-      "salida-bolos-grupo",
-      "Estudiantes sosteniendo bolas de bolos y celebrando en una pista de bolos",
-      1080,
-      808,
+      "salida-rueda-de-la-fortuna",
+      "Estudiantes con sudadera posando frente a una gran rueda de la fortuna",
+      1072,
+      740,
     ),
     fotosExtra: [
       foto(
-        "salida-rueda-de-la-fortuna",
-        "Estudiantes con sudadera posando frente a una gran rueda de la fortuna",
-        1072,
-        740,
+        "salida-bolos-grupo",
+        "Estudiantes sosteniendo bolas de bolos y celebrando en una pista de bolos",
+        1080,
+        808,
       ),
       foto(
         "salida-gala-premios",
