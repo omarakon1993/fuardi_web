@@ -1,7 +1,7 @@
 // Textos de la página de inicio.
 import { site } from "./site";
 
-const [jovenes, grupo, festivales, departamentos] = site.cifras;
+const [, grupo, festivales] = site.cifras;
 
 /** Trozo de una frase; los resaltados van en rojo. */
 export interface TrozoFrase {
@@ -34,13 +34,17 @@ export const inicio = {
   marquesinaPausar: "Pausar la franja",
   marquesinaReanudar: "Mover la franja",
   nosotros: {
+    // TODO(contenido): confirmar con la fundación la cifra de «más de 100 jóvenes».
     frase: [
-      { texto: "Somos " },
-      { texto: `${jovenes.valor} jóvenes`, resaltado: true },
-      { texto: " y, desde " },
+      { texto: "Desde " },
       { texto: grupo.valor, resaltado: true },
-      { texto: ", llevamos la música de los Montes de María a tarimas de " },
-      { texto: `${departamentos.valor} departamentos`, resaltado: true },
+      { texto: " se han formado " },
+      { texto: "más de 100 jóvenes", resaltado: true },
+      {
+        texto:
+          " con nosotros, que han llevado la música de los Montes de María a ",
+      },
+      { texto: "diferentes partes del país", resaltado: true },
       { texto: "." },
     ] satisfies TrozoFrase[],
     antetitulo: "Quiénes somos",
