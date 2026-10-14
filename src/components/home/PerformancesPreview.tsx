@@ -16,8 +16,7 @@ const formas = [
 
 export function PerformancesPreview() {
   const t = inicio.presentaciones;
-  // La foto del hero ya se vio arriba: la galería empieza por las demás.
-  const fotos = [...galeriaGeneral.slice(1), galeriaGeneral[0]];
+  const fotos = galeriaGeneral;
 
   return (
     <section

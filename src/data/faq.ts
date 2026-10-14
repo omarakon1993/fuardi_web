@@ -11,7 +11,7 @@ export const preguntasFrecuentes: PreguntaFrecuente[] = [
   },
   {
     pregunta: "¿Dónde queda la fundación?",
-    respuesta: "En la Calle 134 #101b-20, localidad de Suba, Bogotá.",
+    respuesta: "En la Calle 135 A #109-21, localidad de Suba, Bogotá.",
   },
   {
     pregunta: "¿Cómo inscribo a mi hijo o hija?",

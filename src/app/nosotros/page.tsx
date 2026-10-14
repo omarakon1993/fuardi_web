@@ -221,10 +221,7 @@ export default function NosotrosPage() {
                   </li>
                 ))}
               </ul>
-            ) : (
-              // TODO(contenido): certificado de existencia y documentos en site.documentos.
-              <p className="mt-6 text-base">{t.documentosPendientes}</p>
-            )}
+            ) : null}
           </div>
         </div>
       </Section>

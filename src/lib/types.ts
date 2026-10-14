@@ -127,6 +127,8 @@ export interface Programa {
   horarios?: string;
   edades?: string;
   foto?: Foto;
+  /** Más fotos del programa, que se muestran junto a la principal. */
+  fotosExtra?: Foto[];
 }
 
 export interface Producto {
@@ -229,6 +231,8 @@ export interface SiteConfig {
   heroFoto?: Foto;
   /** Foto de la sección de historia en Nosotros. */
   historiaFoto?: Foto;
+  /** Foto de «Quiénes somos» en la página de inicio. */
+  quienesSomosFoto?: Foto;
   cifras: CifraImpacto[];
   mision: string;
   vision: string;

@@ -7,11 +7,11 @@ export const anuncios: Anuncio[] = [
   {
     id: "vaki-sede-propia",
     tipo: "colecta",
-    titulo: "Construyamos nuestra sede propia",
+    titulo: "¡Ayúdanos a construir nuestro sueño!",
     texto:
-      "Súmate a nuestra Vaki: queremos una sede digna para atender a más jóvenes.",
+      "Soñamos con una sede propia, digna, segura y accesible. ¡Construyamos juntos nuestra sede!",
     detalle:
-      "Queremos una sede propia, digna, segura y accesible, donde nuestros jóvenes puedan aprender, crear y compartir, y donde podamos recibir a más niños, jóvenes y adultos con discapacidad. Cada aporte, grande o pequeño, nos acerca a esa meta.",
+      "Soñamos con una sede propia, digna, segura y accesible, donde nuestros jóvenes con discapacidad puedan aprender, crear y desarrollar sus talentos. Queremos llegar a más personas. Cada aporte nos acerca a hacerlo realidad. Durante nuestra trayectoria hemos formado a más de 100 jóvenes con discapacidad y participado en diferentes eventos culturales a nivel nacional. ¡Construyamos juntos nuestra sede!",
     enlace: {
       texto: "Donar en Vaki",
       href: "https://vaki.co/vaki/sede-para-la-fundacion",

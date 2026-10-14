@@ -157,6 +157,22 @@ export const presentaciones: Presentacion[] = [
     tipo: "presentacion",
     fotos: [],
   },
+  {
+    id: "2025-colombia-diversa-mesetas",
+    titulo: "Así suena Colombia Diversa",
+    anio: 2025,
+    lugar: "Mesetas, Meta",
+    tipo: "salida",
+    descripcion: "14 y 15 de agosto.",
+    fotos: [
+      {
+        src: "/images/galeria/salida-mesetas-meta-2025.webp",
+        alt: "Jóvenes de la fundación y sus profesores posando juntos, con credenciales amarillas, en Mesetas, Meta",
+        ancho: 1200,
+        alto: 1600,
+      },
+    ],
+  },
 ];
 
 /**
@@ -164,6 +180,42 @@ export const presentaciones: Presentacion[] = [
  * TODO(contenido): si se sabe de qué evento es cada una, moverla a su presentación.
  */
 export const galeriaGeneral: Foto[] = [
+  {
+    src: "/images/galeria/tarima-grupo-plaza-vestuario.webp",
+    alt: "Grupo de gaitas y tambores con vestuario blanco, pañoleta roja y polleras de colores posando en una plaza",
+    ancho: 1600,
+    alto: 1200,
+  },
+  {
+    src: "/images/galeria/tarima-media-torta.webp",
+    alt: "Grupo tocando tambores y gaitas en el escenario de la Media Torta, con luces y pantalla gigante",
+    ancho: 1599,
+    alto: 899,
+  },
+  {
+    src: "/images/galeria/tarima-danzando-con-el-sol.webp",
+    alt: "Grupo de música y baile en un escenario iluminado durante el Encuentro «Danzando con el Sol»",
+    ancho: 1600,
+    alto: 1002,
+  },
+  {
+    src: "/images/galeria/grupo-vestuarios-salon.webp",
+    alt: "Jóvenes del grupo con trajes tradicionales, polleras y penachos posando juntos en un salón",
+    ancho: 1600,
+    alto: 1200,
+  },
+  {
+    src: "/images/galeria/tarima-danza-encuentro-capital.webp",
+    alt: "Pareja de baile con pollera rosada y sombrero vueltiao en un encuentro al aire libre, con el grupo de gaitas detrás",
+    ancho: 1600,
+    alto: 1200,
+  },
+  {
+    src: "/images/galeria/musica-grupo-tambores-calle.webp",
+    alt: "Jóvenes con vestuario blanco, sombrero vueltiao y polleras de colores junto a sus tambores en una calle",
+    ancho: 1280,
+    alto: 960,
+  },
   {
     src: "/images/hero/grupo-tambores-conectate.webp",
     alt: "Nuestros artistas con vestuario blanco, pañoleta roja y sombrero vueltiao, junto a sus tambores en una plaza",

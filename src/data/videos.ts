@@ -20,23 +20,33 @@ export const videos: Video[] = [
     esMedios: true,
   },
   {
-    id: "ppG9-_eEhfk",
-    titulo: "Fundación Armonía Diversa en festival de gaitas",
+    id: "Dabwb4LIXnc",
+    titulo: "Muestra artística de música y danza en la Media Torta, Bogotá",
     canal: "Fundación Armonía Diversa",
   },
   {
-    id: "CjTd7DInF3w",
-    titulo: "El pescador en ritmo de gaita",
+    id: "DI5cZXru5l4",
+    titulo: "Danza, la trenza, Semilla Fest",
     canal: "Fundación Armonía Diversa",
   },
   {
-    id: "Ej38PaoyVEs",
-    titulo: "Concierto de gaita en Gachancipá",
+    id: "ItlZRvbpmd0",
+    titulo: "La maestranza, presentación en Bogotá",
     canal: "Fundación Armonía Diversa",
   },
   {
-    id: "1HVtPnSOtqE",
-    titulo: "Grupo de danzas de la Fundación Armonía Diversa",
+    id: "MrnzlC7MdS8",
+    titulo: "Nota periodística RCN",
+    canal: "Fundación Armonía Diversa",
+  },
+  {
+    id: "qIUtuuhjx9E",
+    titulo: "Caminemos juntos, ritmo de puya: la música rompe barreras",
+    canal: "Fundación Armonía Diversa",
+  },
+  {
+    id: "Mmg_ga8XhaQ",
+    titulo: "Muestra artística Semilla Fest 2026",
     canal: "Fundación Armonía Diversa",
   },
 ];

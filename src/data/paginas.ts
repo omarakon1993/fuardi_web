@@ -24,22 +24,23 @@ export const paginas = {
     transparenciaIntro:
       "Somos una entidad sin ánimo de lucro. Aquí publicamos nuestros datos legales y documentos.",
     nitPendiente: "Pronto publicaremos nuestro NIT.",
-    documentosPendientes:
-      "Estamos preparando el certificado de existencia y representación legal y demás documentos. Si los necesitas ahora, escríbenos.",
   },
   programas: {
     titulo: "Programas",
-    etiqueta: "Formación académica y artística",
+    etiqueta: "Formación artística y más",
     intro:
-      "Formación académica y artística para niños, niñas, jóvenes y adultos con discapacidad. Elige un programa y te contamos cómo inscribirte.",
+      "Un solo proceso de formación, con todo incluido: música, danza, artes plásticas, deportes, emprendimientos productivos y salidas pedagógicas. La inscripción es una sola.",
     lista: "Nuestros programas",
-    listaTitulo: "Cinco piezas, un mismo rompecabezas",
+    listaTitulo: "Seis piezas, un mismo rompecabezas",
     dirigidoA: "A quién va dirigido",
     horariosEdades: "Horarios y edades",
     horarios: "Horarios",
     edades: "Edades",
     porConfirmar: "Por confirmar. Escríbenos y te contamos.",
-    inscribirme: "Inscribirme a este programa",
+    inscribirme: "Inscribir a mi hijo o hija",
+    inscripcionTitulo: "Una sola inscripción",
+    inscripcionTexto:
+      "Todos los programas están incluidos en el proceso de formación de la fundación.",
     faq: "Preguntas frecuentes",
     faqTitulo: "Lo que preguntan las familias",
     faqCorto: "Preguntas frecuentes",

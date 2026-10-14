@@ -5,9 +5,9 @@ export const site: SiteConfig = {
   sigla: "FUARDI",
   lema: "La Música Rompe Barreras",
   descripcion:
-    "Fundación sin ánimo de lucro de Suba, Bogotá, que ofrece formación académica y artística a niños, niñas, jóvenes y adultos con discapacidad. Nuestro grupo de gaitas y tambores lleva la música de los Montes de María a tarimas de todo el país.",
+    "Fundación sin ánimo de lucro de Bogotá que promueve el desarrollo, la inclusión y la participación de niñas, niños, jóvenes y adultos con discapacidad a través de la formación artística en música y danza. Nuestro grupo de gaitas y tambores lleva la música de los Montes de María a tarimas de todo el país.",
   presentacion:
-    "Somos una fundación de Suba, Bogotá. Formamos a niños, jóvenes y adultos con discapacidad en música, danza y canto, y los acompañamos hasta la tarima.",
+    "Somos una fundación sin ánimo de lucro que promueve el desarrollo, la inclusión y la participación de niñas, niños, jóvenes y adultos con discapacidad, a través de procesos de formación artística en música y danza. Estamos ubicados en la ciudad de Bogotá, Colombia.",
   // TODO(contenido): dominio definitivo de la fundación.
   url: "https://fuardi.org",
   director: "Daniel Hurtado Yepes",
@@ -17,7 +17,7 @@ export const site: SiteConfig = {
   whatsapp: "573208298137",
   correo: "fuardi18@gmail.com",
   direccion: {
-    calle: "Calle 134 #101b-20",
+    calle: "Calle 135 A #109-21",
     localidad: "Suba",
     ciudad: "Bogotá D.C.",
     region: "Bogotá D.C.",
@@ -25,8 +25,8 @@ export const site: SiteConfig = {
   },
   mapa: {
     embedUrl:
-      "https://maps.google.com/maps?q=Calle%20134%20%23101b-20%2C%20Suba%2C%20Bogot%C3%A1&z=16&output=embed",
-    url: "https://www.google.com/maps/search/?api=1&query=Calle%20134%20%23101b-20%2C%20Suba%2C%20Bogot%C3%A1",
+      "https://maps.google.com/maps?q=Calle%20135A%20%23109-21%2C%20Suba%2C%20Bogot%C3%A1&z=16&output=embed",
+    url: "https://www.google.com/maps/search/?api=1&query=Calle%20135A%20%23109-21%2C%20Suba%2C%20Bogot%C3%A1",
   },
   redes: [
     {
@@ -66,22 +66,28 @@ export const site: SiteConfig = {
   },
   // TODO(contenido): certificado de existencia y demás documentos (PDF en public/documentos/).
   documentos: [],
-  // TODO(contenido): cambiar por una foto del grupo tocando en tarima cuando la haya.
   heroFoto: {
-    src: "/images/hero/grupo-tambores-conectate.webp",
-    alt: "Nuestros artistas con vestuario blanco, pañoleta roja y sombrero vueltiao, junto a sus tambores en una plaza de Bogotá",
-    ancho: 1600,
-    alto: 1204,
+    src: "/images/hero/grupo-carpa-sombreros.webp",
+    alt: "Nuestros artistas con vestuario blanco, pañoleta roja y sombrero vueltiao, sentados junto a sus profesores bajo una carpa",
+    ancho: 865,
+    alto: 649,
   },
   historiaFoto: {
-    src: "/images/galeria/salida-playland.webp",
-    alt: "Estudiantes con la sudadera azul de la fundación posando felices en una salida a Playland",
-    ancho: 1152,
-    alto: 864,
+    src: "/images/galeria/historia-grupo-vestuario-blanco.webp",
+    alt: "Jóvenes del grupo con vestuario blanco, pañoleta roja y polleras de colores posando en un salón",
+    ancho: 1080,
+    alto: 623,
+  },
+  /** Foto de «Quiénes somos» en la página de inicio. */
+  quienesSomosFoto: {
+    src: "/images/galeria/grupo-sudadera-azul-plaza.webp",
+    alt: "Estudiantes con la sudadera azul de la fundación sentados juntos y sonriendo en una plaza",
+    ancho: 1600,
+    alto: 1200,
   },
   // TODO(contenido): confirmar las cifras con la fundación antes de publicar.
   cifras: [
-    { valor: "25", texto: "jóvenes en formación" },
+    { valor: "35", texto: "jóvenes en formación" },
     { valor: "2016", texto: "nace nuestro grupo de gaitas y tambores" },
     { valor: "+12", texto: "festivales y encuentros" },
     {
@@ -98,7 +104,7 @@ export const site: SiteConfig = {
   resenaCorta:
     "Trabajamos con niños, niñas, jóvenes y adultos con discapacidad en la localidad de Suba. Creemos que la música y la danza fortalecen habilidades cognitivas, comunicativas, sociales y emocionales, y que la discapacidad tiene muchas capacidades.",
   historia: [
-    "La Fundación Armonía Diversa trabaja con niños, niñas, jóvenes y adultos con discapacidad (síndrome de Down, discapacidad cognitiva, hipoacusia) en la localidad de Suba. Hoy acompaña a 25 jóvenes y la dirige Daniel Hurtado Yepes.",
+    "La Fundación Armonía Diversa trabaja con niños, niñas, jóvenes y adultos con discapacidad (síndrome de Down, discapacidad cognitiva, hipoacusia) en la localidad de Suba. Iniciamos como fundación en 2017. Hoy acompaña a 35 jóvenes y la dirige Daniel Hurtado Yepes.",
     "Partimos de una convicción: el lenguaje musical y la práctica artística fortalecen habilidades cognitivas, comunicativas, sociales, afectivas y emocionales. Además, aportan a la construcción de la identidad cultural y folclórica del país y de cada participante.",
     "En 2016 nace nuestro grupo de gaitas y tambores. Interpreta aires de cumbia, puya, gaita y porro, y rescata desde el interior del país la música tradicional de los Montes de María.",
     "Al ver los buenos resultados, decidimos dar a conocer nuestro trabajo para motivar a otras familias que tienen personas con discapacidad. Nos guía una idea sencilla: la discapacidad tiene muchas capacidades, y los talleres artísticos eliminan barreras sociales.",

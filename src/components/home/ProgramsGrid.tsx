@@ -9,17 +9,17 @@ import { Revelar } from "@/components/ui/Revelar";
 import { EncabezadoSeccion, Section } from "@/components/ui/Section";
 
 /*
- * Cuatro columnas escalonadas como piezas de rompecabezas: tres fotos con
- * formas distintas y una columna con dos tarjetas blancas.
+ * Seis piezas con foto, con esquinas distintas como las de un rompecabezas.
+ * Cada una lleva a su programa; la inscripción es una sola.
  */
-const conFoto = ["musica", "danza", "canto"];
-const formas: Record<string, string> = {
-  musica: "rounded-t-[7.5rem] rounded-b-foto",
-  danza: "rounded-foto sm:mt-14",
-  canto: "rounded-t-foto rounded-b-[5rem] sm:rounded-b-[7.5rem]",
-};
-
-const buscar = (slug: string) => programas.find((p) => p.slug === slug);
+const formas = [
+  "rounded-t-[7.5rem] rounded-b-foto",
+  "rounded-foto sm:mt-10",
+  "rounded-t-foto rounded-b-[7.5rem]",
+  "rounded-foto sm:rounded-t-[7.5rem]",
+  "rounded-[2rem_8rem_2rem_2rem] sm:mt-10",
+  "rounded-t-foto rounded-b-[5rem]",
+];
 
 function Pildora({ programa }: { programa: Programa }) {
   const color = clasesColor[programa.color];
@@ -36,14 +36,20 @@ function Pildora({ programa }: { programa: Programa }) {
   );
 }
 
-function PiezaFoto({ programa }: { programa: Programa }) {
+function PiezaFoto({
+  programa,
+  indice,
+}: {
+  programa: Programa;
+  indice: number;
+}) {
   const foto = programa.foto;
   return (
     <Revelar
       as="li"
       className={cx(
         "group relative isolate flex h-96 flex-col justify-end overflow-hidden bg-tinta text-blanco transition-transform duration-300 hover:-translate-y-1.5 lg:h-108",
-        formas[programa.slug],
+        formas[indice % formas.length],
       )}
     >
       {foto ? (
@@ -51,21 +57,15 @@ function PiezaFoto({ programa }: { programa: Programa }) {
           src={foto.src}
           alt={foto.alt}
           fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="-z-20 object-cover object-[center_75%]"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="-z-20 object-cover"
         />
       ) : null}
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-linear-to-t from-tinta/95 via-tinta/55 via-40% to-tinta/0 to-70%"
       />
-      {/* La pieza con la curva abajo necesita más aire para el texto. */}
-      <div
-        className={cx(
-          "p-6 pb-8",
-          programa.slug === "canto" && "pb-16 sm:pb-20",
-        )}
-      >
+      <div className="p-6 pb-10">
         <Pildora programa={programa} />
         <h3 className="mt-3 text-3xl">
           <Link
@@ -81,30 +81,8 @@ function PiezaFoto({ programa }: { programa: Programa }) {
   );
 }
 
-function PiezaBlanca({ programa }: { programa: Programa }) {
-  return (
-    <Revelar
-      as="li"
-      className="group relative rounded-foto bg-blanco p-6 transition-transform duration-300 hover:-translate-y-1.5"
-    >
-      <Pildora programa={programa} />
-      <h3 className="mt-3 text-2xl">
-        <Link
-          href={`/programas/#${programa.slug}`}
-          className="text-tinta no-underline group-hover:underline after:absolute after:inset-0 after:rounded-foto"
-        >
-          {programa.nombre}
-        </Link>
-      </h3>
-      <p className="mt-2 text-base text-gris">{programa.resumen}</p>
-    </Revelar>
-  );
-}
-
 export function ProgramsGrid() {
   const t = inicio.programas;
-  const fotos = conFoto.map(buscar).filter((p) => p !== undefined);
-  const blancas = programas.filter((p) => !conFoto.includes(p.slug));
 
   return (
     <Section tituloId="programas-titulo" fondo="cana" capa>
@@ -119,17 +97,10 @@ export function ProgramsGrid() {
           {t.enlace}
         </BotonEnlace>
       </div>
-      <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {fotos.map((programa) => (
-          <PiezaFoto key={programa.slug} programa={programa} />
+      <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {programas.map((programa, i) => (
+          <PiezaFoto key={programa.slug} programa={programa} indice={i} />
         ))}
-        <li className="sm:mt-14">
-          <ul className="grid gap-5">
-            {blancas.map((programa) => (
-              <PiezaBlanca key={programa.slug} programa={programa} />
-            ))}
-          </ul>
-        </li>
       </ul>
     </Section>
   );

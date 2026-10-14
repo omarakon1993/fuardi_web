@@ -19,7 +19,7 @@ export function EtiquetaTemporal() {
 
 export function AboutPreview() {
   const t = inicio.nosotros;
-  const foto = site.historiaFoto;
+  const foto = site.quienesSomosFoto;
 
   return (
     <section

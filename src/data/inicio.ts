@@ -50,7 +50,7 @@ export const inicio = {
   },
   programas: {
     antetitulo: "Nuestros programas",
-    titulo: "Cinco piezas, un mismo rompecabezas",
+    titulo: "Seis piezas, un mismo rompecabezas",
     enlace: "Ver todos los programas",
   },
   campana: {

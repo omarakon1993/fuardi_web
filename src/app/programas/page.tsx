@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { preguntasFrecuentes } from "@/data/faq";
-import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { programas } from "@/data/programas";
 import { clasesColor, cx } from "@/lib/colores";
@@ -17,9 +16,16 @@ const t = paginas.programas;
 
 export const metadata: Metadata = metadatos(
   t.titulo,
-  "Formación académica, música tradicional de gaitas y tambores, danza folclórica, canto y emprendimientos para personas con discapacidad en Suba, Bogotá.",
+  "Música, danza, artes plásticas, deportes, emprendimientos y salidas pedagógicas para personas con discapacidad en Suba, Bogotá.",
   "/programas/",
 );
+
+const fotoCabecera = {
+  src: "/images/galeria/grupo-posando-sede.webp",
+  alt: "Jóvenes de la fundación posando juntos y sonriendo en la sede",
+  ancho: 1600,
+  alto: 1200,
+};
 
 // Fotos con esquinas distintas, alternando de lado.
 const formas = [
@@ -48,7 +54,7 @@ export default function ProgramasPage() {
         titulo={t.titulo}
         etiqueta={t.etiqueta}
         intro={t.intro}
-        foto={fotos.danza}
+        foto={fotoCabecera}
         acciones={<AccionesPrincipales />}
         atajos={[
           ...programas.map((p) => ({ texto: p.nombre, href: `#${p.slug}` })),
@@ -148,6 +154,22 @@ export default function ProgramasPage() {
                       className={formas[i % formas.length]}
                     />
                   )}
+                  {programa.fotosExtra && programa.fotosExtra.length > 0 ? (
+                    <ul className="mt-3 grid grid-cols-3 gap-3">
+                      {programa.fotosExtra.map((extra) => (
+                        <li key={extra.src}>
+                          <Image
+                            src={extra.src}
+                            alt={extra.alt}
+                            width={extra.ancho}
+                            height={extra.alto}
+                            sizes="(min-width: 1024px) 16vw, 33vw"
+                            className="aspect-square w-full rounded-panel object-cover"
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </div>
                 <div>
                   <span
@@ -183,18 +205,21 @@ export default function ProgramasPage() {
                       ))}
                     </dl>
                   ) : null}
-                  <BotonEnlace
-                    href={`/contacto/?motivo=inscripcion&programa=${programa.slug}`}
-                    className="mt-7"
-                  >
-                    {t.inscribirme}
-                    <span className="sr-only">: {programa.nombre}</span>
-                  </BotonEnlace>
                 </div>
               </Revelar>
             );
           })}
         </ul>
+
+        <Revelar className="mt-16 flex flex-col items-start gap-5 rounded-foto bg-cana p-8 sm:p-10 md:flex-row md:items-center md:justify-between">
+          <div className="medida">
+            <h3 className="text-3xl">{t.inscripcionTitulo}</h3>
+            <p className="mt-2 text-lg">{t.inscripcionTexto}</p>
+          </div>
+          <BotonEnlace href="/contacto/?motivo=inscripcion">
+            {t.inscribirme}
+          </BotonEnlace>
+        </Revelar>
       </Section>
 
       <Section tituloId="faq-titulo" id="preguntas" fondo="cana" capa>

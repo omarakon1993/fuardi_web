@@ -7,6 +7,12 @@ export const productos: Producto[] = [
     nombre: "Pocillos",
     categoria: "Hogar",
     disponible: true,
+    foto: {
+      src: "/images/productos/pocillos-personalizados-1.webp",
+      alt: "Tres pocillos personalizados con diseños de colores, hechos por nuestros jóvenes",
+      ancho: 674,
+      alto: 506,
+    },
   },
   {
     id: "camisetas",
