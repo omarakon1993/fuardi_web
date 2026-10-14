@@ -9,6 +9,10 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Una sola dirección: fuardi.com -> www.fuardi.com
+  RewriteCond %{HTTP_HOST} ^fuardi\.com$ [NC]
+  RewriteRule ^ https://www.fuardi.com%{REQUEST_URI} [L,R=301]
+
   # Forzar https
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https

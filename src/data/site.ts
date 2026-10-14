@@ -8,8 +8,7 @@ export const site: SiteConfig = {
     "Fundación sin ánimo de lucro de Bogotá que promueve el desarrollo, la inclusión y la participación de niñas, niños, jóvenes y adultos con discapacidad a través de la formación artística en música y danza. Nuestro grupo de gaitas y tambores lleva la música de los Montes de María a tarimas de todo el país.",
   presentacion:
     "Somos una fundación sin ánimo de lucro que promueve el desarrollo, la inclusión y la participación de niñas, niños, jóvenes y adultos con discapacidad, a través de procesos de formación artística en música y danza. Estamos ubicados en la ciudad de Bogotá, Colombia.",
-  // TODO(contenido): dominio definitivo de la fundación.
-  url: "https://fuardi.org",
+  url: "https://www.fuardi.com",
   director: "Daniel Hurtado Yepes",
   // Solo se publica en la política de datos (lo exige la ley). En el resto
   // del sitio se usa el enlace a WhatsApp.

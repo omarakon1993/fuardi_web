@@ -32,7 +32,7 @@ En la misma configuración, en **Compartir con determinadas personas o grupos**,
 2. En **APIs y servicios → Biblioteca**, busca **Google Calendar API** y pulsa **Habilitar**.
 3. En **APIs y servicios → Credenciales**, pulsa **Crear credenciales → Clave de API** y copia la clave.
 4. Abre la clave y restríngela. Así nadie puede usarla fuera del sitio:
-   - **Restricciones de aplicaciones:** «Sitios web». Agrega el dominio real del sitio, por ejemplo `https://fuardi.org/*` y `https://www.fuardi.org/*`. Para probar en tu computador agrega también `http://localhost:3000/*`.
+   - **Restricciones de aplicaciones:** «Sitios web». Agrega el dominio real del sitio, por ejemplo `https://www.fuardi.com/*` y `https://www.fuardi.org/*`. Para probar en tu computador agrega también `http://localhost:3000/*`.
    - **Restricciones de API:** «Restringir clave» y elige solo **Google Calendar API**.
    - El dominio debe coincidir con `url` en `src/data/site.ts`: al compilar, el sitio se identifica con ese dominio.
 
