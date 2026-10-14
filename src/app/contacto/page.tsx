@@ -12,6 +12,7 @@ import {
 import { RedesSociales } from "@/components/layout/RedesSociales";
 import { BotonEnlace } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { CreadorWeb } from "@/components/ui/CreadorWeb";
 import { Icon, type NombreIcono } from "@/components/ui/Icon";
 import { PageHeader } from "@/components/ui/PageHeader";
 
@@ -125,6 +126,9 @@ export default function ContactoPage() {
               <RedesSociales conCanal />
             </div>
           </aside>
+        </Container>
+        <Container className="mt-8">
+          <CreadorWeb variante="tarjeta" />
         </Container>
       </div>
     </>

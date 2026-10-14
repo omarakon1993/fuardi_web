@@ -20,8 +20,6 @@ export const paginas = {
     equipoTitulo: "Quiénes lo hacen posible",
     equipoPendiente:
       "Muy pronto presentaremos aquí a nuestros docentes y al equipo de trabajo.",
-    creadorInvitacion:
-      "¿Quieres un sitio web para tu fundación, tu emprendimiento o tu empresa? Escríbeme.",
     transparencia: "Transparencia",
     transparenciaIntro:
       "Somos una entidad sin ánimo de lucro. Aquí publicamos nuestros datos legales y documentos.",
@@ -132,5 +130,13 @@ export const paginas = {
     correo: "Correo",
     horario: "Horario de atención",
     horarioPendiente: "Escríbenos por WhatsApp y te confirmamos el horario.",
+  },
+  /** Crédito de quien creó y administra el sitio web. */
+  creador: {
+    antetitulo: "Sitio web",
+    invitacion:
+      "¿Quieres un sitio web para tu fundación, tu emprendimiento o tu empresa? Escríbeme.",
+    boton: "Escribir a Omar",
+    asunto: "Quiero un sitio web",
   },
 };
