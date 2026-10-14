@@ -164,6 +164,8 @@ export interface MiembroEquipo {
   cargo: string;
   descripcion?: string;
   foto?: Foto;
+  /** Correo de contacto, si la persona quiere publicarlo. */
+  correo?: string;
 }
 
 export interface Aliado {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { equipo } from "@/data/equipo";
+import { creadorWeb, equipo } from "@/data/equipo";
 import { fotos } from "@/data/fotos";
 import { paginas } from "@/data/paginas";
 import { site } from "@/data/site";
@@ -192,6 +192,35 @@ export default function NosotrosPage() {
             {equipo.length < 2 ? (
               <p className="mt-6 medida">{t.equipoPendiente}</p>
             ) : null}
+
+            <div className="mt-10 flex items-center gap-5 border-t-2 border-cana pt-8">
+              {creadorWeb.foto ? (
+                <Image
+                  src={creadorWeb.foto.src}
+                  alt={creadorWeb.foto.alt}
+                  width={creadorWeb.foto.ancho}
+                  height={creadorWeb.foto.alto}
+                  className="size-24 shrink-0 rounded-full object-cover"
+                />
+              ) : null}
+              <div>
+                <h3 className="text-xl">{creadorWeb.nombre}</h3>
+                <p className="text-gris">{creadorWeb.cargo}</p>
+                {creadorWeb.correo ? (
+                  <>
+                    <p className="mt-2 text-sm text-gris">
+                      {t.creadorInvitacion}
+                    </p>
+                    <a
+                      href={`mailto:${creadorWeb.correo}`}
+                      className="mt-1 inline-flex min-h-11 items-center font-bold text-rojo underline underline-offset-4"
+                    >
+                      {creadorWeb.correo}
+                    </a>
+                  </>
+                ) : null}
+              </div>
+            </div>
           </div>
 
           <div id="transparencia" className="rounded-foto bg-cana p-8 sm:p-10">
