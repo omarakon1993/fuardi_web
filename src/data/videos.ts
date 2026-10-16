@@ -12,14 +12,6 @@ export const videos: Video[] = [
     esMedios: true,
   },
   {
-    id: "mxvE7Z5mBNw",
-    titulo:
-      "«Armonía Diversa» fortalece las habilidades artísticas en niños con discapacidad",
-    canal: "8Treinta",
-    descripcion: "Nota sobre la fundación.",
-    esMedios: true,
-  },
-  {
     id: "Dabwb4LIXnc",
     titulo: "Muestra artística de música y danza en la Media Torta, Bogotá",
     canal: "Fundación Armonía Diversa",
